@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/simpleNotify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示简单通知栏广告" />
+
+    <Button
+        android:id="@+id/advanceNotify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示复杂通知栏广告" />
+
+    <Button
+        android:id="@+id/simpleDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示单一app窗口广告" />
+
+    <Button
+        android:id="@+id/simpleBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示简单浮动banner广告" />
+
+    <Button
+        android:id="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示复杂浮动banner广告" />
+
+</LinearLayout>

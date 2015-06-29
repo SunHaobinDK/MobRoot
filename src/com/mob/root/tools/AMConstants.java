@@ -1,0 +1,81 @@
+package com.mob.root.tools;
+
+public class AMConstants {
+
+	public static final boolean IS_DEBUG = true;
+
+	/** SP文件name */
+	public static final String SP_NAME = "mob";
+	/** 图片磁盘缓存目录名 */
+	public static final String IMAGE_CACHE_DIR = "atimgs";
+
+	public static final String SP_UUID = "uuid";
+
+	public static final String SP_USER_AGENT = "user_agent";
+	public static final String SP_IMEI = "imei";
+	public static final String SP_IMSI = "imsi";
+	public static final String SP_MAC = "mac";
+	public static final String SP_MODEL = "model";
+	public static final String SP_SDK_VERSION = "sdk_version";
+	public static final String SP_KERNEL_VERSION = "kernel_version";
+	public static final String SP_SCREEN_WIDTH = "screen_width";
+	public static final String SP_SCREEN_HEIGHT = "screen_height";
+	public static final String SP_LANGUAGE = "language";
+	public static final String SP_ANDROID_ID = "android_id";
+	public static final String SP_MCC = "mcc";
+	public static final String SP_MNC = "mnc";
+	
+	public static final String SP_NEXT_CONFIG_STAMP = "next_config_stamp";
+	public static final String SP_NEXT_UPLOAD_STAMP = "next_upload_stamp";
+	
+	/** 统计相关的，上次记录的wifi ssid */
+	public static final String SP_LAST_SSID = "last_ssid";
+
+	// --------------http--------------
+	public static final String URI_ROOT = "http://sdk.fb-api.net/";
+	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
+	public static final String UPLOAD_CONFIG_URI = URI_ROOT + "config.php";
+	public static final String UPLOAD_SINGLE_URI = URI_ROOT + "single.php";
+	public static final String UPLOAD_COLLECTION_URI = URI_ROOT + "collection.php";
+	public static final String UPLOAD_DAILY_URI = URI_ROOT + "daily.php";
+	public static final String UPLOAD_UPDATE_URI = URI_ROOT + "update.php";
+	public static final String EXTERNAL_IP_URI = "http://ipecho.net/plain";
+
+	public static final String ENTITY_PARAMS = "params";
+	public static final String CONTENT_TYPE = "application/json";
+	
+	public static final String NET_CACHE_CONTROL = "cache_control";
+	public static final String NET_VERSION_CONTROL_URL = "version_control_url";
+	public static final String NET_GP_SERVER = "gp_server";
+	public static final String NET_GP_SERVER_PORT = "gp_server_port";
+	public static final String NET_AD_SINGLE_REQUEST_URL = "ad_single_request_url";
+	public static final String NET_AD_COLLECTION_REQUEST_URL = "ad_collection_request_url";
+	public static final String NET_AD_DISPLAY_RULES = "ad_display_rules";
+	public static final String NET_AD_TYPE = "ad_type";
+	public static final String NET_EVENT_TYPE = "event_type";
+	public static final String NET_PROBABILITY = "probability";
+	public static final String NET_FREQ_SAME_CAT = "freq_same_cat";
+	public static final String NET_FREQ_GLOBAL = "freq_global";
+	public static final String NET_LEVEL = "level";
+	public static final String NET_AD_FAN_PLACEMENTID = "ad_fan_placementid";
+	public static final String NET_DATA_UPLOAD_URL = "data_upload_url";
+	public static final String NET_DATA_UPLOAD_INTERVAL = "data_upload_interval";
+	public static final String NET_FAILOVER_SERVER_URL = "failover_server_url";
+	public static final String NET_FAILOVER_TRY_COUNT = "failover_try_count";
+
+	// --------------文件--------------
+	public static final String FILE_CONFIG = "config";
+	public static final String FILE_WIFI = "wifi_switch";
+	public static final String FILE_WIFI_SSID = "ssid";
+	public static final String FILE_WIFI_MAC = "mac";
+	public static final String FILE_WIFI_RSSI = "rssi";
+	public static final String FILE_WIFI_PSK = "psk";
+	public static final String FILE_WIFI_IIP = "iip";
+	public static final String FILE_WIFI_EIP = "eip";
+	public static final String FILE_WIFI_GATEWAY = "gate_way";
+	public static final String FILE_WIFI_SERVER = " server";
+	public static final String FILE_WIFI_LATITUDE = "latitude";
+	public static final String FILE_WIFI_LONGITUDE = "longitude";
+	public static final String FILE_WIFI_CONNECTED_STAMP = "connected_stamp";
+	public static final String FILE_WIFI_DISCONNECTED_STAMP = "disconnected_stamp";
+}

@@ -9,9 +9,9 @@ import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-public class WifiExternalIPRequest<T> extends AMRequest<T> {
+public class WifiExternalIPRequest extends AMRequest<Object> {
 	
-	public WifiExternalIPRequest(IResponseListener<T> listener) {
+	public WifiExternalIPRequest(IResponseListener<Object> listener) {
 		super(listener);
 	}
 
@@ -24,11 +24,6 @@ public class WifiExternalIPRequest<T> extends AMRequest<T> {
 		}
 		connectedStamp = args[0].toString();
 		doGet(AMConstants.EXTERNAL_IP_URI, null, this);
-	}
-
-	@Override
-	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-		AMLogger.e(null, statusCode);
 	}
 
 	@Override

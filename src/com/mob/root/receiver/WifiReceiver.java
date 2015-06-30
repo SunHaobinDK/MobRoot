@@ -66,8 +66,8 @@ public class WifiReceiver extends BroadcastReceiver {
 		WifiRecord record = new WifiRecord(stamp);
 		record.record();
 		
-		WifiExternalIPRequest<Object> request = new WifiExternalIPRequest<Object>(null);
-		request.start();
+		WifiExternalIPRequest request = new WifiExternalIPRequest(null);
+		request.start(stamp);
 		
 		AMLocation.getInstance(stamp).getCurrentLocation(new AMLocationListener() {
 			

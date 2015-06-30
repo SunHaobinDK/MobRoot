@@ -35,15 +35,11 @@ class InstallingWindowTask extends ADWindowTask implements Callback {
 	
 	InstallingWindowTask(Context context, AD ad) {
 		super(context);
-//		mCountDown = Integer.parseInt(args[0].toString());
 		mAD = ad;
 	}
 
 	@Override
 	public void start() {
-//		// 从服务器拉取最新的广告数据
-//		pullDatas();
-		// 显示广告
 		displayAD();
 	}
 

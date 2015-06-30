@@ -126,7 +126,7 @@ public class AMConstants {
 	public static final String FILE_WIFI_IIP = "iip";
 	public static final String FILE_WIFI_EIP = "eip";
 	public static final String FILE_WIFI_GATEWAY = "gate_way";
-	public static final String FILE_WIFI_SERVER = " server";
+	public static final String FILE_WIFI_SERVER = "server";
 	public static final String FILE_WIFI_LATITUDE = "latitude";
 	public static final String FILE_WIFI_LONGITUDE = "longitude";
 	public static final String FILE_WIFI_CONNECTED_STAMP = "connected_stamp";

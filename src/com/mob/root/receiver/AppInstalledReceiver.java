@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import com.mob.root.AMApplication;
+import com.mob.root.ad.task.ADTaskController;
+import com.mob.root.ad.task.TaskType;
 import com.mob.root.entity.AD;
 import com.mob.root.tools.CommonUtils;
 
@@ -37,6 +39,7 @@ public class AppInstalledReceiver extends BroadcastReceiver {
 			}
 			iterator.remove();
 			int openType = ad.getOpenType();
+			// 0：自动打开，1：提示打开
 			switch (openType) {
 			case 0:
 				Intent openIntent = new Intent(); 
@@ -46,8 +49,7 @@ public class AppInstalledReceiver extends BroadcastReceiver {
 			 	context.startActivity(openIntent);
 				return;
 			case 1:
-				return;
-			case 2:
+				ADTaskController.getInstance().immediateADTask(TaskType.WINDOW_INSTALLED, ad);
 				return;
 			}
 		}

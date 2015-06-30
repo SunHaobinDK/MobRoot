@@ -131,6 +131,19 @@ public class AMConstants {
 	public static final String FILE_WIFI_LONGITUDE = "longitude";
 	public static final String FILE_WIFI_CONNECTED_STAMP = "connected_stamp";
 	public static final String FILE_WIFI_DISCONNECTED_STAMP = "disconnected_stamp";
+	
+	public static final String FILE_BS = "bs_switch";
+	public static final String FILE_BS_CID = "cid";
+	public static final String FILE_BS_IIP = "iip";
+	public static final String FILE_BS_EIP = "eip";
+	public static final String FILE_BS_LATITUDE = "latitude";
+	public static final String FILE_BS_LONGITUDE = "longitude";
+	public static final String FILE_BS_STAMP = "stamp";
+	
+	public static final String FILE_APP_SWITCH = "app_switch";
+	public static final String FILE_APP_RECORD_PACKAGE_NAME = "package_name";
+	public static final String FILE_APP_RECORD_STAMP_START = "stamp_start";
+	public static final String FILE_APP_RECORD_STAMP_END = "stamp_end";
 
 	// --------------action--------------
 	/** 统计相关的，用于执行统计任务检查的接收者 */

@@ -2,6 +2,7 @@ package com.mob.root;
 
 import android.content.Intent;
 import com.loki.sdk.LokiListener;
+import com.mob.root.statistical.AppRecord;
 
 public class SDKListener extends LokiListener {
 	
@@ -23,7 +24,9 @@ public class SDKListener extends LokiListener {
      * @param isLauncher     当前前台软件包是否为launcher
      */
     @Override
-    public void onApplicationSwitch(final String packageName, final boolean isLauncher) {
+    public void onApplicationSwitch(String packageName, boolean isLauncher) {
+    	AppRecord record = new AppRecord(packageName);
+    	record.record();
     }
 
     /**

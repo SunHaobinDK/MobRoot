@@ -1,17 +1,23 @@
 package com.mob.statistics;
 
+import java.io.File;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.location.Location;
 import android.telephony.CellLocation;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
-import com.mob.root.entity.BSSwitch;
+import com.mob.root.AMApplication;
+import com.mob.root.net.BSExternalIPRequest;
 import com.mob.root.statistical.AMLocation;
+import com.mob.root.statistical.AMLocation.AMLocationListener;
+import com.mob.root.statistical.BSRecord;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
 public class AMPhoneStateListener extends PhoneStateListener {
@@ -44,20 +50,46 @@ public class AMPhoneStateListener extends PhoneStateListener {
 			if(lastCID == cid) { //如果当前基站id和上次获取到的基站id相同，则不记录
 				return;
 			}
-			Editor edit = sp.edit();
-			edit.putInt(AMConstants.SP_LAST_CELL_ID, cid).commit();
-			String iip = CommonUtils.getIPAddress(true);
 			long stamp = System.currentTimeMillis();
-			Location lastLocation = AMLocation.getInstance(stamp).getLastLocation();
+			BSRecord record = new BSRecord(cid, stamp);
+			record.record();
 			
-			final BSSwitch bsSwitch = new BSSwitch();
-			bsSwitch.setCid(cid);
-			bsSwitch.setStamp(stamp);
-			bsSwitch.setIip(iip);
-			bsSwitch.setEip("");
-			bsSwitch.setLatitude(null == lastLocation ? "" : lastLocation.getLatitude() + "");
-			bsSwitch.setLongitude(null == lastLocation ? "" : lastLocation.getLongitude() + "");
+			BSExternalIPRequest request = new BSExternalIPRequest(null);
+			request.start(stamp);
 			
+			AMLocation.getInstance(stamp).getCurrentLocation(new AMLocationListener() {
+				
+				@Override
+				public void onLocationChanged(Location location, long stamp) {
+					try {
+						if(null == location) {
+							return;
+						}
+						File file = AMApplication.instance.getFileStreamPath(AMConstants.FILE_BS);
+						String json = CommonUtils.readFile(file);
+						if (CommonUtils.isEmptyString(json)) {
+							return;
+						}
+						JSONArray jsonArray = new JSONArray(json);
+						int length = jsonArray.length();
+						for (int i = 0; i < length; i++) {
+							JSONObject jsonObject = jsonArray.getJSONObject(i);
+							long jsonStamp = jsonObject.getLong(AMConstants.FILE_BS_STAMP);
+							if (stamp != jsonStamp) {
+								continue;
+							}
+							jsonObject.put(AMConstants.FILE_BS_LATITUDE, location.getLatitude());
+							jsonObject.put(AMConstants.FILE_BS_LONGITUDE, location.getLongitude());
+							jsonArray.put(i, jsonObject);
+							break;
+						}
+						json  = jsonArray.toString();
+						CommonUtils.writeFile(json, file);
+					} catch (Exception e) {
+						AMLogger.e(null, e.getMessage());
+					}
+				}
+			});
 			break;
 		}
 	}

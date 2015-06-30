@@ -16,11 +16,9 @@ import com.mob.root.entity.ADRule;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
 
-public class ConfigParser extends Parser {
+public class ConfigParser {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> T parse(String datas) throws Exception {
+	public ADConfig parse(String datas) throws Exception {
 		ADConfig config = new ADConfig();
 		JSONObject rootObject = new JSONObject(datas);
 		int cache = rootObject.getInt(AMConstants.NET_CACHE_CONTROL);
@@ -28,7 +26,7 @@ public class ConfigParser extends Parser {
 		String downloadServer = rootObject.getString(AMConstants.NET_GP_SERVER);
 		String port = rootObject.getString(AMConstants.NET_GP_SERVER_PORT);
 		String requestSingleADUrl = rootObject.getString(AMConstants.NET_AD_SINGLE_REQUEST_URL);
-		String requestCollectionSingleADUrl = rootObject.getString(AMConstants.NET_AD_COLLECTION_REQUEST_URL);
+		String requestCollectionADUrl = rootObject.getString(AMConstants.NET_AD_COLLECTION_REQUEST_URL);
 		JSONArray jsonArray = rootObject.getJSONArray(AMConstants.NET_AD_DISPLAY_RULES);
 		int length = jsonArray.length();
 		List<ADRule> rules = new ArrayList<ADRule>();
@@ -62,14 +60,14 @@ public class ConfigParser extends Parser {
 		config.setGpServer(downloadServer);
 		config.setGpPort(port);
 		config.setRequestSingleUrl(requestSingleADUrl);
-		config.setRequestCollectionUrl(requestCollectionSingleADUrl);
+		config.setRequestCollectionUrl(requestCollectionADUrl);
 		config.setRules(rules);
 		config.setPlacementId(placementId);
 		config.setDataUploadUrl(dataUploadUrl);
 		config.setDataUploadInterval(dataUploadInterval);
 		config.setFailoverServerUrl(failoverServerUrl);
 		config.setFailoverTryCount(failoverTryCount);
-		return (T) config;
+		return config;
 	}
 	
 	public String getValue(Context context, String key) throws Exception {

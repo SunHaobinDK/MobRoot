@@ -18,12 +18,14 @@ import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.adapter.SimpleWindowAppPhotosAdapter;
 import com.mob.root.entity.AD;
+import com.mob.root.net.IResponseListener;
+import com.mob.root.net.SimpleDialogRequest;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
 import com.mob.root.view.ADHorizontalScrollview;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-class SimpleDialogTask extends ADWindowTask {
+class SimpleDialogTask extends ADWindowTask implements IResponseListener<AD> {
 
 	private WindowManager mWindowManager;
 	private LayoutInflater mInflater;
@@ -56,6 +58,8 @@ class SimpleDialogTask extends ADWindowTask {
 
 	@Override
 	protected void pullDatas() throws Exception {
+		SimpleDialogRequest request = new SimpleDialogRequest(this);
+		request.start();
 	}
 
 	@Override
@@ -133,5 +137,11 @@ class SimpleDialogTask extends ADWindowTask {
 		
 		mAdapter = new SimpleWindowAppPhotosAdapter(mContext, mAD.getPics());
 		mAppPhotosView.setAdapter(mContext, mAdapter);
+	}
+
+	@Override
+	public void onResponse(AD ad) {
+		mAD = ad;
+		displayAD();
 	}
 }

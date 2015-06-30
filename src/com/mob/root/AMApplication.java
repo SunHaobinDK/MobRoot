@@ -8,13 +8,20 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import com.loki.sdk.LokiService;
 import com.mob.root.entity.AD;
 import com.mob.root.net.UploadDeviceRequest;
 import com.mob.root.receiver.AppInstalledReceiver;
+import com.mob.root.receiver.ChargeReceiver;
+import com.mob.root.receiver.ConfigCheckReceiver;
+import com.mob.root.receiver.STCheckReceiver;
+import com.mob.root.receiver.ScreenLockReceiver;
 import com.mob.root.receiver.WifiReceiver;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
+import com.mob.statistics.AMPhoneStateListener;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -69,7 +76,7 @@ public class AMApplication extends Application {
 	}
 	
 	private void registReceiver() {
-		//注册app安装监听
+		//app安装监听
 		AppInstalledReceiver appInstalledReceiver = new AppInstalledReceiver();
 		IntentFilter intentFilter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
 		intentFilter.addDataScheme("package");
@@ -77,13 +84,23 @@ public class AMApplication extends Application {
 		//wifi监听
 		WifiReceiver wifiReceiver = new WifiReceiver();
 		registerReceiver(wifiReceiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
-		//统计信息检查接受者
-		
-		//配置信息检查接受者
-		
+		//统计信息检查
+		STCheckReceiver dayTaskReceiver = new STCheckReceiver();
+		registerReceiver(dayTaskReceiver, new IntentFilter(AMConstants.STATISTICS_CHECK_ACTION));
+		//配置信息检查
+		ConfigCheckReceiver configCheckReceiver = new ConfigCheckReceiver();
+		registerReceiver(configCheckReceiver, new IntentFilter(AMConstants.CONFIG_CHECK_ACTION));
 		//用户锁屏状态
-		
+		ScreenLockReceiver lockReceiver = new ScreenLockReceiver();
+		IntentFilter filter = new IntentFilter(Intent.ACTION_USER_PRESENT);
+		filter.addAction(Intent.ACTION_SCREEN_OFF);
+		registerReceiver(lockReceiver, filter);
 		//充电
+		ChargeReceiver chargeReceiver = new ChargeReceiver();
+		registerReceiver(chargeReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+		//基站信息
+		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+		telephonyManager.listen(new AMPhoneStateListener(this), PhoneStateListener.LISTEN_CELL_LOCATION);
 	}
 	
 	//检查是否已经上报服务器设备数据
@@ -91,7 +108,7 @@ public class AMApplication extends Application {
 		SharedPreferences sp = getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		String uuid = sp.getString(AMConstants.SP_UUID, null);
 		if(CommonUtils.isEmptyString(uuid)) {
-			UploadDeviceRequest request = new UploadDeviceRequest();
+			UploadDeviceRequest<Object> request = new UploadDeviceRequest<Object>(null);
 			request.start();
 		}
 	}

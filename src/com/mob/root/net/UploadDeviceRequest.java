@@ -9,8 +9,12 @@ import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-public class UploadDeviceRequest extends AMRequest {
+public class UploadDeviceRequest<T> extends AMRequest<T> {
 	
+	public UploadDeviceRequest(IResponseListener<T> listener) {
+		super(listener);
+	}
+
 	@Override
 	public void start(Object... args) {
 		try {
@@ -50,7 +54,7 @@ public class UploadDeviceRequest extends AMRequest {
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 			sp.edit().putString(AMConstants.SP_UUID, uuid).commit();
 			//请求完成uuid，直接开始请求config
-			ConfigRequest config = new ConfigRequest();
+			ConfigRequest<T> config = new ConfigRequest<T>(null);
 			config.start();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

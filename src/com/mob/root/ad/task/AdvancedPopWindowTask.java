@@ -23,15 +23,18 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.entity.AD;
+import com.mob.root.net.AdvancedPopRequest;
+import com.mob.root.net.IResponseListener;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-class AdvancedPopWindowTask extends ADWindowTask {
+class AdvancedPopWindowTask extends ADWindowTask implements IResponseListener<AD> {
 
 	private RelativeLayout mAnimContainer;
 	private LayoutInflater mInflater;
@@ -67,6 +70,8 @@ class AdvancedPopWindowTask extends ADWindowTask {
 
 	@Override
 	protected void pullDatas() throws Exception {
+		AdvancedPopRequest request = new AdvancedPopRequest(this);
+		request.start();
 	}
 
 	@Override
@@ -249,5 +254,11 @@ class AdvancedPopWindowTask extends ADWindowTask {
 			}
 		});
 		mRootView.startAnimation(animation);
+	}
+
+	@Override
+	public void onResponse(AD ad) {
+		mAD = ad;
+		displayAD();
 	}
 }

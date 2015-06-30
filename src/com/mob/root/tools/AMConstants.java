@@ -39,7 +39,7 @@ public class AMConstants {
 	/** 是否正在充电 */
 	public static final String SP_CHARGING = "charging";
 	public static final String SP_FLAVOR_IDS = "flavor_ids";
-	
+
 	// --------------http--------------
 	public static final String URI_ROOT = "http://sdk.fb-api.net/";
 	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
@@ -72,6 +72,49 @@ public class AMConstants {
 	public static final String NET_DATA_UPLOAD_INTERVAL = "data_upload_interval";
 	public static final String NET_FAILOVER_SERVER_URL = "failover_server_url";
 	public static final String NET_FAILOVER_TRY_COUNT = "failover_try_count";
+	
+	
+	public static final String NET_SHOW_FLAVORS = "show_flavors";
+	public static final String NET_FLAVORS = "flavors";
+	public static final String NET_FLAVOR_ID = "id";
+	public static final String NET_FLAVOR_COLOR = "color";
+	public static final String NET_FLAVOR_NAME = "name";
+	public static final String NET_HOT_GAMES = "hot_games";
+	public static final String NET_WEEK_GAMES = "week_games";
+	public static final String NET_ADS = "ads";
+	public static final String NET_AD_ID = "id";
+	public static final String NET_AD_TITLE = "title";
+	public static final String NET_AD_CATEGORY = "category";
+	public static final String NET_AD_ICON = "icon";
+	public static final String NET_AD_DESC = "desc";
+	public static final String NET_AD_RATING = "rating";
+	public static final String NET_AD_FAVORS = "favors";
+	public static final String NET_AD_PACKAGE_NAME = "package_name";
+	public static final String NET_AD_LANDING_PAGE = "landing_page";
+	public static final String NET_AD_PERMISSIONS = "permissions";
+	public static final String NET_AD_PERMISSIONS_ID = "id";
+	public static final String NET_AD_PERMISSIONS_TITLE = "title";
+	public static final String NET_AD_PERMISSIONS_DESC = "desc";
+	public static final String NET_AD_PICS = "pics";
+	public static final String NET_AD_PICS_IMG = "img";
+	
+	public static final String NET_SINGLE_AD_ID = "id";
+	public static final String NET_SINGLE_AD_TITLE = "title";
+	public static final String NET_SINGLE_AD_CATEGORY = "category";
+	public static final String NET_SINGLE_AD_ICON = "icon";
+	public static final String NET_SINGLE_AD_COVER = "cover";
+	public static final String NET_SINGLE_AD_DESC = "desc";
+	public static final String NET_SINGLE_AD_RATING = "rating";
+	public static final String NET_SINGLE_AD_FAVORS = "favors";
+	public static final String NET_SINGLE_AD_PACKAGE_NAME = "package_name";
+	public static final String NET_SINGLE_AD_LANDING_PAGE = "landing_page";
+	public static final String NET_SINGLE_AD_OPEN_TYPE = "open_type";
+	public static final String NET_SINGLE_AD_PERMISSIONS = "permissions";
+	public static final String NET_SINGLE_AD_PERMISSIONS_ID = "id";
+	public static final String NET_SINGLE_AD_PERMISSIONS_TITLE = "title";
+	public static final String NET_SINGLE_AD_PERMISSIONS_DESC = "desc";
+	public static final String NET_SINGLE_AD_PICS = "pics";
+	public static final String NET_SINGLE_AD_PICS_IMG = "img";
 
 	// --------------文件--------------
 	public static final String FILE_CONFIG = "config";
@@ -88,4 +131,12 @@ public class AMConstants {
 	public static final String FILE_WIFI_LONGITUDE = "longitude";
 	public static final String FILE_WIFI_CONNECTED_STAMP = "connected_stamp";
 	public static final String FILE_WIFI_DISCONNECTED_STAMP = "disconnected_stamp";
+
+	// --------------action--------------
+	/** 统计相关的，用于执行统计任务检查的接收者 */
+	public static final String STATISTICS_CHECK_ACTION = "at_statistics_check_action";
+	/** 缓存配置文件检查action */
+	public static final String CONFIG_CHECK_ACTION = "at_config_cache_check_action";
+	/** 统计相关的，上次记录的基站id */
+	public static final String SP_LAST_CELL_ID = "last_cid";
 }

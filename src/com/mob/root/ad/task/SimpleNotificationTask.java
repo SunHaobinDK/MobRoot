@@ -17,7 +17,10 @@ import com.loki.sdk.LokiService;
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.entity.AD;
+import com.mob.root.net.IResponseListener;
+import com.mob.root.net.SimpleNotificationRequest;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
@@ -26,10 +29,9 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
  * 简单通知栏广告
  * 
  */
-class SimpleNotificationTask extends ADTask {
+class SimpleNotificationTask extends ADTask implements IResponseListener<AD> {
 
 	private Context mContext;
-//	private NotificationManager mNotificationManager;
 	private AD mAD;
 
 	SimpleNotificationTask(Context context) {
@@ -42,20 +44,18 @@ class SimpleNotificationTask extends ADTask {
 		try {
 			pullDatas();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AMLogger.e(null, e.getMessage());
 		}
 	}
 	
 	@Override
 	protected void pullDatas() throws Exception {
+		SimpleNotificationRequest request = new SimpleNotificationRequest(this);
+		request.start();
 	}
 
 	@Override
 	protected void displayAD() {
-//		if (null == mNotificationManager) {
-//			mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-//		}
 		if(null == mAD) {
 			return;
 		}
@@ -72,7 +72,7 @@ class SimpleNotificationTask extends ADTask {
 		        Uri content_url = Uri.parse(mAD.getLandingPager());   
 		        webViewIntent.setData(content_url);
 				
-				PendingIntent receiver = PendingIntent.getBroadcast(mContext, 0, webViewIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+				PendingIntent receiver = PendingIntent.getActivity(mContext, 0, webViewIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 				
 				Notification.Builder builder = new Notification.Builder(mContext);
 				builder.setWhen(System.currentTimeMillis());
@@ -93,7 +93,6 @@ class SimpleNotificationTask extends ADTask {
 				
 				notification.contentView = remoteViews;
 				notification.contentIntent = receiver;
-//				mNotificationManager.notify(0, notification);
 				
 				lokiService.sendNotificationAsPackage(info.packageName, 0, null, notification);
 				
@@ -101,6 +100,11 @@ class SimpleNotificationTask extends ADTask {
 				sp.edit().putLong(AMConstants.SP_LAST_AD_STAMP, System.currentTimeMillis()).commit();
 			}
 		});
-//		remoteViews.setImageViewResource(R.id.appLogo, R.drawable.test_logo);
+	}
+
+	@Override
+	public void onResponse(AD ad) {
+		mAD = ad;
+		displayAD();
 	}
 }

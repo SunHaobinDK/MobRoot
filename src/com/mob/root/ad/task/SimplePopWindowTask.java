@@ -12,10 +12,13 @@ import android.view.WindowManager.LayoutParams;
 
 import com.mob.root.R;
 import com.mob.root.entity.CollectionAD;
+import com.mob.root.net.IResponseListener;
+import com.mob.root.net.SimplePopRequest;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-class SimplePopWindowTask extends ADWindowTask {
+class SimplePopWindowTask extends ADWindowTask implements IResponseListener<CollectionAD> {
 
 	private WindowManager mWindowManager;
 	private LayoutInflater mInflater;
@@ -31,13 +34,14 @@ class SimplePopWindowTask extends ADWindowTask {
 		try {
 			pullDatas();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AMLogger.e(null, e.getMessage());
 		}
 	}
 
 	@Override
 	protected void pullDatas() throws Exception {
+		SimplePopRequest request = new SimplePopRequest(this);
+		request.start();
 	}
 
 	@Override
@@ -84,5 +88,11 @@ class SimplePopWindowTask extends ADWindowTask {
 	}
 	
 	private void initDatas() {
+	}
+
+	@Override
+	public void onResponse(CollectionAD collectionAD) {
+		mCollectionAD = collectionAD;
+		displayAD();
 	}
 }

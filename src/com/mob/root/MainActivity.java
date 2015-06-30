@@ -1,5 +1,8 @@
 package com.mob.root;
 
+import com.mob.root.ad.task.ADTaskBuilder;
+import com.mob.root.ad.task.TaskType;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,17 +33,24 @@ public class MainActivity extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		ADTaskBuilder builder = new ADTaskBuilder();
 		switch (v.getId()) {
 		case R.id.simpleNotify:
+			builder.setADType(TaskType.NOTIFICATION_SIMPLE, this, null);
 			break;
 		case R.id.advanceNotify:
+			builder.setADType(TaskType.NOTIFICATION_ADVANCED, this, null);
 			break;
 		case R.id.simpleDialog:
+			builder.setADType(TaskType.WINDOW_SOLO, this, null);
 			break;
 		case R.id.simpleBanner:
+			builder.setADType(TaskType.POP_SIMPLE, this, null);
 			break;
 		case R.id.banner:
+			builder.setADType(TaskType.POP_ADVANCED, this, null);
 			break;
 		}
+		builder.build().start();
 	}
 }

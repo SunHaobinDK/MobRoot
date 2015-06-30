@@ -9,8 +9,12 @@ import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-public class WifiExternalIPRequest extends AMRequest {
+public class WifiExternalIPRequest<T> extends AMRequest<T> {
 	
+	public WifiExternalIPRequest(IResponseListener<T> listener) {
+		super(listener);
+	}
+
 	private String connectedStamp;
 	
 	@Override

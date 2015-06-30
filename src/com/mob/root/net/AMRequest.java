@@ -3,22 +3,37 @@ package com.mob.root.net;
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.mob.root.AMApplication;
+import com.mob.root.net.parser.ConfigParser;
 import com.mob.root.tools.AESUtil;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-public abstract class AMRequest extends TextHttpResponseHandler {
+public abstract class AMRequest<T> extends TextHttpResponseHandler {
+	
+	public AMRequest(IResponseListener<T> listener){
+		this.listener = listener;
+		ConfigParser parser = new ConfigParser();
+		try {
+			String value = parser.getValue(AMApplication.instance, AMConstants.NET_FAILOVER_TRY_COUNT);
+			if (!CommonUtils.isEmptyString(value)) {
+				this.retryCount = Integer.parseInt(value);
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
+	}
 
 	protected int retryCount;
 	protected String resultDatas;
+	protected IResponseListener<T> listener;
+	protected Object[] args;
 	
 	public abstract void start(Object... args);
 	
@@ -41,6 +56,9 @@ public abstract class AMRequest extends TextHttpResponseHandler {
 	
 	@Override
 	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+		if (--retryCount > 0) {
+			start(args);
+		}
 	}
 
 	@Override

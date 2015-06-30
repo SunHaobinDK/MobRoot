@@ -1,15 +1,14 @@
 package com.mob.root.ad.task;
 
 import android.content.Context;
-
 import com.mob.root.entity.AD;
-
+import com.mob.root.entity.CollectionAD;
 
 public class ADTaskBuilder {
 
 	private ADTask mAdTask;
 
-	public ADTaskBuilder setADType(TaskType adType, Context context, Object... args) {
+	public <T> ADTaskBuilder setADType(TaskType adType, Context context, T t) {
 		switch (adType) {
 		case NOTIFICATION_SIMPLE:
 			mAdTask = new SimpleNotificationTask(context);
@@ -27,19 +26,19 @@ public class ADTaskBuilder {
 			mAdTask = new SimpleDialogTask(context);
 			return this;
 		case WINDOW_COLLECTION:
-			mAdTask = new AdvancedDialogTask(context, null);
+			mAdTask = new AdvancedDialogTask(context, (CollectionAD) t);
 			return this;
 		case WINDOW_INSTALLED:
-			mAdTask = new InstalledWindowTask(context, (AD) args[0]);
+			mAdTask = new InstalledWindowTask(context, (AD) t);
 			return this;
 		case WINDOW_GUIDE_INSTALL:
-			mAdTask = new InstallGuideWindowTask(context, (AD) args[0]);
+			mAdTask = new InstallGuideWindowTask(context, (AD) t);
 			return this;
 		case WINDOW_INSTALLED_APP:
-			mAdTask = new InstalledAppWindowTask(context, (AD) args[0]);
+			mAdTask = new InstalledAppWindowTask(context, (AD) t);
 			return this;
 		case WINDOW_INSTALLING:
-			mAdTask = new InstallingWindowTask(context, (AD) args[0]);
+			mAdTask = new InstallingWindowTask(context, (AD) t);
 			return this;
 		default:
 			return null;

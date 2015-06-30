@@ -14,6 +14,8 @@ import com.loki.sdk.LokiService;
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.entity.AD;
+import com.mob.root.net.AdvancedNotificationRequest;
+import com.mob.root.net.IResponseListener;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -23,7 +25,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
  * 复杂通知栏广告
  * 
  */
-class AdvancedNotificationTask extends ADTask {
+class AdvancedNotificationTask extends ADTask implements IResponseListener<AD> {
 
 	private Context mContext;
 	private AD mAD;
@@ -50,6 +52,8 @@ class AdvancedNotificationTask extends ADTask {
 	
 	@Override
 	protected void pullDatas() throws Exception {
+		AdvancedNotificationRequest request = new AdvancedNotificationRequest(this);
+		request.start();
 	}
 
 	@Override
@@ -67,7 +71,7 @@ class AdvancedNotificationTask extends ADTask {
         Uri content_url = Uri.parse(mAD.getLandingPager());   
         webViewIntent.setData(content_url);
 		
-		receiver = PendingIntent.getBroadcast(mContext, 0, webViewIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+		receiver = PendingIntent.getActivity(mContext, 0, webViewIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 		
 		Notification.Builder builder = new Notification.Builder(mContext);
 		builder.setWhen(System.currentTimeMillis());
@@ -114,5 +118,11 @@ class AdvancedNotificationTask extends ADTask {
 		lokiService.sendNotificationAsPackage(info.packageName, 0, null, notification);
 		SharedPreferences sp = mContext.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		sp.edit().putLong(AMConstants.SP_LAST_AD_STAMP, System.currentTimeMillis()).commit();
+	}
+
+	@Override
+	public void onResponse(AD ad) {
+		mAD = ad;
+		displayAD();
 	}
 }

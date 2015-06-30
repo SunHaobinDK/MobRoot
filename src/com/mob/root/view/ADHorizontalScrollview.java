@@ -1,5 +1,7 @@
 package com.mob.root.view;
 
+import com.mob.root.tools.AMLogger;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -18,7 +20,6 @@ public class ADHorizontalScrollview extends HorizontalScrollView {
 		super(context, attrs);
 		this.context = context;
 		this.setSmoothScrollingEnabled(true);
-
 	}
 
 	public void setAdapter(Context context, BaseAdapter mAdapter) {
@@ -26,8 +27,7 @@ public class ADHorizontalScrollview extends HorizontalScrollView {
 		try {
 			fillViewWithAdapter(mAdapter);
 		} catch (ZeroChildException e) {
-
-			e.printStackTrace();
+			AMLogger.e(null, e.getMessage());
 		}
 	}
 
@@ -65,11 +65,9 @@ public class ADHorizontalScrollview extends HorizontalScrollView {
 		View view = parent.getChildAt(index);
 		view.setBackgroundColor(Color.RED);
 
-		int screenWidth = ((Activity) context).getWindowManager()
-				.getDefaultDisplay().getWidth();
+		int screenWidth = ((Activity) context).getWindowManager().getDefaultDisplay().getWidth();
 
-		int scrollX = (view.getLeft() - (screenWidth / 2))
-				+ (view.getWidth() / 2);
+		int scrollX = (view.getLeft() - (screenWidth / 2)) + (view.getWidth() / 2);
 		this.smoothScrollTo(scrollX, 0);
 		prevIndex = index;
 	}
@@ -85,7 +83,5 @@ public class ADHorizontalScrollview extends HorizontalScrollView {
 		public ZeroChildException(String errorMessage) {
 			super(errorMessage);
 		}
-
 	}
-
 }

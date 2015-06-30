@@ -21,7 +21,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.adapter.AdvanceWindowAppPhotosAdapter;
@@ -31,14 +30,17 @@ import com.mob.root.adapter.FlavorWindowGridAdapter.Holder;
 import com.mob.root.entity.AD;
 import com.mob.root.entity.CollectionAD;
 import com.mob.root.entity.Flavor;
+import com.mob.root.net.CollectionRequest;
+import com.mob.root.net.IResponseListener;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 import com.mob.root.view.ADHorizontalScrollview;
 import com.mob.root.view.FlavorGridView;
 import com.mob.root.view.TowRotateAnimation;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener {
+class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IResponseListener<CollectionAD> {
 
 	private WindowManager mWindowManager;
 	private LayoutInflater mInflater;
@@ -86,7 +88,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener {
 			try {
 				pullDatas();
 			} catch (Exception e) {
-				e.printStackTrace();
+				AMLogger.e(null, e.getMessage());
 			}
 		} else {
 			// 显示广告
@@ -96,6 +98,8 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener {
 
 	@Override
 	protected void pullDatas() throws Exception {
+		CollectionRequest<CollectionAD> request = new CollectionRequest<CollectionAD>(this);
+		request.start();
 	}
 
 	@Override
@@ -430,5 +434,12 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener {
 		}
 		closeWindow();
 		return;
+	}
+
+	@Override
+	public void onResponse(CollectionAD collectionAD) {
+		mCollectionAD = collectionAD;
+		// 显示广告
+		displayAD();
 	}
 }

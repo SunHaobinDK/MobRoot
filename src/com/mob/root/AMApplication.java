@@ -2,7 +2,10 @@ package com.mob.root;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.app.AlarmManager;
 import android.app.Application;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -10,8 +13,10 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+
 import com.loki.sdk.LokiService;
 import com.mob.root.entity.AD;
+import com.mob.root.net.UploadDatasRequest;
 import com.mob.root.net.UploadDeviceRequest;
 import com.mob.root.receiver.AppInstalledReceiver;
 import com.mob.root.receiver.ChargeReceiver;
@@ -43,6 +48,10 @@ public class AMApplication extends Application {
 		initImageloader();
 		checkConfig();
 		registReceiver();
+		checkTask();
+		
+		UploadDatasRequest request = new UploadDatasRequest(null);
+		request.start();
 	}
 
 	private void initSDK() {
@@ -111,5 +120,17 @@ public class AMApplication extends Application {
 			UploadDeviceRequest<Object> request = new UploadDeviceRequest<Object>(null);
 			request.start();
 		}
+	}
+	
+	private void checkTask() {
+		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+		int type = AlarmManager.ELAPSED_REALTIME_WAKEUP;
+		Intent intent = new Intent(AMConstants.CONFIG_CHECK_ACTION);
+		PendingIntent checkTaskPI = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+		alarmManager.setRepeating(type, System.currentTimeMillis() + 60 * 60 * 1000, 1 * 60 * 60 * 1000, checkTaskPI);
+		
+		intent = new Intent(AMConstants.STATISTICS_CHECK_ACTION);
+		checkTaskPI = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+		alarmManager.setRepeating(type, System.currentTimeMillis() + 60 * 60 * 1000, 60 * 60 * 1000, checkTaskPI);
 	}
 }

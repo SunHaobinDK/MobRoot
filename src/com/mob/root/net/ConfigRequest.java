@@ -11,9 +11,9 @@ import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-public class ConfigRequest<T> extends AMRequest<T> {
+public class ConfigRequest extends AMRequest<ADConfig> {
 
-	public ConfigRequest(IResponseListener<T> listener) {
+	public ConfigRequest(IResponseListener<ADConfig> listener) {
 		super(listener);
 	}
 

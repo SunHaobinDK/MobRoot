@@ -54,7 +54,7 @@ public class UploadDeviceRequest<T> extends AMRequest<T> {
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 			sp.edit().putString(AMConstants.SP_UUID, uuid).commit();
 			//请求完成uuid，直接开始请求config
-			ConfigRequest<T> config = new ConfigRequest<T>(null);
+			ConfigRequest config = new ConfigRequest(null);
 			config.start();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

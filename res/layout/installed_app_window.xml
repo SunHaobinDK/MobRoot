@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/installed_app_window_width"
+    android:layout_height="@dimen/installed_app_window_height"
+    android:background="@drawable/installed_window_bg"
+    android:padding="@dimen/installed_app_window_padding" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/installed_app_window_title"
+        android:textColor="#808080"
+        android:textSize="@dimen/installed_app_window_title_text_size" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="@dimen/installed_app_window_close_width"
+        android:layout_height="@dimen/installed_app_window_close_height"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/close_black" />
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="@dimen/installed_app_window_app_icon_width"
+        android:layout_height="@dimen/installed_app_window_app_icon_height"
+        android:layout_below="@id/title"
+        android:layout_marginTop="@dimen/installed_app_window_app_icon_margin_top"
+        android:background="@drawable/app_icon_bg"
+        android:padding="@dimen/installed_app_window_app_icon_padding"
+        android:scaleType="centerCrop"
+        android:src="@color/image_default_bg" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/appIcon"
+        android:layout_marginLeft="@dimen/installed_app_window_app_title_margin_left"
+        android:layout_toRightOf="@id/appIcon"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#404040"
+        android:textSize="@dimen/installed_app_window_app_title_text_size" />
+
+    <TextView
+        android:id="@+id/appCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/appTitle"
+        android:layout_below="@id/appTitle"
+        android:layout_marginLeft="@dimen/installed_app_window_app_category_margin_left"
+        android:layout_marginTop="@dimen/installed_app_window_app_category_margin_top"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#404040"
+        android:textSize="@dimen/installed_app_window_app_category_text_size" />
+
+    <RatingBar
+        android:id="@+id/appRating"
+        style="@style/midRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/appCategory"
+        android:layout_below="@id/appCategory"
+        android:layout_marginTop="@dimen/installed_app_window_app_rating_margin_top"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.5" />
+
+    <TextView
+        android:id="@+id/appFavors"
+        style="@style/midRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appCategory"
+        android:layout_marginLeft="@dimen/installed_app_window_app_favors_margin_left"
+        android:layout_marginTop="@dimen/installed_app_window_app_favors_margin_top"
+        android:layout_toRightOf="@id/appRating"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#404040"
+        android:textSize="@dimen/installed_app_window_app_favors_text_size" />
+
+    <ImageView
+        android:id="@+id/gpLogo"
+        android:layout_width="@dimen/installed_app_window_gp_width"
+        android:layout_height="@dimen/installed_app_window_gp_height"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/google_play_logo" />
+
+    <Button
+        android:id="@+id/openApp"
+        android:layout_width="@dimen/installed_app_window_open_app_width"
+        android:layout_height="@dimen/installed_app_window_open_app_height"
+        android:layout_alignLeft="@id/appCategory"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/installed_window_open_bg"
+        android:gravity="center_vertical|left"
+        android:paddingLeft="@dimen/installed_app_window_open_app_margin_left"
+        android:text="@string/installed_app_window_open_app"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/installed_app_window_open_app_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/countDown"
+        android:layout_width="@dimen/installed_app_window_count_down_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/installed_app_window_count_down_margin_bottom"
+        android:layout_marginRight="@dimen/installed_app_window_count_down_margin_right"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/installed_app_window_count_down_text_size" />
+
+</RelativeLayout>

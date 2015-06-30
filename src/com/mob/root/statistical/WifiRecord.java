@@ -1,11 +1,9 @@
 package com.mob.root.statistical;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -27,6 +25,12 @@ import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
 public class WifiRecord extends RecordTask {
+	
+	private long mConnectedStamp;
+	
+	public WifiRecord(long connectedStamp) {
+		mConnectedStamp = connectedStamp;
+	}
 
 	@Override
 	public void run() {
@@ -40,7 +44,6 @@ public class WifiRecord extends RecordTask {
 			DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
 			String gateway = CommonUtils.formatGateway(dhcpInfo.gateway);
 			String psk = null;
-			String stamp = System.currentTimeMillis() + "";
 
 			LokiService lokiService = LokiService.getInstance(AMApplication.instance);
 			if(null == lokiService) {
@@ -75,7 +78,7 @@ public class WifiRecord extends RecordTask {
 				break;
 			}
 			
-			Location lastLocation = ATLocation.getInstance().getLastLocation();
+			Location lastLocation = AMLocation.getInstance(mConnectedStamp).getLastLocation();
 			
 			WifiConfig wifiConfig = new WifiConfig();
 			wifiConfig.setSsid(ssid);
@@ -84,7 +87,7 @@ public class WifiRecord extends RecordTask {
 			wifiConfig.setIip(CommonUtils.getIPAddress(true));
 			wifiConfig.setGateway(gateway);
 			wifiConfig.setPsk(psk);
-			wifiConfig.setConnectedStamp(stamp);
+			wifiConfig.setConnectedStamp(mConnectedStamp);
 			wifiConfig.setLatitude(null == lastLocation ? "" : lastLocation.getLatitude() + "");
 			wifiConfig.setLongitude(null == lastLocation ? "" : lastLocation.getLongitude() + "");
 			
@@ -117,10 +120,12 @@ public class WifiRecord extends RecordTask {
 		
 		jsonArray.put(jsonArray.length(), jsonObject);
 		json = jsonArray.toString();
-		CommonUtils.wirteFile(json, file);
+		CommonUtils.writeFile(json, file);
+		
+		getWifiServer(wifiConfig);
 	}
 	
-	private void recordWifiServer(WifiConfig wifiConfig) throws Exception {
+	private void getWifiServer(WifiConfig wifiConfig) throws Exception {
 		SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		String userAgent = sp.getString(AMConstants.SP_USER_AGENT, null);
 		HttpClient httpclient = new DefaultHttpClient();
@@ -135,6 +140,8 @@ public class WifiRecord extends RecordTask {
 			Header[] headers = response.getHeaders("Server");
 			if (null != headers && headers.length > 0) {
 				// headers[0].getValue() 记录server
+				wifiConfig.setServer(headers[0].getValue());
+				updateWifiForServer(wifiConfig);
 			}
 		}
 		
@@ -150,15 +157,32 @@ public class WifiRecord extends RecordTask {
 			Header[] headers = response.getHeaders("Server");
 			if (null != headers && headers.length > 0) {
 				// headers[0].getValue() 记录server
+				wifiConfig.setServer(headers[0].getValue());
+				updateWifiForServer(wifiConfig);
 			}
 		}
 	}
-
-	private void recordWifiDisconnected() {
+	
+	private void updateWifiForServer(WifiConfig wifiConfig) throws Exception {
+		File file = AMApplication.instance.getFileStreamPath(AMConstants.FILE_WIFI);
+		String json = CommonUtils.readFile(file);
+		if (CommonUtils.isEmptyString(json)) {
+			return;
+		}
+		JSONArray jsonArray = new JSONArray(json);
+		int length = jsonArray.length();
+		for (int i = 0; i < length; i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			long jsonStamp = jsonObject.getLong(AMConstants.FILE_WIFI_CONNECTED_STAMP);
+			long connectedStamp = wifiConfig.getConnectedStamp();
+			if (connectedStamp != jsonStamp) {
+				continue;
+			}
+			jsonObject.put(AMConstants.FILE_WIFI_SERVER, wifiConfig.getServer());
+			jsonArray.put(i, jsonObject);
+			break;
+		}
+		json  = jsonArray.toString();
+		CommonUtils.writeFile(json, file);
 	}
-
-	private void recordWifiEip() {
-	}
-
-	private void recordWifiLocation(){}
 }

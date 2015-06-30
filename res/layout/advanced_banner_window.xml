@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/advanced_float_window_height" >
+
+    <RelativeLayout
+        android:id="@+id/bannerContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/advanced_float_window_banner_content_height"
+        android:background="#202020"
+        android:clickable="true"
+        android:padding="@dimen/advanced_float_window_banner_content_padding"
+        android:visibility="gone" >
+
+        <Button
+            android:id="@+id/install"
+            android:layout_width="@dimen/advanced_float_window_install_width"
+            android:layout_height="@dimen/advanced_float_window_install_height"
+            android:background="@drawable/button_green_bg_selector"
+            android:gravity="center"
+            android:text="@string/advanced_banner_window_install"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/advanced_float_window_install_text_size" />
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/advanced_float_window_app_title_margin_left"
+            android:layout_toRightOf="@id/install"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/advanced_float_window_app_title_text_size" />
+
+        <RatingBar
+            android:id="@+id/appRating"
+            style="@style/midRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/appTitle"
+            android:layout_below="@id/appTitle"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:id="@+id/appFavors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/appTitle"
+            android:layout_below="@id/appRating"
+            android:layout_marginTop="@dimen/advanced_float_window_app_favors_margin_top"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/advanced_float_window_app_favors_text_size" />
+
+        <TextView
+            android:id="@+id/appIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/appTitle"
+            android:layout_below="@id/appFavors"
+            android:layout_marginTop="@dimen/advanced_float_window_app_intro_margin_top"
+            android:ellipsize="end"
+            android:gravity="right"
+            android:maxLines="2"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/advanced_float_window_app_intro_text_size" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/bannerAppIcon"
+        android:layout_width="@dimen/advanced_float_window_banner_app_icon_width"
+        android:layout_height="@dimen/advanced_float_window_banner_app_icon_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/advanced_float_window_banner_app_icon_margin_right"
+        android:layout_marginTop="@dimen/advanced_float_window_banner_app_icon_margin_top"
+        android:scaleType="centerInside"
+        android:src="@color/image_default_bg" />
+
+    <LinearLayout
+        android:id="@+id/upCloseLayout"
+        android:layout_width="@dimen/advanced_float_window_up_close_layout_width"
+        android:layout_height="@dimen/advanced_float_window_up_close_layout_height"
+        android:layout_below="@id/bannerContent"
+        android:layout_marginLeft="@dimen/advanced_float_window_up_close_layout_margin_left"
+        android:background="#202020"
+        android:clickable="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/upCloseIcon"
+            android:layout_width="@dimen/advanced_float_window_up_close_icon_width"
+            android:layout_height="@dimen/advanced_float_window_up_close_icon_height"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:padding="@dimen/advanced_float_window_up_close_icon_padding"
+            android:scaleType="centerInside"
+            android:src="@drawable/banner_window_up_close" />
+
+        <TextView
+            android:id="@+id/upClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:text="@string/advanced_banner_window_collapse"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/advanced_float_window_up_close_text_size" />
+    </LinearLayout>
+
+</RelativeLayout>

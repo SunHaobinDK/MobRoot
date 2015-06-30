@@ -1,15 +1,23 @@
 package com.mob.root;
 
+import java.util.ArrayList;
+import java.util.List;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
-
+import android.net.wifi.WifiManager;
 import com.loki.sdk.LokiService;
+import com.mob.root.entity.AD;
 import com.mob.root.net.UploadDeviceRequest;
+import com.mob.root.receiver.AppInstalledReceiver;
+import com.mob.root.receiver.WifiReceiver;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
@@ -17,10 +25,13 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 public class AMApplication extends Application {
 	
 	public static AMApplication instance;
+	public DisplayImageOptions displayOption;
+	public List<AD> installADs;
 
 	@Override
 	public void onCreate() {
 		instance = this;
+		installADs = new ArrayList<AD>();
 		initSDK();
 		initImageloader();
 		checkConfig();
@@ -49,13 +60,23 @@ public class AMApplication extends Application {
         .diskCacheFileCount(100)
         .build();
 		ImageLoader.getInstance().init(configuration);
+		
+		displayOption = new DisplayImageOptions.Builder()
+		.cacheInMemory(true) // 启用内存缓存
+		.cacheOnDisk(true) // 启用外存缓存
+		.considerExifParams(true) // 启用EXIF和JPEG图像格式
+		.build();
 	}
 	
 	private void registReceiver() {
 		//注册app安装监听
-		
+		AppInstalledReceiver appInstalledReceiver = new AppInstalledReceiver();
+		IntentFilter intentFilter = new IntentFilter(Intent.ACTION_PACKAGE_ADDED);
+		intentFilter.addDataScheme("package");
+		registerReceiver(appInstalledReceiver, intentFilter);
 		//wifi监听
-		
+		WifiReceiver wifiReceiver = new WifiReceiver();
+		registerReceiver(wifiReceiver, new IntentFilter(WifiManager.NETWORK_STATE_CHANGED_ACTION));
 		//统计信息检查接受者
 		
 		//配置信息检查接受者

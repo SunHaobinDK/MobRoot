@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="@dimen/advanced_notification_min_height"
+    android:paddingBottom="@dimen/advanced_notification_padding_bottom"
+    android:paddingLeft="@dimen/advanced_notification_padding_left"
+    android:paddingRight="@dimen/advanced_notification_padding_right"
+    android:paddingTop="@dimen/advanced_notification_padding_top" >
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="@dimen/advanced_notification_app_icon_width"
+        android:layout_height="@dimen/advanced_notification_app_icon_height"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/advanced_notification_app_title_margin_left"
+        android:layout_toRightOf="@id/appIcon"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/advanced_notification_app_title_text_size" />
+
+    <!--
+          <RatingBar
+        android:id="@+id/appRing"
+        style="@style/midRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="16dip"
+        android:layout_alignLeft="@id/appTitle"
+        android:layout_below="@id/appTitle"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="0.5" />
+    -->
+
+    <Button
+        android:id="@+id/viewBtn"
+        android:layout_width="@dimen/advanced_notification_view_btn_width"
+        android:layout_height="@dimen/advanced_notification_view_btn_height"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_green_bg_selector"
+        android:text="@string/advanced_notification_view"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/advanced_notification_view_btn_text_size" />
+
+    <TextView
+        android:id="@+id/appIntro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/appIcon"
+        android:layout_alignLeft="@id/appTitle"
+        android:layout_toLeftOf="@id/viewBtn"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#a7a7a7"
+        android:textSize="@dimen/advanced_notification_app_intro_text_size" />
+
+    <ImageView
+        android:id="@+id/appCover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/advanced_notification_app_cover_height"
+        android:layout_alignParentBottom="true"
+        android:background="#874563"
+        android:scaleType="fitXY" />
+
+</RelativeLayout>

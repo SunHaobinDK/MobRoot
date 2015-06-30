@@ -20,7 +20,7 @@ public abstract class AMRequest extends TextHttpResponseHandler {
 	protected int retryCount;
 	protected String resultDatas;
 	
-	public abstract void start();
+	public abstract void start(Object... args);
 	
 	protected void doPost(String url, JSONObject jsonObject, boolean isNeedParams) throws Exception {
 		if (null == jsonObject) {

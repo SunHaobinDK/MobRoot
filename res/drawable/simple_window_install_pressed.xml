@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape>
+            <solid android:color="#e6e6e6" />
+        </shape>
+    </item>
+    <item
+        android:bottom="@dimen/simple_window_install_pressed_bottom"
+        android:left="@dimen/simple_window_install_pressed_left"
+        android:right="@dimen/simple_window_install_pressed_right">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+            <!-- 描边 -->
+            <stroke
+                android:width="@dimen/simple_window_install_pressed_width"
+                android:color="#e6e6e6" />
+        </shape>
+    </item>
+
+</layer-list>

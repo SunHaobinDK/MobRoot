@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/simple_notification_padding_bottom"
+    android:paddingLeft="@dimen/simple_notification_padding_left"
+    android:paddingRight="@dimen/simple_notification_padding_right"
+    android:paddingTop="@dimen/simple_notification_padding_top" >
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="@dimen/simple_float_app_icon_width"
+        android:layout_height="@dimen/simple_float_app_icon_height"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/simple_float_app_title_margin_left"
+        android:layout_toRightOf="@id/appIcon"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/simple_float_app_title_text_size" />
+
+    <TextView
+        android:id="@+id/appIntro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appTitle"
+        android:layout_marginLeft="@dimen/simple_float_app_intro_margin_left"
+        android:layout_toRightOf="@id/appIcon"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#a7a7a7"
+        android:textSize="@dimen/simple_float_app_intro_text_size" />
+
+    <TextView
+        android:id="@+id/pushTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textColor="#a7a7a7"
+        android:textSize="@dimen/simple_float_push_tiem_text_size" />
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="@dimen/simple_float_app_logo_width"
+        android:layout_height="@dimen/simple_float_app_logo_height"
+        android:layout_alignBottom="@id/appIntro"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside" />
+
+</RelativeLayout>

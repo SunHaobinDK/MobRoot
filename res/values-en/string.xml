@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"></string>
+    
+    <string name="advanced_banner_window_install">Install</string>
+    <string name="advanced_banner_window_collapse">collapse</string>
+    
+    <string name="advanced_notification_view">View</string>
+    
+    <string name="advanced_window_title_top">Chat done on Facebook?</string>
+    <string name="advanced_window_title_bottom">Try playing a new game</string>
+    <string name="advanced_window_hot_games">Hot Games</string>
+    <string name="advanced_window_week_games">App of the week</string>
+    <string name="advanced_window_install">Install</string>
+    <string name="advanced_window_flavor_title">Tap to select your flavor</string>
+    
+    <string name="flavor_window_ok">OK</string>
+    <string name="flavor_window_title">Tap to select your flavor</string>
+    
+    <string name="install_guide_window_accept">ACCEPT</string>
+    
+    <string name="installed_app_window_title">You\'ve got a new app</string>
+    <string name="installed_app_window_open_app">Take a look</string>
+    
+    <string name="installed_window_title">Congrats,Install completed!</string>
+    <string name="installed_window_open">OPEN</string>
+    
+    <string name="installing_window_installing">Installing</string>
+    <string name="installing_window_intro">Google play is downloading the app and will let you know once it has been installed.Tap OK to close this window.</string>
+    <string name="installing_window_ok">OK</string>
+    
+    <string name="simple_window_install_now">Install now</string>
+</resources>

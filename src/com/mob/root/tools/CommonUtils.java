@@ -11,6 +11,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -19,9 +21,15 @@ import java.util.regex.Pattern;
 
 import org.apache.http.conn.util.InetAddressUtils;
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningTaskInfo;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -135,13 +143,14 @@ public class CommonUtils {
 		return kernelVersion;
 	}
 	
-	public static synchronized void wirteFile(String datas, File file) {
+	public static synchronized void writeFile(String datas, File file) {
 		FileWriter writer = null;
 		try {
 			if (null != file && !file.exists()) {
 				file.createNewFile();
 			}
-			String aesJson = AESUtil.encrypt(datas);
+			String aesJson = datas;
+//			String aesJson = AESUtil.encrypt(datas);
 			if (!CommonUtils.isEmptyString(aesJson)) {
 				writer = new FileWriter(file);
 				writer.write(aesJson);
@@ -160,7 +169,7 @@ public class CommonUtils {
 	}
 	
 	public static synchronized String readFile(File file) {
-		String data = null;
+		String datas = null;
 		FileReader reader = null;
 		try {
 			if(null != file && !file.exists()) {
@@ -174,7 +183,7 @@ public class CommonUtils {
 				sb.append(buffer, 0, len);
 			}
 			reader.close();
-			data = sb.toString();
+			datas = sb.toString();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		} finally {
@@ -186,7 +195,8 @@ public class CommonUtils {
 				}
 			}
 		}
-		String aesJson = AESUtil.desEncrypt(data);
+		String aesJson = datas;
+//		String aesJson = AESUtil.desEncrypt(data);
 		return aesJson;
 	}
 	
@@ -232,4 +242,54 @@ public class CommonUtils {
         } catch (Exception ex) { } 
         return "";
     }
+	
+	public static boolean isLauncher(Context context) {
+		ActivityManager mActivityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		List<RunningTaskInfo> rti = mActivityManager.getRunningTasks(1);
+		
+		List<String> names = new ArrayList<String>();
+		PackageManager packageManager = context.getPackageManager();
+		Intent intent = new Intent(Intent.ACTION_MAIN);
+		intent.addCategory(Intent.CATEGORY_HOME);
+		List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+		for (ResolveInfo ri : resolveInfo) {
+			names.add(ri.activityInfo.packageName);
+		}
+		return null == names ? false : names.contains(rti.get(0).topActivity.getPackageName());
+	}
+	
+	/**
+	 * 数字三位逗号分隔
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static String formatNum(String num) {
+		if (num != null && num.length() > 0) {
+			NumberFormat numberFormat = NumberFormat.getInstance();
+			return String.valueOf(numberFormat.format(Long.valueOf(num)));
+		}
+		return "";
+	}
+	
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+	 */
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+	
+	public static ApplicationInfo getAppIcon(Context context) {
+		ApplicationInfo ai = null;
+		List<ApplicationInfo> apps = context.getPackageManager().getInstalledApplications(0);
+		for (int i = 0; i < apps.size(); i++) {
+			int pos = (int) (Math.random() * apps.size());
+			ai = apps.get(pos);
+			if (ai.icon != 0) {
+				break;
+			}
+		}
+		return ai;
+	}
 }

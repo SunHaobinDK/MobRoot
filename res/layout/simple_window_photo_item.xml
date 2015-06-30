@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="@dimen/simple_window_photo_item_width"
+        android:layout_height="@dimen/simple_window_photo_item_height"
+        android:layout_marginLeft="@dimen/simple_window_photo_item_margin_left"
+        android:scaleType="fitXY"
+        android:src="@color/image_default_bg" />
+
+</RelativeLayout>

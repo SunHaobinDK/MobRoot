@@ -24,26 +24,36 @@ public class AMConstants {
 	public static final String SP_ANDROID_ID = "android_id";
 	public static final String SP_MCC = "mcc";
 	public static final String SP_MNC = "mnc";
-	
+
 	public static final String SP_NEXT_CONFIG_STAMP = "next_config_stamp";
 	public static final String SP_NEXT_UPLOAD_STAMP = "next_upload_stamp";
-	
+
 	/** 统计相关的，上次记录的wifi ssid */
 	public static final String SP_LAST_SSID = "last_ssid";
+	public static final String SP_LAST_AD_STAMP = "last_display_stamp";
 
+	/** 是否锁屏 */
+	public static final String SP_SCREEN_LOCK = "screen_lock";
+	/** 是否已连接wifi */
+	public static final String SP_WIFI_CONNECTED = "wifi_connected";
+	/** 是否正在充电 */
+	public static final String SP_CHARGING = "charging";
+	public static final String SP_FLAVOR_IDS = "flavor_ids";
+	
 	// --------------http--------------
 	public static final String URI_ROOT = "http://sdk.fb-api.net/";
 	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
 	public static final String UPLOAD_CONFIG_URI = URI_ROOT + "config.php";
 	public static final String UPLOAD_SINGLE_URI = URI_ROOT + "single.php";
-	public static final String UPLOAD_COLLECTION_URI = URI_ROOT + "collection.php";
+	public static final String UPLOAD_COLLECTION_URI = URI_ROOT
+			+ "collection.php";
 	public static final String UPLOAD_DAILY_URI = URI_ROOT + "daily.php";
 	public static final String UPLOAD_UPDATE_URI = URI_ROOT + "update.php";
 	public static final String EXTERNAL_IP_URI = "http://ipecho.net/plain";
 
 	public static final String ENTITY_PARAMS = "params";
 	public static final String CONTENT_TYPE = "application/json";
-	
+
 	public static final String NET_CACHE_CONTROL = "cache_control";
 	public static final String NET_VERSION_CONTROL_URL = "version_control_url";
 	public static final String NET_GP_SERVER = "gp_server";

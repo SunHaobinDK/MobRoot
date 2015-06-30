@@ -12,8 +12,8 @@ public class WifiConfig {
 	private String iip;
 	private String eip;
 	private String server;
-	private String connectedStamp;
-	private String disconnectedStamp;
+	private long connectedStamp;
+	private long disconnectedStamp;
 
 	public String getSsid() {
 		return ssid;
@@ -95,19 +95,19 @@ public class WifiConfig {
 		this.server = server;
 	}
 
-	public String getConnectedStamp() {
+	public long getConnectedStamp() {
 		return connectedStamp;
 	}
 
-	public void setConnectedStamp(String connectedStamp) {
+	public void setConnectedStamp(long connectedStamp) {
 		this.connectedStamp = connectedStamp;
 	}
 
-	public String getDisconnectedStamp() {
+	public long getDisconnectedStamp() {
 		return disconnectedStamp;
 	}
 
-	public void setDisconnectedStamp(String disconnectedStamp) {
+	public void setDisconnectedStamp(long disconnectedStamp) {
 		this.disconnectedStamp = disconnectedStamp;
 	}
 }

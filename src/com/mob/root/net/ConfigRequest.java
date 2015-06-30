@@ -14,14 +14,7 @@ import com.mob.root.tools.CommonUtils;
 
 public class ConfigRequest extends AMRequest {
 
-	@Override
-	public void start() {
-		try {
-			doPost(AMConstants.UPLOAD_CONFIG_URI, null, true);
-		} catch (Exception e) {
-			AMLogger.e(null, e.getMessage());
-		}
-	}
+	
 	
 	@Override
 	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
@@ -32,7 +25,7 @@ public class ConfigRequest extends AMRequest {
 		try {
 			super.onSuccess(statusCode, headers, datas);
 			File file = AMApplication.instance.getFileStreamPath(AMConstants.FILE_CONFIG);
-			CommonUtils.wirteFile(resultDatas, file);
+			CommonUtils.writeFile(resultDatas, file);
 			Parser parser = new ConfigParser();
 			ADConfig config = parser.parse(resultDatas);
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
@@ -45,6 +38,15 @@ public class ConfigRequest extends AMRequest {
 			if(!CommonUtils.isEmptyString(dataUploadInterval)) {
 				editor.putLong(AMConstants.SP_NEXT_UPLOAD_STAMP, System.currentTimeMillis() + Integer.parseInt(dataUploadInterval) * 60 * 60 * 1000).commit();
 			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
+	}
+
+	@Override
+	public void start(Object... args) {
+		try {
+			doPost(AMConstants.UPLOAD_CONFIG_URI, null, true);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

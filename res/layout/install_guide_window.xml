@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/install_guide_window_width"
+    android:layout_height="@dimen/install_guide_window_height"
+    android:background="@drawable/installed_window_bg"
+    android:padding="@dimen/install_guide_window_padding" >
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="@dimen/install_guide_app_icon_width"
+        android:layout_height="@dimen/install_guide_app_icon_height"
+        android:scaleType="centerInside"
+        android:src="@color/image_default_bg" />
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="@dimen/install_guide_close_width"
+        android:layout_height="@dimen/install_guide_close_height"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/install_guide_close_padding"
+        android:scaleType="centerInside"
+        android:src="@drawable/close_black" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/install_guide_app_title_margin_left"
+        android:layout_marginTop="@dimen/install_guide_app_title_margin_top"
+        android:layout_toRightOf="@id/appIcon"
+        android:textColor="#212121"
+        android:textSize="@dimen/install_guide_app_title_text_size" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/appTitle"
+        android:layout_below="@id/appTitle"
+        android:layout_marginTop="@dimen/install_guide_app_sub_title_margin_top"
+        android:textColor="#8d8d8d"
+        android:textSize="@dimen/install_guide_app_sub_title_text_size" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/install_guide_list_view_height"
+        android:layout_below="@id/appIcon"
+        android:layout_marginTop="@dimen/install_guide_list_view_margin_top"
+        android:cacheColorHint="#00000000"
+        android:divider="@android:color/transparent"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none" />
+
+    <ImageView
+        android:id="@+id/gpLogo"
+        android:layout_width="@dimen/install_guide_gp_width"
+        android:layout_height="@dimen/install_guide_gp_height"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/google_play_logo" />
+
+    <Button
+        android:id="@+id/acceptInstall"
+        android:layout_width="@dimen/install_guide_accept_install_width"
+        android:layout_height="@dimen/install_guide_accept_install_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/installed_window_open_bg"
+        android:text="@string/install_guide_window_accept"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/install_guide_accept_install_text_size"
+        android:textStyle="bold" />
+
+</RelativeLayout>

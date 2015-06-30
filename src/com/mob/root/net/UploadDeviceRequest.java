@@ -12,7 +12,7 @@ import com.mob.root.tools.CommonUtils;
 public class UploadDeviceRequest extends AMRequest {
 	
 	@Override
-	public void start() {
+	public void start(Object... args) {
 		try {
 			CommonUtils.getDeviceInfo();
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);

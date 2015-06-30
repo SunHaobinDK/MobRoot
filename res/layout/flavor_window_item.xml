@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/advanced_window_flavor_item_width"
+    android:layout_height="@dimen/advanced_window_flavor_item_height" >
+
+    <ImageView
+        android:id="@+id/checked"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/flavor_window_item_checked_bg"
+        android:scaleType="centerInside"
+        android:padding="16dip"
+        android:src="@drawable/flavor_window_item_checked" />
+
+    <TextView
+        android:id="@+id/item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/flavor_window_item_bg"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/advanced_window_flavor_item_text_size" />
+
+</RelativeLayout>

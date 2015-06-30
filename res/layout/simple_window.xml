@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/simple_window_width"
+    android:layout_height="@dimen/simple_window_height" >
+
+    <RelativeLayout
+        android:id="@+id/contentLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/simple_window_content_layout_margin"
+        android:background="#ffffff" >
+
+        <ImageView
+            android:id="@+id/appCover"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/simple_window_app_cover_height"
+            android:scaleType="centerCrop"
+            android:src="@color/image_default_bg" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="@dimen/simple_window_close_width"
+            android:layout_height="@dimen/simple_window_close_height"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/simple_window_close_margin_right"
+            android:layout_marginTop="@dimen/simple_window_close_margin_top"
+            android:padding="@dimen/simple_window_close_padding"
+            android:scaleType="centerInside"
+            android:src="@drawable/close_white" />
+
+        <ImageView
+            android:id="@+id/appIcon"
+            android:layout_width="@dimen/simple_window_app_icon_width"
+            android:layout_height="@dimen/simple_window_app_icon_height"
+            android:layout_below="@id/appCover"
+            android:layout_marginLeft="@dimen/simple_window_app_icon_margin_left"
+            android:layout_marginTop="@dimen/simple_window_app_icon_margin_top"
+            android:src="@color/image_default_bg" />
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/appIcon"
+            android:layout_marginLeft="@dimen/simple_window_app_title_margin_left"
+            android:layout_toRightOf="@id/appIcon"
+            android:singleLine="true"
+            android:textColor="#404040"
+            android:textSize="@dimen/simple_window_app_title_text_size" />
+
+        <TextView
+            android:id="@+id/appCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/appTitle"
+            android:layout_below="@id/appTitle"
+            android:layout_toRightOf="@id/appIcon"
+            android:singleLine="true"
+            android:textColor="#404040"
+            android:textSize="@dimen/simple_window_app_category_text_size" />
+
+        <RatingBar
+            android:id="@+id/appRating"
+            style="@style/midRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/appIcon"
+            android:layout_alignLeft="@id/appTitle"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.5" />
+
+        <TextView
+            android:id="@+id/appFavor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/appRating"
+            android:layout_marginLeft="@dimen/simple_window_app_favor_margin_left"
+            android:layout_toRightOf="@id/appRating"
+            android:singleLine="true"
+            android:textColor="#404040"
+            android:textSize="@dimen/simple_window_app_favor_text_size" />
+
+        <TextView
+            android:id="@+id/install"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/simple_window_install_height"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/simple_window_install_bg_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/simple_window_install_now"
+            android:textColor="#0abdd5"
+            android:textSize="@dimen/simple_window_install_text_size" />
+    </RelativeLayout>
+
+    <com.mob.view.ADHorizontalScrollview
+        android:id="@+id/appPhotosView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/simple_window_app_photos_view_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/simple_window_app_photos_view_margin_bottom"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
+    </com.mob.view.ADHorizontalScrollview>
+
+</RelativeLayout>

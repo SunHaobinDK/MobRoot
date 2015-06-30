@@ -1,14 +1,20 @@
 package com.mob.root.net.parser;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import android.content.Context;
+
 import com.mob.root.ADType;
 import com.mob.root.EventType;
 import com.mob.root.entity.ADConfig;
 import com.mob.root.entity.ADRule;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.CommonUtils;
 
 public class ConfigParser extends Parser {
 
@@ -64,5 +70,12 @@ public class ConfigParser extends Parser {
 		config.setFailoverServerUrl(failoverServerUrl);
 		config.setFailoverTryCount(failoverTryCount);
 		return (T) config;
+	}
+	
+	public String getValue(Context context, String key) throws Exception {
+		File file = context.getFileStreamPath(AMConstants.FILE_CONFIG);
+		String json = CommonUtils.readFile(file);
+		JSONObject jsonObject = new JSONObject(json);
+		return jsonObject.getString(key);
 	}
 }

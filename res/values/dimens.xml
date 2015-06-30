@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 多个窗口app 照片墙 item -->
+    <dimen name="advance_window_photo_item_photo_width">180dip</dimen>
+    <dimen name="advance_window_photo_item_photo_height">110dip</dimen>
+    <dimen name="advance_window_photo_item_photo_margin_left">2dip</dimen>
+
+    <!-- 高级banner -->
+    <dimen name="advanced_float_window_height">115px</dimen>
+    <dimen name="advanced_float_window_banner_content_height">102dip</dimen>
+    <dimen name="advanced_float_window_banner_content_padding">15dip</dimen>
+    <dimen name="advanced_float_window_install_width">95dip</dimen>
+    <dimen name="advanced_float_window_install_height">35dip</dimen>
+    <dimen name="advanced_float_window_install_text_size">16sp</dimen>
+    <dimen name="advanced_float_window_app_title_margin_left">30dip</dimen>
+    <dimen name="advanced_float_window_app_title_text_size">18sp</dimen>
+    <dimen name="advanced_float_window_app_favors_margin_top">2dip</dimen>
+    <dimen name="advanced_float_window_app_favors_text_size">8sp</dimen>
+    <dimen name="advanced_float_window_app_intro_margin_top">1dip</dimen>
+    <dimen name="advanced_float_window_app_intro_text_size">8sp</dimen>
+    <dimen name="advanced_float_window_banner_app_icon_width">70dip</dimen>
+    <dimen name="advanced_float_window_banner_app_icon_height">70dip</dimen>
+    <dimen name="advanced_float_window_banner_app_icon_margin_right">15dip</dimen>
+    <dimen name="advanced_float_window_banner_app_icon_margin_top">15dip</dimen>
+    <dimen name="advanced_float_window_up_close_layout_width">60dip</dimen>
+    <dimen name="advanced_float_window_up_close_layout_height">13dip</dimen>
+    <dimen name="advanced_float_window_up_close_layout_margin_left">15dip</dimen>
+    <dimen name="advanced_float_window_up_close_icon_width">10dip</dimen>
+    <dimen name="advanced_float_window_up_close_icon_height">10dip</dimen>
+    <dimen name="advanced_float_window_up_close_icon_padding">2dip</dimen>
+    <dimen name="advanced_float_window_up_close_text_size">8sp</dimen>
+
+    <!-- 高级通知 -->
+    <dimen name="advanced_notification_min_height">240dip</dimen>
+    <dimen name="advanced_notification_padding_bottom">10dip</dimen>
+    <dimen name="advanced_notification_padding_left">5dip</dimen>
+    <dimen name="advanced_notification_padding_right">5dip</dimen>
+    <dimen name="advanced_notification_padding_top">10dip</dimen>
+    <dimen name="advanced_notification_app_icon_width">60dip</dimen>
+    <dimen name="advanced_notification_app_icon_height">60dip</dimen>
+    <dimen name="advanced_notification_app_title_margin_left">10dip</dimen>
+    <dimen name="advanced_notification_app_title_text_size">16sp</dimen>
+    <dimen name="advanced_notification_app_intro_text_size">8sp</dimen>
+    <dimen name="advanced_notification_view_btn_width">75dip</dimen>
+    <dimen name="advanced_notification_view_btn_height">40dip</dimen>
+    <dimen name="advanced_notification_view_btn_text_size">14sp</dimen>
+    <dimen name="advanced_notification_app_cover_height">150dip</dimen>
+
+    <!-- 多个窗口app gridView item -->
+    <dimen name="advanced_window_app_item_app_icon_width">57dip</dimen>
+    <dimen name="advanced_window_app_item_app_icon_height">57dip</dimen>
+    <dimen name="advanced_window_app_item_app_title_margin_top">3dip</dimen>
+    <dimen name="advanced_window_app_item_app_title_text_size">7sp</dimen>
+    <dimen name="advanced_window_app_item_app_category_text_size">6sp</dimen>
+    <dimen name="advanced_window_app_item_rating_bar_margin_top">3dip</dimen>
+
+    <!-- 多个窗口app -->
+    <dimen name="advanced_window_width">330px</dimen>
+    <dimen name="advanced_window_height_include">455px</dimen>
+    <dimen name="advanced_window_height_extended">930px</dimen>
+    <dimen name="advanced_window_height">450px</dimen>
+    <dimen name="advanced_window_y">200px</dimen>
+    <dimen name="advanced_window_header_width">310dip</dimen>
+    <dimen name="advanced_window_header_height">70dip</dimen>
+    <dimen name="advanced_window_header_padding">10dip</dimen>
+    <dimen name="advanced_window_title_top_text_size">16sp</dimen>
+    <dimen name="advanced_window_title_bottom_text_size">22sp</dimen>
+    <dimen name="advanced_window_close_width">33dip</dimen>
+    <dimen name="advanced_window_close_height">33dip</dimen>
+    <dimen name="advanced_window_close_margin_right">-5dip</dimen>
+    <dimen name="advanced_window_close_margin_top">-5dip</dimen>
+    <dimen name="advanced_window_close_padding">8dip</dimen>
+    <dimen name="advanced_window_grid_view_width">310dip</dimen>
+    <dimen name="advanced_window_grid_view_height">242dip</dimen>
+    <dimen name="advanced_window_grid_view_hs">10dip</dimen>
+    <dimen name="advanced_window_grid_view_vs">30dip</dimen>
+    <dimen name="advanced_window_grid_view_padding">15dip</dimen>
+    <dimen name="advanced_window_footer_width">310dip</dimen>
+    <dimen name="advanced_window_footer_height">38dip</dimen>
+    <dimen name="advanced_window_hot_games_margin_right">30dip</dimen>
+    <dimen name="advanced_window_hot_games_text_size">12sp</dimen>
+    <dimen name="advanced_window_hot_icon_width">18dip</dimen>
+    <dimen name="advanced_window_hot_icon_height">18dip</dimen>
+    <dimen name="advanced_window_hot_icon_margin_right">5dip</dimen>
+    <dimen name="advanced_window_week_icon_width">18dip</dimen>
+    <dimen name="advanced_window_week_icon_height">18dip</dimen>
+    <dimen name="advanced_window_week_icon_margin_left">10dip</dimen>
+    <dimen name="advanced_window_week_games_margin_left">5dip</dimen>
+    <dimen name="advanced_window_week_games_text_size">12sp</dimen>
+    <dimen name="advanced_window_detail_header_width">310dip</dimen>
+    <dimen name="advanced_window_detail_header_height">70dip</dimen>
+    <dimen name="advanced_window_detail_header_margin_left">10dip</dimen>
+    <dimen name="advanced_window_detail_header_margin_right">10dip</dimen>
+    <dimen name="advanced_window_detail_header_padding">10dip</dimen>
+    <dimen name="advanced_window_back_width">33dip</dimen>
+    <dimen name="advanced_window_back_height">33dip</dimen>
+    <dimen name="advanced_window_back_margin_left">-5dip</dimen>
+    <dimen name="advanced_window_back_margin_right">-5dip</dimen>
+    <dimen name="advanced_window_back_padding">8dip</dimen>
+    <dimen name="advanced_window_detail_close_width">33dip</dimen>
+    <dimen name="advanced_window_detail_close_height">33dip</dimen>
+    <dimen name="advanced_window_detail_close_margin_right">-5dip</dimen>
+    <dimen name="advanced_window_detail_close_margin_top">-5dip</dimen>
+    <dimen name="advanced_window_detail_close_padding">8dip</dimen>
+    <dimen name="advanced_window_detail_layout_width">310dip</dimen>
+    <dimen name="advanced_window_detail_layout_height">242dip</dimen>
+    <dimen name="advanced_window_detail_layout_margin_left">10dip</dimen>
+    <dimen name="advanced_window_detail_layout_margin_right">10dip</dimen>
+    <dimen name="advanced_window_detail_app_category_margin_left">142dip</dimen>
+    <dimen name="advanced_window_detail_app_category_margin_top">5dip</dimen>
+    <dimen name="advanced_window_detail_app_category_text_size">9sp</dimen>
+    <dimen name="advanced_window_app_rating_margin_top">2dip</dimen>
+    <dimen name="advanced_window_detail_app_favor_margin_left">3dip</dimen>
+    <dimen name="advanced_window_detail_app_favor_text_size">8sp</dimen>
+    <dimen name="advanced_window_app_detail_margin_right">20dip</dimen>
+    <dimen name="advanced_window_app_detail_margin_top">5dip</dimen>
+    <dimen name="advanced_window_app_detail_text_size">10sp</dimen>
+    <dimen name="advanced_window_app_photos_view_height">110dip</dimen>
+    <dimen name="advanced_window_app_photos_view_margin_top">185dip</dimen>
+    <dimen name="advanced_window_detail_footer_width">310dip</dimen>
+    <dimen name="advanced_window_detail_footer_height">38dip</dimen>
+    <dimen name="advanced_window_detail_footer_margin_left">10dip</dimen>
+    <dimen name="advanced_window_detail_footer_margin_right">10dip</dimen>
+    <dimen name="advanced_window_install_width">295dip</dimen>
+    <dimen name="advanced_window_install_height">35dip</dimen>
+    <dimen name="advanced_window_install_margin_top">305dip</dimen>
+    <dimen name="advanced_window_install_text_size">14sp</dimen>
+    <dimen name="advanced_window_detail_app_icon_width">110dip</dimen>
+    <dimen name="advanced_window_detail_app_icon_height">110dip</dimen>
+    <dimen name="advanced_window_detail_app_icon_margin_left">30dip</dimen>
+    <dimen name="advanced_window_detail_app_icon_margin_top">-30dip</dimen>
+    <dimen name="advanced_window_detail_app_icon_padding">4dip</dimen>
+    <dimen name="advanced_window_detail_app_title_margin_left">10dip</dimen>
+    <dimen name="advanced_window_detail_app_title_margin_top">3dip</dimen>
+    <dimen name="advanced_window_detail_app_title_text_size">18sp</dimen>
+    <dimen name="advanced_window_flavor_width">310dip</dimen>
+    <dimen name="advanced_window_flavor_height">100dip</dimen>
+    <dimen name="advanced_window_flavor_margin_bottom">-15dip</dimen>
+    <dimen name="advanced_window_flavor_ok_margin_bottom">100dip</dimen>
+    <dimen name="advanced_window_flavor_ok_text_size">12sp</dimen>
+    <dimen name="advanced_window_flavor_grid_view_width">285dip</dimen>
+    <dimen name="advanced_window_flavor_grid_view_height">360dip</dimen>
+    <dimen name="advanced_window_flavor_grid_view_margin_bottom">15dip</dimen>
+    <dimen name="advanced_window_flavor_grid_view_cw">50dip</dimen>
+    <dimen name="advanced_window_flavor_grid_view_hs">15dip</dimen>
+    <dimen name="advanced_window_flavor_grid_view_vs">15dip</dimen>
+    <dimen name="advanced_window_flavor_title_margin_bottom">15dip</dimen>
+    <dimen name="advanced_window_flavor_title_margin_left">25dip</dimen>
+    <dimen name="advanced_window_flavor_title_text_size">11sp</dimen>
+    <dimen name="advanced_window_flavor_title_margin_top">365dip</dimen>
+    <dimen name="advanced_window_flavor_title_margin_top_extend">460dip</dimen>
+    <dimen name="advanced_window_flavor_grid_margin_top">15dip</dimen>
+    <dimen name="advanced_window_flavor_ok_margin_top">15dip</dimen>
+
+    <!-- 分类筛选 grid item -->
+    <dimen name="advanced_window_flavor_item_width">60dip</dimen>
+    <dimen name="advanced_window_flavor_item_height">60dip</dimen>
+    <dimen name="advanced_window_flavor_item_text_size">12sp</dimen>
+
+    <!-- 安装引导窗口 -->
+    <dimen name="install_guide_window_width">320px</dimen>
+    <dimen name="install_guide_window_height">420px</dimen>
+    <dimen name="install_guide_window_padding">15dip</dimen>
+    <dimen name="install_guide_app_icon_width">60dip</dimen>
+    <dimen name="install_guide_app_icon_height">60dip</dimen>
+    <dimen name="install_guide_close_width">30dip</dimen>
+    <dimen name="install_guide_close_height">30dip</dimen>
+    <dimen name="install_guide_close_padding">8dip</dimen>
+    <dimen name="install_guide_app_title_margin_left">15dip</dimen>
+    <dimen name="install_guide_app_title_margin_top">3dip</dimen>
+    <dimen name="install_guide_app_title_text_size">21sp</dimen>
+    <dimen name="install_guide_app_sub_title_margin_top">5dip</dimen>
+    <dimen name="install_guide_app_sub_title_text_size">15sp</dimen>
+    <dimen name="install_guide_list_view_height">270dip</dimen>
+    <dimen name="install_guide_list_view_margin_top">20dip</dimen>
+    <dimen name="install_guide_gp_width">110dip</dimen>
+    <dimen name="install_guide_gp_height">25dip</dimen>
+    <dimen name="install_guide_accept_install_width">145dip</dimen>
+    <dimen name="install_guide_accept_install_height">28dip</dimen>
+    <dimen name="install_guide_accept_install_text_size">14sp</dimen>
+
+    <!-- 安装引导窗口 listView item -->
+    <dimen name="install_window_promission_item_padding">10dip</dimen>
+    <dimen name="install_window_promission_item_per_icon_width">25dip</dimen>
+    <dimen name="install_window_promission_item_per_icon_height">25dip</dimen>
+    <dimen name="install_window_promission_item_per_icon_margin_top">2dip</dimen>
+    <dimen name="install_window_promission_item_per_text_margin_left">35dip</dimen>
+    <dimen name="install_window_promission_item_per_text_margin_top">2dip</dimen>
+    <dimen name="install_window_promission_item_per_text_size">16sp</dimen>
+    <dimen name="install_window_promission_item_detail_crtl_btn_width">20dip</dimen>
+    <dimen name="install_window_promission_item_detail_crtl_btn_heigh">20dip</dimen>
+    <dimen name="install_window_promission_item_pre_des_margin_right">20dip</dimen>
+    <dimen name="install_window_promission_item_pre_des_margin_top">10dip</dimen>
+    <dimen name="install_window_promission_item_pre_des_text_size">11sp</dimen>
+
+    <!-- 安装第三方app完成窗口 -->
+    <dimen name="installed_app_window_width">320px</dimen>
+    <dimen name="installed_app_window_height">250px</dimen>
+    <dimen name="installed_app_window_padding">20dip</dimen>
+    <dimen name="installed_app_window_title_text_size">16sp</dimen>
+    <dimen name="installed_app_window_close_width">15dip</dimen>
+    <dimen name="installed_app_window_close_height">15dip</dimen>
+    <dimen name="installed_app_window_app_icon_width">120dip</dimen>
+    <dimen name="installed_app_window_app_icon_height">120dip</dimen>
+    <dimen name="installed_app_window_app_icon_margin_top">20dip</dimen>
+    <dimen name="installed_app_window_app_icon_padding">4dip</dimen>
+    <dimen name="installed_app_window_app_title_margin_left">10dip</dimen>
+    <dimen name="installed_app_window_app_title_text_size">16sp</dimen>
+    <dimen name="installed_app_window_app_category_margin_left">1dip</dimen>
+    <dimen name="installed_app_window_app_category_margin_top">10dip</dimen>
+    <dimen name="installed_app_window_app_category_text_size">8sp</dimen>
+    <dimen name="installed_app_window_app_rating_margin_top">5dip</dimen>
+    <dimen name="installed_app_window_app_favors_margin_left">5dip</dimen>
+    <dimen name="installed_app_window_app_favors_margin_top">9dip</dimen>
+    <dimen name="installed_app_window_app_favors_text_size">8sp</dimen>
+    <dimen name="installed_app_window_gp_width">110dip</dimen>
+    <dimen name="installed_app_window_gp_height">25dip</dimen>
+    <dimen name="installed_app_window_open_app_width">145dip</dimen>
+    <dimen name="installed_app_window_open_app_height">28dip</dimen>
+    <dimen name="installed_app_window_open_app_margin_left">15dip</dimen>
+    <dimen name="installed_app_window_open_app_text_size">14sp</dimen>
+    <dimen name="installed_app_window_count_down_width">30dip</dimen>
+    <dimen name="installed_app_window_count_down_margin_bottom">5dip</dimen>
+    <dimen name="installed_app_window_count_down_margin_right">12dip</dimen>
+    <dimen name="installed_app_window_count_down_text_size">7sp</dimen>
+
+    <!-- 安装完成窗口 -->
+    <dimen name="installed_window_width">320px</dimen>
+    <dimen name="installed_window_height">250px</dimen>
+    <dimen name="installed_window_padding">20dip</dimen>
+    <dimen name="installed_window_title_text_size">16sp</dimen>
+    <dimen name="installed_window_close_width">15dip</dimen>
+    <dimen name="installed_window_close_height">15dip</dimen>
+    <dimen name="installed_window_app_icon_width">120dip</dimen>
+    <dimen name="installed_window_app_icon_height">120dip</dimen>
+    <dimen name="installed_window_app_icon_margin_top">20dip</dimen>
+    <dimen name="installed_window_app_icon_padding">4dip</dimen>
+    <dimen name="installed_window_app_title_margin_left">10dip</dimen>
+    <dimen name="installed_window_app_title_text_size">16sp</dimen>
+    <dimen name="installed_window_app_category_margin_left">1dip</dimen>
+    <dimen name="installed_window_app_category_margin_top">10dip</dimen>
+    <dimen name="installed_window_app_category_text_size">8sp</dimen>
+    <dimen name="installed_window_app_rating_margin_top">5dip</dimen>
+    <dimen name="installed_window_app_favors_margin_left">5dip</dimen>
+    <dimen name="installed_window_app_favors_margin_top">9dip</dimen>
+    <dimen name="installed_window_app_favors_text_size">8sp</dimen>
+    <dimen name="installed_window_gp_width">110dip</dimen>
+    <dimen name="installed_window_gp_height">25dip</dimen>
+    <dimen name="installed_window_open_app_width">145dip</dimen>
+    <dimen name="installed_window_open_app_height">28dip</dimen>
+    <dimen name="installed_window_open_app_text_size">14sp</dimen>
+
+    <!-- 正在安装窗口 -->
+    <dimen name="installing_window_width">320px</dimen>
+    <dimen name="installing_window_height">220px</dimen>
+    <dimen name="installing_window_padding">10dip</dimen>
+    <dimen name="installing_window_app_icon_width">70dip</dimen>
+    <dimen name="installing_window_app_icon_height">70dip</dimen>
+    <dimen name="installing_window_progress_layout_width">50dip</dimen>
+    <dimen name="installing_window_progress_layout_height">50dip</dimen>
+    <dimen name="installing_window_count_down_text_size">16sp</dimen>
+    <dimen name="installing_window_app_title_margin_left">10dip</dimen>
+    <dimen name="installing_window_app_title_margin_top">5dip</dimen>
+    <dimen name="installing_window_app_title_text_size">22sp</dimen>
+    <dimen name="installing_window_installing_margin_top">12dip</dimen>
+    <dimen name="installing_window_installing_text_size">13sp</dimen>
+    <dimen name="installing_window_content_margin_top">20dip</dimen>
+    <dimen name="installing_window_content_text_size">13sp</dimen>
+    <dimen name="installing_window_gp_width">110dip</dimen>
+    <dimen name="installing_window_gp_height">25dip</dimen>
+    <dimen name="installing_window_ok_width">135dip</dimen>
+    <dimen name="installing_window_ok_height">25dip</dimen>
+    <dimen name="installing_window_ok_text_size">14sp</dimen>
+
+    <!-- 简单banner窗口 -->
+    <dimen name="simple_float_window_width">60px</dimen>
+    <dimen name="simple_float_window_height">52px</dimen>
+
+    <!-- 简单通知 -->
+    <dimen name="simple_notification_padding_bottom">10dip</dimen>
+    <dimen name="simple_notification_padding_left">5dip</dimen>
+    <dimen name="simple_notification_padding_right">5dip</dimen>
+    <dimen name="simple_notification_padding_top">10dip</dimen>
+    <dimen name="simple_float_app_icon_width">45dip</dimen>
+    <dimen name="simple_float_app_icon_height">45dip</dimen>
+    <dimen name="simple_float_app_title_margin_left">10dip</dimen>
+    <dimen name="simple_float_app_title_text_size">16sp</dimen>
+    <dimen name="simple_float_app_intro_margin_left">10dip</dimen>
+    <dimen name="simple_float_app_intro_text_size">13sp</dimen>
+    <dimen name="simple_float_push_tiem_text_size">11sp</dimen>
+    <dimen name="simple_float_app_logo_width">15dip</dimen>
+    <dimen name="simple_float_app_logo_height">15dip</dimen>
+
+    <!-- 简单窗口 photo item -->
+    <dimen name="simple_window_photo_item_width">80dip</dimen>
+    <dimen name="simple_window_photo_item_height">150dip</dimen>
+    <dimen name="simple_window_photo_item_margin_left">2dip</dimen>
+
+    <!-- 简单窗口 -->
+    <dimen name="simple_window_width">310px</dimen>
+    <dimen name="simple_window_height">470px</dimen>
+    <dimen name="simple_window_content_layout_margin">10dip</dimen>
+    <dimen name="simple_window_app_cover_height">145dip</dimen>
+    <dimen name="simple_window_close_width">33dip</dimen>
+    <dimen name="simple_window_close_height">33dip</dimen>
+    <dimen name="simple_window_close_margin_right">10dip</dimen>
+    <dimen name="simple_window_close_margin_top">10dip</dimen>
+    <dimen name="simple_window_close_padding">8dip</dimen>
+    <dimen name="simple_window_app_icon_width">70dip</dimen>
+    <dimen name="simple_window_app_icon_height">70dip</dimen>
+    <dimen name="simple_window_app_icon_margin_left">20dip</dimen>
+    <dimen name="simple_window_app_icon_margin_top">15dip</dimen>
+    <dimen name="simple_window_app_title_margin_left">15dip</dimen>
+    <dimen name="simple_window_app_title_text_size">18sp</dimen>
+    <dimen name="simple_window_app_category_text_size">18sp</dimen>
+    <dimen name="simple_window_app_favor_text_size">8sp</dimen>
+    <dimen name="simple_window_app_favor_margin_left">5dip</dimen>
+    <dimen name="simple_window_install_height">45dip</dimen>
+    <dimen name="simple_window_install_text_size">16sp</dimen>
+    <dimen name="simple_window_app_photos_view_height">135dip</dimen>
+    <dimen name="simple_window_app_photos_view_margin_bottom">75dip</dimen>
+
+    <!-- drawable -->
+    <dimen name="advanced_window_footer_bg_left_radius">8dip</dimen>
+    <dimen name="advanced_window_footer_bg_right_radius">8dip</dimen>
+    <dimen name="advanced_window_header_bg_left_radius">8dip</dimen>
+    <dimen name="advanced_window_header_bg_right_radius">8dip</dimen>
+    <dimen name="app_icon_bg_radius">4dip</dimen>
+    <dimen name="app_icon_bg_width">10dip</dimen>
+    <dimen name="flavor_window_item_bg_width">60dip</dimen>
+    <dimen name="flavor_window_item_bg_height">60dip</dimen>
+    <dimen name="flavor_window_item_checked_bg_width">60dip</dimen>
+    <dimen name="flavor_window_item_checked_bg_height">60dip</dimen>
+    <dimen name="flavor_window_ok_normal_width">55dip</dimen>
+    <dimen name="flavor_window_ok_normal_stroke_width">0.5dip</dimen>
+    <dimen name="flavor_window_ok_normal_height">55dip</dimen>
+    <dimen name="flavor_window_ok_pressed_width">55dip</dimen>
+    <dimen name="flavor_window_ok_pressed_stroke_width">3dip</dimen>
+    <dimen name="flavor_window_ok_pressed_height">55dip</dimen>
+    <dimen name="installed_window_bg_radius">8dip</dimen>
+    <dimen name="installed_window_open_bg_radius">4dip</dimen>
+    <dimen name="simple_window_install_normal_bottom">-0.1dip</dimen>
+    <dimen name="simple_window_install_normal_left">-0.1dip</dimen>
+    <dimen name="simple_window_install_normal_right">-0.1dip</dimen>
+    <dimen name="simple_window_install_stroke_width">0.1dip</dimen>
+    <dimen name="simple_window_install_pressed_bottom">-0.1dip</dimen>
+    <dimen name="simple_window_install_pressed_left">-0.1dip</dimen>
+    <dimen name="simple_window_install_pressed_right">-0.1dip</dimen>
+    <dimen name="simple_window_install_pressed_width">0.1dip</dimen>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</resources>

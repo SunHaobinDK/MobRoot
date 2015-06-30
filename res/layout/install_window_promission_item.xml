@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/install_window_promission_item_padding" >
+
+    <ImageView
+        android:id="@+id/perIcon"
+        android:layout_width="@dimen/install_window_promission_item_per_icon_width"
+        android:layout_height="@dimen/install_window_promission_item_per_icon_height"
+        android:layout_marginTop="@dimen/install_window_promission_item_per_icon_margin_top"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_perm_cal" />
+
+    <TextView
+        android:id="@+id/perText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/install_window_promission_item_per_text_margin_left"
+        android:layout_marginTop="@dimen/install_window_promission_item_per_text_margin_top"
+        android:layout_toRightOf="@id/perIcon"
+        android:textColor="#212121"
+        android:textSize="@dimen/install_window_promission_item_per_text_size" />
+
+    <ImageView
+        android:id="@+id/detailCrtlBtn"
+        android:layout_width="@dimen/install_window_promission_item_detail_crtl_btn_width"
+        android:layout_height="@dimen/install_window_promission_item_detail_crtl_btn_heigh"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_more_arrow_down" />
+
+    <TextView
+        android:id="@+id/perDes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/perText"
+        android:layout_below="@id/perText"
+        android:layout_marginRight="@dimen/install_window_promission_item_pre_des_margin_right"
+        android:layout_marginTop="@dimen/install_window_promission_item_pre_des_margin_top"
+        android:textColor="#8d8d8d"
+        android:textSize="@dimen/install_window_promission_item_pre_des_text_size"
+        android:visibility="gone" />
+
+</RelativeLayout>

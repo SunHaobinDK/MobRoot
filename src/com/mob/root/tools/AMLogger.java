@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class AMLogger {
 
-	private static String TAG = "ATLogger";
+	private static String TAG = "AMLogger";
 
 	public static void v(String tag, String msg) {
 		if (AMConstants.IS_DEBUG) {

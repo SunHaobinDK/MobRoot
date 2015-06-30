@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/installing_window_width"
+    android:layout_height="@dimen/installing_window_height"
+    android:background="@drawable/installed_window_bg"
+    android:padding="@dimen/installing_window_padding" >
+
+    <ImageView
+        android:id="@+id/appIcon"
+        android:layout_width="@dimen/installing_window_app_icon_width"
+        android:layout_height="@dimen/installing_window_app_icon_height"
+        android:scaleType="centerCrop"
+        android:src="@color/image_default_bg" />
+
+    <RelativeLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="@dimen/installing_window_progress_layout_width"
+        android:layout_height="@dimen/installing_window_progress_layout_height"
+        android:layout_alignParentRight="true" >
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminateDrawable="@drawable/installing_progress_drawable" />
+
+        <TextView
+            android:id="@+id/countDown"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#689f38"
+            android:textSize="@dimen/installing_window_count_down_text_size" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/installing_window_app_title_margin_left"
+        android:layout_marginTop="@dimen/installing_window_app_title_margin_top"
+        android:layout_toRightOf="@id/appIcon"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#404040"
+        android:textSize="@dimen/installing_window_app_title_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/appTitle"
+        android:layout_below="@id/appTitle"
+        android:layout_marginTop="@dimen/installing_window_installing_margin_top"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/installing_window_installing"
+        android:textColor="#b7b7b7"
+        android:textSize="@dimen/installing_window_installing_text_size" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appIcon"
+        android:layout_marginTop="@dimen/installing_window_content_margin_top"
+        android:text="@string/installing_window_intro"
+        android:textColor="#b7b7b7"
+        android:textSize="@dimen/installing_window_content_text_size" />
+
+    <ImageView
+        android:layout_width="@dimen/installing_window_gp_width"
+        android:layout_height="@dimen/installing_window_gp_height"
+        android:layout_alignParentBottom="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/google_play_logo" />
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="@dimen/installing_window_ok_width"
+        android:layout_height="@dimen/installing_window_ok_height"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/installed_window_open_bg"
+        android:text="@string/installing_window_ok"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/installing_window_ok_text_size"
+        android:textStyle="bold" />
+
+</RelativeLayout>

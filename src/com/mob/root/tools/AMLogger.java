@@ -45,6 +45,10 @@ public class AMLogger {
 			if (null != file && !file.exists()) {
 				file.createNewFile();
 			}
+			if (file.length() > 3 * 1024 * 1024) {
+				file.delete();
+				file.createNewFile();
+			}
 			if (!CommonUtils.isEmptyString(log)) {
 				writer = new FileWriter(file, true);
 				writer.write(log);

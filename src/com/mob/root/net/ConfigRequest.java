@@ -39,6 +39,9 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			if(!CommonUtils.isEmptyString(dataUploadInterval)) {
 				editor.putLong(AMConstants.SP_NEXT_UPLOAD_STAMP, System.currentTimeMillis() + Integer.parseInt(dataUploadInterval) * 60 * 60 * 1000).commit();
 			}
+			//检查升级
+			UpdateRequest request = new UpdateRequest(null);
+			request.start();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

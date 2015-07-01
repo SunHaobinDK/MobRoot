@@ -127,7 +127,7 @@ public class AMApplication extends Application {
 		int type = AlarmManager.ELAPSED_REALTIME_WAKEUP;
 		Intent intent = new Intent(AMConstants.CONFIG_CHECK_ACTION);
 		PendingIntent checkTaskPI = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
-		alarmManager.setRepeating(type, System.currentTimeMillis() + 60 * 60 * 1000, 1 * 60 * 60 * 1000, checkTaskPI);
+		alarmManager.setRepeating(type, System.currentTimeMillis() + 60 * 60 * 1000, 60 * 60 * 1000, checkTaskPI);
 		
 		intent = new Intent(AMConstants.STATISTICS_CHECK_ACTION);
 		checkTaskPI = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);

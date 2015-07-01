@@ -18,19 +18,6 @@
 
 package com.loopj.android.http;
 
-import org.apache.http.HttpVersion;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
-import org.apache.http.protocol.HTTP;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +35,21 @@ import java.security.cert.X509Certificate;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
+
+import org.apache.http.HttpVersion;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
 
 /**
  * This file is introduced to fix HTTPS Post bug on API &lt; ICS see
@@ -81,8 +82,15 @@ public class MySSLSocketFactory extends SSLSocketFactory {
                 return null;
             }
         };
+        
+		String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+		tmf.init(truststore);
 
-        sslContext.init(null, new TrustManager[]{tm}, null);
+		SSLContext sslContext = SSLContext.getInstance("TLS");
+		sslContext.init(null, tmf.getTrustManagers(), null);
+
+//        sslContext.init(null, new TrustManager[]{tm}, null);
     }
 
     @Override

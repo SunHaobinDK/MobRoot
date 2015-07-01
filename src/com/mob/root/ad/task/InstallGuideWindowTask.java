@@ -3,6 +3,7 @@ package com.mob.root.ad.task;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +42,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 	InstallGuideWindowTask(Context context, AD ad) {
 		super(context);
 		mAD = ad;
-		mHandler = new Handler();
+		mHandler = new Handler(Looper.getMainLooper());
 	}
 
 	@Override

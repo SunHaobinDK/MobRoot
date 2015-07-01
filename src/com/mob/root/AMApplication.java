@@ -2,7 +2,6 @@ package com.mob.root;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
@@ -13,10 +12,8 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-
 import com.loki.sdk.LokiService;
 import com.mob.root.entity.AD;
-import com.mob.root.net.UploadDatasRequest;
 import com.mob.root.net.UploadDeviceRequest;
 import com.mob.root.receiver.AppInstalledReceiver;
 import com.mob.root.receiver.ChargeReceiver;
@@ -49,9 +46,6 @@ public class AMApplication extends Application {
 		checkConfig();
 		registReceiver();
 		checkTask();
-		
-		UploadDatasRequest request = new UploadDatasRequest(null);
-		request.start();
 	}
 
 	private void initSDK() {

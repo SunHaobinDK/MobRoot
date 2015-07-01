@@ -177,6 +177,8 @@ public class AMConstants {
 	public static final String FILE_APP_RECORD_PACKAGE_NAME = "package_name";
 	public static final String FILE_APP_RECORD_STAMP_START = "stamp_start";
 	public static final String FILE_APP_RECORD_STAMP_END = "stamp_end";
+	
+	public static final String FILE_LOG = "log";
 
 	// --------------action--------------
 	/** 统计相关的，用于执行统计任务检查的接收者 */

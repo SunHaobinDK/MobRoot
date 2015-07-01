@@ -9,8 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.net.URL;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -320,5 +322,26 @@ public class CommonUtils {
 			return -1;
 		}
 		return telephonyManager.getPhoneType();
+	}
+	
+	public static String getDestUrl(String url) {
+		try {
+			URL serverUrl = new URL(url);
+			HttpURLConnection conn = (HttpURLConnection) serverUrl.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setInstanceFollowRedirects(false);
+			conn.connect();
+			String location = conn.getHeaderField("Location");
+			if (location.startsWith("market")) {
+				return location;
+			} else if (CommonUtils.isEmptyString(location)) {
+				return null;
+			} else {
+				return getDestUrl(location);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

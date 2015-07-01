@@ -1,10 +1,23 @@
 package com.mob.root;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import com.loki.sdk.LokiListener;
+import com.mob.root.ad.ADController;
+import com.mob.root.ad.task.ADTaskBuilder;
+import com.mob.root.ad.task.TaskType;
 import com.mob.root.statistical.AppRecord;
+import com.mob.root.tools.AMLogger;
+import com.mob.root.tools.CommonUtils;
 
 public class SDKListener extends LokiListener {
+	
+	public SDKListener() {
+		this.handler = new Handler(Looper.getMainLooper());
+	}
+	
+	private Handler handler;
 	
 	/**
      * 当检测到Google Play Referral广播时触发此事件
@@ -25,6 +38,14 @@ public class SDKListener extends LokiListener {
      */
     @Override
     public void onApplicationSwitch(String packageName, boolean isLauncher) {
+    	if(isLauncher) {
+    		try {
+    			ADType adType = ADController.getInstance().getDisplayADType(AMApplication.instance, EventType.EXIT_APP);
+    			handler.post(new ExitAppTask(adType));
+    		} catch (Exception e) {
+    			AMLogger.e(null, e.getMessage());
+    		}
+    	}
     	AppRecord record = new AppRecord(packageName);
     	record.record();
     }
@@ -35,6 +56,19 @@ public class SDKListener extends LokiListener {
      */
     @Override
     public void onCleanNotification() {
+    	if(!CommonUtils.isLauncher(AMApplication.instance)) {
+    		return;
+    	}
+		try {
+			ADType adType = ADController.getInstance().getDisplayADType(AMApplication.instance, EventType.CLEAR_NOTIFY);
+			if(null != adType) {
+				ADTaskBuilder builder = new ADTaskBuilder();
+				builder.setADType(TaskType.values()[adType.ordinal()], AMApplication.instance, null);
+				builder.build().start();
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
     }
 
     /**
@@ -44,5 +78,24 @@ public class SDKListener extends LokiListener {
      */
     @Override
     public void onGooglePlayDownload(String packageName, int versionCode) {
+    	AMLogger.e(null, "GP downloading : " + packageName);
     }
+    
+    private class ExitAppTask implements Runnable {
+
+		private ADType mAdType;
+		
+		public ExitAppTask(ADType adType) {
+			mAdType = adType;
+		}
+
+		@Override
+		public void run() {
+			if(null != mAdType) {
+				ADTaskBuilder builder = new ADTaskBuilder();
+				builder.setADType(TaskType.values()[mAdType.ordinal()], AMApplication.instance, null);
+				builder.build().start();
+			}
+		}
+	}
 }

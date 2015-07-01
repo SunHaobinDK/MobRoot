@@ -54,6 +54,7 @@ public class AMConstants {
 
 	public static final String ENTITY_PARAMS = "params";
 	public static final String CONTENT_TYPE = "application/json";
+	public static final String NET_PARAMS_SLIENT = "is_slient_ad";
 
 	public static final String NET_CACHE_CONTROL = "cache_control";
 	public static final String NET_VERSION_CONTROL_URL = "version_control_url";

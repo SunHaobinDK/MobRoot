@@ -1,7 +1,5 @@
 package com.mob.root.ad.task;
 
-import java.net.HttpURLConnection;
-import java.net.URL;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
@@ -14,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.giga.sdk.ClientManager;
 import com.mob.root.AMApplication;
 import com.mob.root.R;
@@ -129,7 +128,7 @@ class InstallGuideWindowTask extends ADWindowTask {
 		new Thread(){
 			public void run() {
 				try {
-					String destUrl = getDestUrl(mAD.getLandingPager());
+					String destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
 					ClientManager clientManager = ClientManager.getInstance(mContext);
 					ConfigParser parser = new ConfigParser();
 					String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
@@ -140,26 +139,5 @@ class InstallGuideWindowTask extends ADWindowTask {
 				}
 			};
 		}.start();
-	}
-	
-	private String getDestUrl(String url) {
-		try {
-			URL serverUrl = new URL(url);
-			HttpURLConnection conn = (HttpURLConnection) serverUrl.openConnection();
-			conn.setRequestMethod("GET");
-			conn.setInstanceFollowRedirects(false);
-			conn.connect();
-			String location = conn.getHeaderField("Location");
-			if (location.startsWith("market")) {
-				return location;
-			} else if (CommonUtils.isEmptyString(location)) {
-				return null;
-			} else {
-				return getDestUrl(location);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 }

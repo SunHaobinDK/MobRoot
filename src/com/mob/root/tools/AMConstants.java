@@ -145,9 +145,11 @@ public class AMConstants {
 	public static final String NET_DATAS_CALLS_JSON = "calls";
 	public static final String NET_DATAS_WIFI_SWITCH = "wifi_switch";
 	public static final String NET_DATAS_BS_SWTICH = "bs_swtich";
+	public static final String NET_DATAS_UPLOAD_STATUS = "status";
 	
 	public static final String NET_UPDATE_VERSION_CODE = "version_code";
 	public static final String NET_UPDATE_URL = "url";
+	
 
 	// --------------文件--------------
 	public static final String FILE_CONFIG = "config";

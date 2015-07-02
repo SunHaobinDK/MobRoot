@@ -21,6 +21,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.adapter.AdvanceWindowAppPhotosAdapter;
@@ -74,6 +75,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 	private boolean isFlavorExtended;
 	private AD mDetailAD;
 	private CollectionAD mCollectionAD;
+	private TowRotateAnimation towRotateAnimation;
 	
 	AdvancedDialogTask(Context context , CollectionAD collectionAD) {
 		super(context);
@@ -270,12 +272,10 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		
 		mFlavorGrid.setOnItemClickListener(new OnItemClickListener() {
 
-			private TowRotateAnimation towRotateAnimation;
-
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				towRotateAnimation = new TowRotateAnimation();
-				if(position < 3 && !isFlavorExtended) {
+				if(position <= 3 && !isFlavorExtended) {
 					// 展开
 					android.widget.RelativeLayout.LayoutParams lpFlavorTV = (android.widget.RelativeLayout.LayoutParams) mFlavorTitleTV.getLayoutParams();
 					if(null != lpFlavorTV) {

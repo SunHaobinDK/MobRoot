@@ -1,7 +1,6 @@
 package com.mob.root.adapter;
 
 import java.util.List;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -11,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.mob.root.R;
 import com.mob.root.entity.Flavor;
 
@@ -70,6 +68,7 @@ public class FlavorWindowGridAdapter extends BaseAdapter {
 		
 		holder.itemTV.setTag(flavor);
 		holder.checkedIV.setTag(flavor);
+		
 		return convertView;
 	}
 	

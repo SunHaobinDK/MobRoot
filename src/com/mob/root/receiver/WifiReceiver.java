@@ -40,7 +40,7 @@ public class WifiReceiver extends BroadcastReceiver {
 		SharedPreferences sp = context.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		String lastSSID = sp.getString(AMConstants.SP_LAST_SSID, null);
 		
-		if (state != State.CONNECTED && !CommonUtils.isEmptyString(lastSSID)) { // 如果上次保存的ssid不为空，则证明曾经连接上过wifi，则需要记录断开时间点
+		if (state == State.DISCONNECTED && !CommonUtils.isEmptyString(lastSSID)) { // 如果上次保存的ssid不为空，则证明曾经连接上过wifi，则需要记录断开时间点
 			sp.edit().putBoolean(AMConstants.SP_WIFI_CONNECTED, false).commit();
 			sp.edit().remove(AMConstants.SP_LAST_SSID).commit(); //断开连接以后删除上次成功连接ssid字段
 			try {

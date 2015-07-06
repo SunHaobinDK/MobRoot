@@ -21,7 +21,6 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.adapter.AdvanceWindowAppPhotosAdapter;

@@ -19,4 +19,6 @@ public enum ADType {
 
 	/** 复杂窗口广告 */
 	DIALOG_COLLECTION,
+	
+	// 静默安装类型
 }

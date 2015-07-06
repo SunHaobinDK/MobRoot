@@ -5,9 +5,15 @@ import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManagerFactory;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.conn.ssl.SSLSocketFactory;
+
 import android.content.Context;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.MySSLSocketFactory;
@@ -20,7 +26,6 @@ class AMNetClient {
 	
 	public AMNetClient() {
 //		initCA();
-//		client.setSSLSocketFactory(socketFactory);
 	}
 	
 	private static AsyncHttpClient client = new AsyncHttpClient();
@@ -44,14 +49,15 @@ class AMNetClient {
 			keyStore.load(null, null);
 			keyStore.setCertificateEntry("ca", ca);
 			
-//			String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-//			TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-//			tmf.init(keyStore);
+			String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+			TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+			tmf.init(keyStore);
 
-//			SSLContext sslContext = SSLContext.getInstance("TLS");
-//			sslContext.init(null, tmf.getTrustManagers(), null);
+			SSLContext sslContext = SSLContext.getInstance("TLS");
+			sslContext.init(null, tmf.getTrustManagers(), null);
 			
 			socketFactory = new MySSLSocketFactory(keyStore);
+			client.setSSLSocketFactory(socketFactory);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

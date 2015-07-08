@@ -49,13 +49,14 @@ public class AMConstants {
 	public static final String URI_ROOT = "http://sdk.fb-api.net/";
 	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
 	public static final String GET_CONFIG_URI = URI_ROOT + "config.php";
-//	public static final String UPLOAD_SINGLE_URI = URI_ROOT + "single.php";
 	public static final String AD_REQUEST_URI = URI_ROOT + "ad.php";
+	public static final String UPDATE_URI = URI_ROOT + "update.php";
+	public static final String UPLOAD_APPS_URI = URI_ROOT + "daily/apps";
+	public static final String EXTERNAL_IP_URI = "http://ipecho.net/plain";
+//	public static final String UPLOAD_DAILY_URI = URI_ROOT + "daily.php";
+//	public static final String UPLOAD_SINGLE_URI = URI_ROOT + "single.php";
 //	public static final String UPLOAD_COLLECTION_URI = URI_ROOT
 //			+ "collection.php";
-	public static final String UPLOAD_DAILY_URI = URI_ROOT + "daily.php";
-	public static final String UPDATE_URI = URI_ROOT + "update.php";
-	public static final String EXTERNAL_IP_URI = "http://ipecho.net/plain";
 
 //	public static final String ENTITY_PARAMS = "params";
 	public static final String CONTENT_TYPE = "application/json";
@@ -148,6 +149,10 @@ public class AMConstants {
 	public static final String NET_DATAS_APP_VERSION_NAME = "version_name";
 	public static final String NET_DATAS_APP_SIGNATURE = "signature";
 	public static final String NET_DATAS_APP_JSON = "apps";
+	public static final String NET_DATAS_APP_UNINSTALLTIME = "uninstalltime";
+	public static final String NET_DATAS_APP_INSTALLTIME = "installtime";
+	public static final String NET_DATAS_APP_APP_TYPE = "app_type";
+	
 	public static final String NET_DATAS_BH_TITLE = "title";
 	public static final String NET_DATAS_BH_URL = "url";
 	public static final String NET_DATAS_BH_DATE = "date";
@@ -205,6 +210,10 @@ public class AMConstants {
 	public static final String FILE_APP_RECORD_STAMP_END = "stamp_end";
 	
 	public static final String FILE_LOG = "log";
+	
+	public static final String APP_REMOVED = "app_rm";
+	public static final String APP_REMOVED_STAMP = "uninstalltime";
+	public static final String APP_REMOVED_PACKAGE_NAME = "package_name";
 
 	// --------------action--------------
 	/** 统计相关的，用于执行统计任务检查的接收者 */

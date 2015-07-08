@@ -7,6 +7,34 @@ public class UserApp {
 	private int versionCode;
 	private String versionName;
 	private String signature;
+	private long installTime;
+	private long uninstallTime;
+
+	public long getInstallTime() {
+		return installTime;
+	}
+
+	public void setInstallTime(long installTime) {
+		this.installTime = installTime;
+	}
+
+	public long getUninstallTime() {
+		return uninstallTime;
+	}
+
+	public void setUninstallTime(long uninstallTime) {
+		this.uninstallTime = uninstallTime;
+	}
+
+	public int getAppType() {
+		return appType;
+	}
+
+	public void setAppType(int appType) {
+		this.appType = appType;
+	}
+
+	private int appType;
 
 	public String getSignature() {
 		return signature;

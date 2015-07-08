@@ -20,6 +20,7 @@ import com.mob.root.net.UploadDeviceRequest;
 import com.mob.root.receiver.AppInstalledReceiver;
 import com.mob.root.receiver.ChargeReceiver;
 import com.mob.root.receiver.ConfigCheckReceiver;
+import com.mob.root.receiver.RemoveAppReceiver;
 import com.mob.root.receiver.STCheckReceiver;
 import com.mob.root.receiver.ScreenLockReceiver;
 import com.mob.root.receiver.WifiReceiver;
@@ -102,6 +103,9 @@ public class AMApplication extends Application {
 		//充电
 		ChargeReceiver chargeReceiver = new ChargeReceiver();
 		registerReceiver(chargeReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+		//卸载app监听
+		RemoveAppReceiver removeAppReceiver = new RemoveAppReceiver();
+		registerReceiver(removeAppReceiver, new IntentFilter(Intent.ACTION_PACKAGE_REMOVED));
 		//基站信息
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		telephonyManager.listen(new AMPhoneStateListener(this), PhoneStateListener.LISTEN_CELL_LOCATION);

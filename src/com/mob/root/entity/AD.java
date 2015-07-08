@@ -12,19 +12,12 @@ public class AD {
 	private String desc;
 	private float rating;
 	private int favors;
-	private String packageName;
 	private String landingPager;
+	private String displayPager;
+	private String packageName;
 	private List<Permission> permissions;
 	private List<String> pics;
 	private int openType; // 0：自动打开，1：提示打开，2：忽略
-	
-	public int getOpenType() {
-		return openType;
-	}
-
-	public void setOpenType(int openType) {
-		this.openType = openType;
-	}
 
 	public String getId() {
 		return id;
@@ -90,20 +83,28 @@ public class AD {
 		this.favors = favors;
 	}
 
-	public String getPackageName() {
-		return packageName;
-	}
-
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
-	}
-
 	public String getLandingPager() {
 		return landingPager;
 	}
 
 	public void setLandingPager(String landingPager) {
 		this.landingPager = landingPager;
+	}
+
+	public String getDisplayPager() {
+		return displayPager;
+	}
+
+	public void setDisplayPager(String displayPager) {
+		this.displayPager = displayPager;
+	}
+
+	public String getPackageName() {
+		return packageName;
+	}
+
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 
 	public List<Permission> getPermissions() {
@@ -120,5 +121,13 @@ public class AD {
 
 	public void setPics(List<String> pics) {
 		this.pics = pics;
+	}
+
+	public int getOpenType() {
+		return openType;
+	}
+
+	public void setOpenType(int openType) {
+		this.openType = openType;
 	}
 }

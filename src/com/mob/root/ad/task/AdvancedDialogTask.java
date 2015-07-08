@@ -1,5 +1,11 @@
 package com.mob.root.ad.task;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +27,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.adapter.AdvanceWindowAppPhotosAdapter;
@@ -28,10 +35,10 @@ import com.mob.root.adapter.AdvancedWindowGridAdapter;
 import com.mob.root.adapter.FlavorWindowGridAdapter;
 import com.mob.root.adapter.FlavorWindowGridAdapter.Holder;
 import com.mob.root.entity.AD;
-import com.mob.root.entity.CollectionAD;
 import com.mob.root.entity.Flavor;
 import com.mob.root.net.CollectionRequest;
 import com.mob.root.net.IResponseListener;
+import com.mob.root.net.parser.ConfigParser;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
@@ -40,7 +47,7 @@ import com.mob.root.view.FlavorGridView;
 import com.mob.root.view.TowRotateAnimation;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IResponseListener<CollectionAD> {
+class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IResponseListener<List<AD>> {
 
 	private WindowManager mWindowManager;
 	private LayoutInflater mInflater;
@@ -73,19 +80,20 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 	private boolean isFlavorVisible;
 	private boolean isFlavorExtended;
 	private AD mDetailAD;
-	private CollectionAD mCollectionAD;
+//	private CollectionAD mCollectionAD;
+	private List<AD> mAds;
 	private TowRotateAnimation towRotateAnimation;
 	
-	AdvancedDialogTask(Context context , CollectionAD collectionAD) {
+	AdvancedDialogTask(Context context , List<AD> ads) {
 		super(context);
-		mCollectionAD = collectionAD;
+		mAds = ads;
 	}
 
 	@Override
 	public void start() {
 		selfBack = true;
 		
-		if(null == mCollectionAD) {
+		if(null == mAds) {
 			try {
 				pullDatas();
 			} catch (Exception e) {
@@ -99,15 +107,25 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 
 	@Override
 	protected void pullDatas() throws Exception {
-		CollectionRequest<CollectionAD> request = new CollectionRequest<CollectionAD>(this);
+		CollectionRequest<List<AD>> request = new CollectionRequest<List<AD>>(this);
 		request.start();
 	}
 
 	@Override
 	protected void displayAD() {
-		isFlavorVisible = mCollectionAD.isShowFlavors();
-		if (null == mWindowManager) {
-			mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+		ConfigParser parser = new ConfigParser();
+		try {
+			String value = parser.getValue(AMApplication.instance, AMConstants.NET_SHOW_FLAVORS);
+			if(CommonUtils.isEmptyString(value)) {
+				isFlavorVisible = false;
+			} else {
+				isFlavorVisible = Integer.parseInt(value) == 0 ? true : false;
+			}
+			if (null == mWindowManager) {
+				mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
 		}
 		LayoutParams lpWindow = new LayoutParams();
 		lpWindow.type = LayoutParams.TYPE_SYSTEM_ALERT;
@@ -135,7 +153,11 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		}
 		mWindowManager.addView(mRootView, lpWindow);  
 		initViews();
-		initDatas();
+		try {
+			initDatas();
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
 		super.displayAD();
 		
 		SharedPreferences sp = mContext.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
@@ -180,9 +202,9 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mCloseIV = (ImageView) mRootView.findViewById(R.id.close);
 		mGridView = (GridView) mRootView.findViewById(R.id.gridView);
 		mHotGamesTV = (TextView) mRootView.findViewById(R.id.hotGames);
-		mHotGamesTV.setTag(mCollectionAD.getHotGames());
+		mHotGamesTV.setTag("http://www.google.com");
 		mWeekGamesTV = (TextView) mRootView.findViewById(R.id.weekGames);
-		mWeekGamesTV.setTag(mCollectionAD.getWeekGames());
+		mWeekGamesTV.setTag("http://www.google.com");
 		
 		mListHeaderView = mRootView.findViewById(R.id.header);
 		mListFooterView = mRootView.findViewById(R.id.footer);
@@ -334,18 +356,38 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		});
 	}
 	
-	private void initDatas() {
+	private void initDatas() throws Exception {
 		if(null == mAdapter) {
 			mAdapter = new AdvancedWindowGridAdapter(mContext);
 		}
-		if(null == mCollectionAD) {
+		if(null == mAds) {
 			return;
 		}
-		mAdapter.setDatas(mCollectionAD.getAds());
+		mAdapter.setDatas(mAds);
 		mGridView.setAdapter(mAdapter);
 		
 		mFlavorAdapter = new FlavorWindowGridAdapter(mContext);
-		mFlavorAdapter.setDatas(mCollectionAD.getFlavors());
+		ConfigParser parser = new ConfigParser();
+		String value = parser.getValue(mContext, AMConstants.NET_FLAVORS);
+		if(CommonUtils.isEmptyString(value)) {
+			return;
+		}
+		JSONArray array = new JSONArray(value);
+		List<Flavor> flavors = new ArrayList<Flavor>();
+		for (int i = 0; i < array.length(); i++) {
+			Flavor flavor = new Flavor();
+			JSONObject jsonObject = array.getJSONObject(i);
+			String id = jsonObject.getString(AMConstants.NET_FLAVOR_ID);
+			String color = jsonObject.getString(AMConstants.NET_FLAVOR_COLOR);
+			String name = jsonObject.getString(AMConstants.NET_FLAVOR_NAME);
+			
+			flavor.setId(id);
+			flavor.setName(name);
+			flavor.setColor(color);
+			
+			flavors.add(flavor);
+		}
+		mFlavorAdapter.setDatas(flavors);
 		mFlavorGrid.setAdapter(mFlavorAdapter);
 	}
 	
@@ -361,7 +403,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		mDetailAD = mCollectionAD.getAds().get(position);
+		mDetailAD = mAds.get(position);
 		mPhotosAdapter = new AdvanceWindowAppPhotosAdapter(mContext,null == mDetailAD ? null : mDetailAD.getPics());
 		mAppPhotoHS.setAdapter(mContext, mPhotosAdapter);
 		//显示详情
@@ -436,8 +478,8 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 	}
 
 	@Override
-	public void onResponse(CollectionAD collectionAD) {
-		mCollectionAD = collectionAD;
+	public void onResponse(List<AD> ads) {
+		mAds = ads;
 		// 显示广告
 		displayAD();
 	}

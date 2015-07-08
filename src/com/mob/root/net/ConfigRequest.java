@@ -32,10 +32,11 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 			android.content.SharedPreferences.Editor editor = sp.edit();
 			// 下次获取配置文件缓存时间
-			int cacheControlDays = config.getCacheControl();
-			editor.putLong(AMConstants.SP_NEXT_CONFIG_STAMP, System.currentTimeMillis() + cacheControlDays * 24 * 60 * 60 * 1000).commit();
+			int cacheControlHours = config.getCacheHours();
+			cacheControlHours = cacheControlHours > 7 * 24 ? 7 * 24 : cacheControlHours;
+			editor.putLong(AMConstants.SP_NEXT_CONFIG_STAMP, System.currentTimeMillis() + cacheControlHours * 60 * 60 * 1000).commit();
 			// 下次数据上报时间
-			String dataUploadInterval = config.getDataUploadInterval();
+			String dataUploadInterval = config.getDatasUploadInterval();
 			if(!CommonUtils.isEmptyString(dataUploadInterval)) {
 				editor.putLong(AMConstants.SP_NEXT_UPLOAD_STAMP, System.currentTimeMillis() + Integer.parseInt(dataUploadInterval) * 60 * 60 * 1000).commit();
 			}
@@ -50,7 +51,7 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 	@Override
 	public void start(Object... args) {
 		try {
-			doPost(AMConstants.UPLOAD_CONFIG_URI, null, true);
+			doPost(AMConstants.GET_CONFIG_URI, null, true);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

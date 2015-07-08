@@ -1,5 +1,7 @@
 package com.mob.root.ad.task;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PixelFormat;
@@ -11,18 +13,18 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
 import com.mob.root.R;
-import com.mob.root.entity.CollectionAD;
+import com.mob.root.entity.AD;
 import com.mob.root.net.IResponseListener;
 import com.mob.root.net.SimplePopRequest;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
-class SimplePopWindowTask extends ADWindowTask implements IResponseListener<CollectionAD> {
+class SimplePopWindowTask extends ADWindowTask implements IResponseListener<List<AD>> {
 
 	private WindowManager mWindowManager;
 	private LayoutInflater mInflater;
-	private CollectionAD mCollectionAD;
+	private List<AD> mAds;
 	
 	SimplePopWindowTask(Context context) {
 		super(context);
@@ -80,7 +82,7 @@ class SimplePopWindowTask extends ADWindowTask implements IResponseListener<Coll
 			
 			@Override
 			public void onClick(View v) {
-				AdvancedDialogTask windowTask = new AdvancedDialogTask(mContext, mCollectionAD);
+				AdvancedDialogTask windowTask = new AdvancedDialogTask(mContext, mAds);
 				windowTask.start();
 				closeWindow();
 			}
@@ -91,8 +93,8 @@ class SimplePopWindowTask extends ADWindowTask implements IResponseListener<Coll
 	}
 
 	@Override
-	public void onResponse(CollectionAD collectionAD) {
-		mCollectionAD = collectionAD;
+	public void onResponse(List<AD> ads) {
+		mAds = ads;
 		displayAD();
 	}
 }

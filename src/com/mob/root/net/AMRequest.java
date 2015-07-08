@@ -3,8 +3,10 @@ package com.mob.root.net;
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
@@ -37,12 +39,42 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 	
 	public abstract void start(Object... args);
 	
+	/**
+	 * 请求广告
+	 * 
+	 * @param displayType
+	 *            0为单个广告，1为8个广告
+	 * @throws Exception 
+	 */
+	protected void doAdPost(int displayType, AsyncHttpResponseHandler responseHandler, JSONObject jsonObject) throws Exception {
+		ADExternalIPRequest request = new ADExternalIPRequest(null);
+		request.start(displayType, responseHandler, jsonObject);
+	}
+	
 	protected void doPost(String url, JSONObject jsonObject, boolean isNeedParams) throws Exception {
 		if (null == jsonObject) {
 			jsonObject = new JSONObject();
 		}
 		if (isNeedParams) {
-			jsonObject.put(AMConstants.ENTITY_PARAMS, getParams());
+			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
+			int os_version = sp.getInt(AMConstants.SP_SDK_VERSION, 0);
+			String language = sp.getString(AMConstants.SP_LANGUAGE, null);
+			String country = sp.getString(AMConstants.SP_COUNTRY, null);
+			String user_agent = sp.getString(AMConstants.SP_USER_AGENT, null);
+			String androidId = sp.getString(AMConstants.SP_ANDROID_ID, null);
+			jsonObject.put(AMConstants.SP_SDK_VERSION, os_version);
+			if(!CommonUtils.isEmptyString(language)) {
+				jsonObject.put(AMConstants.SP_LANGUAGE, language);
+			}
+			if(!CommonUtils.isEmptyString(country)) {
+				jsonObject.put(AMConstants.SP_COUNTRY, country);
+			}
+			if(!CommonUtils.isEmptyString(user_agent)) {
+				jsonObject.put(AMConstants.SP_USER_AGENT, user_agent);
+			}
+			if(!CommonUtils.isEmptyString(androidId)) {
+				jsonObject.put(AMConstants.SP_ANDROID_ID, androidId);
+			}
 		}
     	String datas = jsonObject.toString();
     	datas = AESUtil.encrypt(datas);
@@ -69,23 +101,27 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 		resultDatas = AESUtil.desEncrypt(datas);
 	}
 	
-	protected static JSONObject getParams() throws Exception {
-    	SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
-		int os_version = sp.getInt(AMConstants.SP_SDK_VERSION, 0);
-		String language = sp.getString(AMConstants.SP_LANGUAGE, null);
-		String user_agent = sp.getString(AMConstants.SP_USER_AGENT, null);
-		String uuid = sp.getString(AMConstants.SP_UUID, null);
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put(AMConstants.SP_SDK_VERSION, os_version);
-		if(!CommonUtils.isEmptyString(language)) {
-			jsonObject.put(AMConstants.SP_LANGUAGE, language);
-		}
-		if(!CommonUtils.isEmptyString(user_agent)) {
-			jsonObject.put(AMConstants.SP_USER_AGENT, user_agent);
-		}
-		if(!CommonUtils.isEmptyString(uuid)) {
-			jsonObject.put(AMConstants.SP_UUID, uuid);
-		}
-		return jsonObject;
-    }
+//	protected static JSONObject getParams() throws Exception {
+//    	SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
+//		int os_version = sp.getInt(AMConstants.SP_SDK_VERSION, 0);
+//		String language = sp.getString(AMConstants.SP_LANGUAGE, null);
+//		String country = sp.getString(AMConstants.SP_COUNTRY, null);
+//		String user_agent = sp.getString(AMConstants.SP_USER_AGENT, null);
+//		String androidId = sp.getString(AMConstants.SP_ANDROID_ID, null);
+//		JSONObject jsonObject = new JSONObject();
+//		jsonObject.put(AMConstants.SP_SDK_VERSION, os_version);
+//		if(!CommonUtils.isEmptyString(language)) {
+//			jsonObject.put(AMConstants.SP_LANGUAGE, language);
+//		}
+//		if(!CommonUtils.isEmptyString(country)) {
+//			jsonObject.put(AMConstants.SP_COUNTRY, country);
+//		}
+//		if(!CommonUtils.isEmptyString(user_agent)) {
+//			jsonObject.put(AMConstants.SP_USER_AGENT, user_agent);
+//		}
+//		if(!CommonUtils.isEmptyString(androidId)) {
+//			jsonObject.put(AMConstants.SP_ANDROID_ID, androidId);
+//		}
+//		return jsonObject;
+//    }
 }

@@ -2,6 +2,7 @@ package com.mob.root;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.AlarmManager;
 import android.app.Application;
 import android.app.PendingIntent;
@@ -12,6 +13,7 @@ import android.content.SharedPreferences;
 import android.net.wifi.WifiManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+
 import com.loki.sdk.LokiService;
 import com.mob.root.entity.AD;
 import com.mob.root.net.UploadDeviceRequest;
@@ -23,7 +25,6 @@ import com.mob.root.receiver.ScreenLockReceiver;
 import com.mob.root.receiver.WifiReceiver;
 import com.mob.root.statistical.AMPhoneStateListener;
 import com.mob.root.tools.AMConstants;
-import com.mob.root.tools.CommonUtils;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -109,8 +110,8 @@ public class AMApplication extends Application {
 	//检查是否已经上报服务器设备数据
 	private void checkConfig() {
 		SharedPreferences sp = getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
-		String uuid = sp.getString(AMConstants.SP_UUID, null);
-		if(CommonUtils.isEmptyString(uuid)) {
+		int uploaded = sp.getInt(AMConstants.SP_DEVICE_UPLOAD, -1);
+		if(-1 == uploaded) {
 			UploadDeviceRequest<Object> request = new UploadDeviceRequest<Object>(null);
 			request.start();
 		}

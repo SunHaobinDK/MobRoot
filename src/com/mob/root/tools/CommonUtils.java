@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.ConnectivityManager;
@@ -42,6 +43,8 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 import android.webkit.WebView;
 
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.ads.identifier.AdvertisingIdClient.Info;
 import com.mob.root.AMApplication;
 
 public class CommonUtils {
@@ -52,7 +55,7 @@ public class CommonUtils {
 		return false;
 	}
 	
-	public static void getDeviceInfo() {
+	public static void getDeviceInfo() throws Exception {
     	SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
     	Editor edit = sp.edit();
 		//ua
@@ -75,6 +78,9 @@ public class CommonUtils {
 		edit.putInt(AMConstants.SP_SDK_VERSION, Build.VERSION.SDK_INT);
 		//os_kernel
 		edit.putString(AMConstants.SP_KERNEL_VERSION, CommonUtils.getKernelVersion());
+		//sdk version
+		PackageInfo packageInfo = AMApplication.instance.getPackageManager().getPackageInfo(AMApplication.instance.getPackageName(), 0);
+		edit.putInt(AMConstants.SP_CLIENT_VERSION, packageInfo.versionCode);
 		//screen_width
 		//screen_height
 		DisplayMetrics metric = new DisplayMetrics();
@@ -88,11 +94,19 @@ public class CommonUtils {
         //language
         String language = Locale.getDefault().getLanguage();
         String country = Locale.getDefault().getCountry();
-        edit.putString(AMConstants.SP_LANGUAGE, language + "-" + country);
+        edit.putString(AMConstants.SP_LANGUAGE, language);
+        edit.putString(AMConstants.SP_COUNTRY, country);
         
         //android_id
         String androidId = android.provider.Settings.Secure.getString(AMApplication.instance.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         edit.putString(AMConstants.SP_ANDROID_ID, androidId);
+        
+        //android_adid
+        Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
+        if(null != adInfo) {
+        	String adid = adInfo.getId();
+        	edit.putString(AMConstants.SP_ANDROID_ADID, adid);
+        }
         
         //mcc  mnc
         String networkOperator = tm.getNetworkOperator();
@@ -340,8 +354,79 @@ public class CommonUtils {
 				return getDestUrl(location);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			AMLogger.e(null, e.getMessage());
 		}
 		return null;
+	}
+
+	// 获得总内存
+	public static long getMemoryTotal() {
+		long mTotal;
+		// /proc/meminfo读出的内核信息进行解释
+		String path = "/proc/meminfo";
+		String content = null;
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(path), 8);
+			String line;
+			if ((line = br.readLine()) != null) {
+				content = line;
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					AMLogger.e(null, e.getMessage());
+				}
+			}
+		}
+		// beginIndex
+		int begin = content.indexOf(':');
+		// endIndex
+		int end = content.indexOf('k');
+		// 截取字符串信息
+		content = content.substring(begin + 1, end).trim();
+		mTotal = Integer.parseInt(content);
+		return mTotal;
+	}
+	
+	public static int getNetworkType() {
+		ConnectivityManager cm = (ConnectivityManager)AMApplication.instance.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo info = cm.getActiveNetworkInfo();
+		if(null != info && info.getType() == ConnectivityManager.TYPE_WIFI) {
+			return 1;
+		}
+		if(null == info || info.getType() !=  ConnectivityManager.TYPE_MOBILE) {
+			return -1;
+		}
+		TelephonyManager telephonyManager = (TelephonyManager) AMApplication.instance.getSystemService(Context.TELEPHONY_SERVICE);  
+        int networkType = telephonyManager.getNetworkType();    
+        switch (networkType) {  
+        case AMConstants.NETWORK_TYPE_UNAVAILABLE:  
+            return -1;  
+        case AMConstants.NETWORK_TYPE_GPRS:  
+        case AMConstants.NETWORK_TYPE_EDGE:  
+        case AMConstants.NETWORK_TYPE_CDMA:  
+        case AMConstants.NETWORK_TYPE_1xRTT:  
+        case AMConstants.NETWORK_TYPE_IDEN:  
+            return 2;  
+        case AMConstants.NETWORK_TYPE_UMTS:  
+        case AMConstants.NETWORK_TYPE_EVDO_0:  
+        case AMConstants.NETWORK_TYPE_EVDO_A:  
+        case AMConstants.NETWORK_TYPE_HSDPA:  
+        case AMConstants.NETWORK_TYPE_HSUPA:  
+        case AMConstants.NETWORK_TYPE_HSPA:  
+        case AMConstants.NETWORK_TYPE_EVDO_B:  
+        case AMConstants.NETWORK_TYPE_EHRPD:  
+        case AMConstants.NETWORK_TYPE_HSPAP:  
+            return 3;  
+        case AMConstants.NETWORK_TYPE_LTE:  
+            return 4;  
+        default:  
+            return -1;  
+        }  
 	}
 }

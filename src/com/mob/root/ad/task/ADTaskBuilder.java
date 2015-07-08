@@ -1,5 +1,7 @@
 package com.mob.root.ad.task;
 
+import java.util.List;
+
 import android.content.Context;
 import com.mob.root.entity.AD;
 import com.mob.root.entity.CollectionAD;
@@ -26,7 +28,7 @@ public class ADTaskBuilder {
 			mAdTask = new SimpleDialogTask(context);
 			return this;
 		case WINDOW_COLLECTION:
-			mAdTask = new AdvancedDialogTask(context, (CollectionAD) t);
+			mAdTask = new AdvancedDialogTask(context, (List<AD>) t);
 			return this;
 		case WINDOW_INSTALLED:
 			mAdTask = new InstalledWindowTask(context, (AD) t);

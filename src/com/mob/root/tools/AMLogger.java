@@ -11,7 +11,7 @@ public class AMLogger {
 	private static String TAG = "AMLogger";
 
 	public static void v(String tag, String msg) {
-		if (AMConstants.IS_DEBUG) {
+		if (AMConstants.IS_DEBUG && !CommonUtils.isEmptyString(msg)) {
 			Log.v(CommonUtils.isEmptyString(tag) ? TAG : tag, msg);
 		} 
 		writeLog(msg);
@@ -25,7 +25,7 @@ public class AMLogger {
 	}
 
 	public static void e(String tag, String msg) {
-		if (AMConstants.IS_DEBUG) {
+		if (AMConstants.IS_DEBUG && !CommonUtils.isEmptyString(msg)) {
 			Log.e(CommonUtils.isEmptyString(tag) ? TAG : tag, msg);
 		}
 		writeLog(msg);

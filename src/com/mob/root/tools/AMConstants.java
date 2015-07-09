@@ -49,9 +49,8 @@ public class AMConstants {
 	public static final String URI_ROOT = "http://sdk.fb-api.net/";
 	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
 	public static final String GET_CONFIG_URI = URI_ROOT + "config.php";
-	public static final String AD_REQUEST_URI = URI_ROOT + "ad.php";
 	public static final String UPDATE_URI = URI_ROOT + "update.php";
-	public static final String UPLOAD_APPS_URI = URI_ROOT + "daily/apps";
+	public static final String AD_DISPLAY_UPLOAD_URI = URI_ROOT + "impl.php";
 	public static final String EXTERNAL_IP_URI = "http://ipecho.net/plain";
 //	public static final String UPLOAD_DAILY_URI = URI_ROOT + "daily.php";
 //	public static final String UPLOAD_SINGLE_URI = URI_ROOT + "single.php";
@@ -178,6 +177,9 @@ public class AMConstants {
 	
 	public static final String NET_UPDATE_VERSION_CODE = "version_code";
 	public static final String NET_UPDATE_URL = "url";
+	
+	public static final String NET_DP_PM = "package_name";
+	public static final String NET_DT = "display_type";
 	
 
 	// --------------文件--------------

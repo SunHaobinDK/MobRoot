@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.entity.AD;
+import com.mob.root.net.AdDisplayUploadRequest;
 import com.mob.root.net.AdvancedPopRequest;
 import com.mob.root.net.IResponseListener;
 import com.mob.root.tools.AMConstants;
@@ -215,6 +216,9 @@ class AdvancedPopWindowTask extends ADWindowTask implements IResponseListener<AD
 	private void showBanner(){
 		mBannerLayout.setVisibility(View.VISIBLE);
 		mUpCloseLayout.setVisibility(View.VISIBLE);
+		
+		AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
+		request.start(mAD.getPackageName());
 	}
 
 	@Override

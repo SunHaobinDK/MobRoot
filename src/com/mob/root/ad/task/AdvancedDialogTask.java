@@ -36,6 +36,7 @@ import com.mob.root.adapter.FlavorWindowGridAdapter;
 import com.mob.root.adapter.FlavorWindowGridAdapter.Holder;
 import com.mob.root.entity.AD;
 import com.mob.root.entity.Flavor;
+import com.mob.root.net.AdDisplayUploadRequest;
 import com.mob.root.net.CollectionRequest;
 import com.mob.root.net.IResponseListener;
 import com.mob.root.net.parser.ConfigParser;
@@ -455,6 +456,9 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mRatingBar.setRating(mDetailAD.getRating());
 		mDetailFavorsTV.setText(CommonUtils.formatNum(mDetailAD.getFavors() + ""));
 		mAppDetail.setText(mDetailAD.getDesc());
+		
+		AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
+		request.start(mDetailAD.getPackageName());
 	}
 	
 	@Override

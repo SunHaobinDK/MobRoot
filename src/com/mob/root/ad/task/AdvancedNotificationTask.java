@@ -14,6 +14,7 @@ import com.loki.sdk.LokiService;
 import com.mob.root.AMApplication;
 import com.mob.root.R;
 import com.mob.root.entity.AD;
+import com.mob.root.net.AdDisplayUploadRequest;
 import com.mob.root.net.AdvancedNotificationRequest;
 import com.mob.root.net.IResponseListener;
 import com.mob.root.tools.AMConstants;
@@ -118,6 +119,9 @@ class AdvancedNotificationTask extends ADTask implements IResponseListener<AD> {
 		lokiService.sendNotificationAsPackage(info.packageName, 0, null, notification);
 		SharedPreferences sp = mContext.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		sp.edit().putLong(AMConstants.SP_LAST_AD_STAMP, System.currentTimeMillis()).commit();
+		
+		AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
+		request.start(mAD.getPackageName());
 	}
 
 	@Override

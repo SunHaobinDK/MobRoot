@@ -1,5 +1,7 @@
 package com.mob.root.net;
 
+import java.io.UnsupportedEncodingException;
+
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
@@ -33,7 +35,7 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 	}
 
 	protected int retryCount;
-	protected String resultDatas;
+//	protected String resultDatas;
 	protected IResponseListener<T> listener;
 	protected Object[] args;
 	
@@ -49,6 +51,10 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 	protected void doAdPost(int displayType, AsyncHttpResponseHandler responseHandler, JSONObject jsonObject) throws Exception {
 		ADExternalIPRequest request = new ADExternalIPRequest(null);
 		request.start(displayType, responseHandler, jsonObject);
+	}
+	
+	protected void doPost(String url, String json, AsyncHttpResponseHandler responseHandler) throws Exception {
+		AMNetClient.post(AMApplication.instance, url, new StringEntity(json), AMConstants.CONTENT_TYPE, responseHandler);
 	}
 	
 	protected void doPost(String url, JSONObject jsonObject, boolean isNeedParams) throws Exception {
@@ -77,7 +83,7 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 			}
 		}
     	String datas = jsonObject.toString();
-    	datas = AESUtil.encrypt(datas);
+//    	datas = AESUtil.encrypt(datas);
     	StringEntity entity = new StringEntity(datas);
     	AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, this);
 	}
@@ -98,7 +104,7 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 		if (CommonUtils.isEmptyString(datas)) {
 			return;
 		}
-		resultDatas = AESUtil.desEncrypt(datas);
+//		resultDatas = AESUtil.desEncrypt(datas);
 	}
 	
 //	protected static JSONObject getParams() throws Exception {

@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.mob.root.AMApplication;
 import com.mob.root.net.parser.ConfigParser;
-import com.mob.root.tools.AESUtil;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
@@ -117,13 +116,14 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 		jsonObject.put(AMConstants.NET_DISPLAY_TYPE, displayType);
 		
 		String datas = jsonObject.toString();
-    	datas = AESUtil.encrypt(datas);
-    	StringEntity entity = new StringEntity(datas);
+//    	datas = AESUtil.encrypt(datas);
+//    	StringEntity entity = new StringEntity(datas);
     	ConfigParser parser = new ConfigParser();
 		String url = parser.getValue(AMApplication.instance, AMConstants.NET_AD_REQUEST_URL);
 		if (CommonUtils.isEmptyString(url)) {
 			return;
 		}
-    	AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, responseHandler);
+		doPost(url, datas, responseHandler);
+//    	AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, responseHandler);
 	}
 }

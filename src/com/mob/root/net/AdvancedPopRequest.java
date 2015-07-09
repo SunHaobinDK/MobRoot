@@ -40,7 +40,7 @@ public class AdvancedPopRequest extends AMRequest<AD> {
 //				listener.onResponse(ad);
 //			}
 			AdParser parser = new AdParser();
-			List<AD> ads = parser.parseAD(resultDatas);
+			List<AD> ads = parser.parseAD(datas);
 			if(null != ads && null != listener) {
 				listener.onResponse(ads.get(0));
 			}

@@ -32,7 +32,7 @@ public class AdvancedNotificationRequest extends AMRequest<AD> {
 //			SingleADParser parser = new SingleADParser();
 //			AD ad = parser.parseAD(resultDatas);
 			AdParser parser = new AdParser();
-			List<AD> ads = parser.parseAD(resultDatas);
+			List<AD> ads = parser.parseAD(datas);
 			if(null != ads && null != listener) {
 				listener.onResponse(ads.get(0));
 			}

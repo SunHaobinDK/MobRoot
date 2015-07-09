@@ -58,10 +58,6 @@ public class CommonUtils {
 	public static void getDeviceInfo() throws Exception {
     	SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
     	Editor edit = sp.edit();
-		//ua
-		WebView webView = new WebView(AMApplication.instance);
-		String userAgent = webView.getSettings().getUserAgentString();
-		edit.putString(AMConstants.SP_USER_AGENT, userAgent);
 		//imei
 		TelephonyManager tm = (TelephonyManager) AMApplication.instance.getSystemService(Context.TELEPHONY_SERVICE);
 		edit.putString(AMConstants.SP_IMEI, tm.getDeviceId());

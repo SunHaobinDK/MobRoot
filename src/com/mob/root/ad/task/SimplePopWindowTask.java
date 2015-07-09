@@ -14,6 +14,7 @@ import android.view.WindowManager.LayoutParams;
 
 import com.mob.root.R;
 import com.mob.root.entity.AD;
+import com.mob.root.net.AdDisplayUploadRequest;
 import com.mob.root.net.IResponseListener;
 import com.mob.root.net.SimplePopRequest;
 import com.mob.root.tools.AMConstants;

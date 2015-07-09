@@ -80,7 +80,7 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 	public void onSuccess(int statusCode, Header[] headers, String datas) {
 		super.onSuccess(statusCode, headers, datas);
 		try {
-			JSONObject jsonObject = new JSONObject(resultDatas);
+			JSONObject jsonObject = new JSONObject(datas);
 			int status = jsonObject.getInt(AMConstants.NET_DATAS_UPLOAD_STATUS);
 			if(0 == status) {
 				SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);

@@ -38,7 +38,7 @@ public class CollectionRequest<T> extends AMRequest<List<AD>> {
 //				listener.onResponse(collectionAD);
 //			}
 			AdParser parser = new AdParser();
-			List<AD> ads = parser.parseAD(resultDatas);
+			List<AD> ads = parser.parseAD(datas);
 			if(null != ads && null != listener) {
 				listener.onResponse(ads);
 			}

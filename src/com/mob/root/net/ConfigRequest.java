@@ -26,9 +26,9 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 		try {
 			super.onSuccess(statusCode, headers, datas);
 			File file = AMApplication.instance.getFileStreamPath(AMConstants.FILE_CONFIG);
-			CommonUtils.writeFile(resultDatas, file);
+			CommonUtils.writeFile(datas, file);
 			ConfigParser parser = new ConfigParser();
-			ADConfig config = parser.parse(resultDatas);
+			ADConfig config = parser.parse(datas);
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 			android.content.SharedPreferences.Editor editor = sp.edit();
 			// 下次获取配置文件缓存时间

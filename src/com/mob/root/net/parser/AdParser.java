@@ -31,7 +31,7 @@ public class AdParser {
 			JSONArray permissionArray = jsonObject.getJSONArray(AMConstants.NET_AD_PERMISSIONS);
 			List<Permission> permissions = new ArrayList<Permission>();
 			for (int j = 0; j < permissionArray.length(); j++) {
-				JSONObject object = permissionArray.getJSONObject(i);
+				JSONObject object = permissionArray.getJSONObject(j);
 				String pid = object.getString(AMConstants.NET_AD_PERMISSIONS_ID);
 				String pTitle = object.getString(AMConstants.NET_AD_PERMISSIONS_TITLE);
 				String pDesc = object.getString(AMConstants.NET_AD_PERMISSIONS_DESC);
@@ -46,7 +46,7 @@ public class AdParser {
 			JSONArray picArray = jsonObject.getJSONArray(AMConstants.NET_AD_PICS);
 			List<String> pics = new ArrayList<String>();
 			for (int j = 0; j < picArray.length(); j++) {
-				JSONObject object = picArray.getJSONObject(i);
+				JSONObject object = picArray.getJSONObject(j);
 				String img = object.getString(AMConstants.NET_AD_PICS_IMG);
 				pics.add(img);
 			}

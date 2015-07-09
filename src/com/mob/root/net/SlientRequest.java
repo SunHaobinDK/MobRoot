@@ -55,7 +55,7 @@ public class SlientRequest extends AMRequest<AD> implements Runnable {
 //				return;
 //			}
 			AdParser parser = new AdParser();
-			List<AD> ads = parser.parseAD(resultDatas);
+			List<AD> ads = parser.parseAD(datas);
 			if(null == ads || null == listener) {
 				return;
 			}

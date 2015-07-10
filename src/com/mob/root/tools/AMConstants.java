@@ -29,8 +29,8 @@ public class AMConstants {
 	public static final String SP_MNC = "mnc";
 	public static final String SP_DEVICE_UPLOAD = "device_upload";
 
-	public static final String SP_NEXT_CONFIG_STAMP = "next_config_stamp";
-	public static final String SP_NEXT_UPLOAD_STAMP = "next_upload_stamp";
+//	public static final String SP_NEXT_CONFIG_STAMP = "next_config_stamp";
+//	public static final String SP_NEXT_UPLOAD_STAMP = "next_upload_stamp";
 
 	/** 统计相关的，上次记录的wifi ssid */
 	public static final String SP_LAST_SSID = "last_ssid";

@@ -20,11 +20,13 @@ public class STCheckReceiver extends BroadcastReceiver {
 		}
 		SharedPreferences sp = context.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		long currentTimeMillis = System.currentTimeMillis();
-		Long dayDely = sp.getLong(AMConstants.SP_NEXT_UPLOAD_STAMP, 0);
+		Long lastStamp = sp.getLong(AMConstants.SP_LAST_UPLOAD_STAMP, 0);
 		ConfigParser parser = new ConfigParser();
 		try {
-			String value = parser.getValue(context, AMConstants.NET_DATA_SWITCH);
-			if(!CommonUtils.isEmptyString(value) && Integer.parseInt(value) == 0 && currentTimeMillis >= dayDely) {
+			String value = parser.getValue(context, AMConstants.NET_DATA_UPLOAD_INTERVAL);
+			long nextStamp = CommonUtils.isEmptyString(value) ? lastStamp : lastStamp + Integer.parseInt(value) * 60 * 60 * 1000;
+			String dataSwitch = parser.getValue(context, AMConstants.NET_DATA_SWITCH);
+			if(!CommonUtils.isEmptyString(dataSwitch) && Integer.parseInt(dataSwitch) == 0 && currentTimeMillis >= nextStamp) {
 				UploadDatasRequest request = new UploadDatasRequest(null);
 				request.start();
 			}

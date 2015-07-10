@@ -2,6 +2,7 @@ package com.mob.root.net;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.http.Header;
@@ -103,6 +104,11 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 				if(null != appRmFile && appRmFile.exists()) {
 					appRmFile.delete();
 				}
+				
+				//------测试数据
+				File file2 = AMApplication.instance.getFileStreamPath("test_upload");
+				String data = new Date(System.currentTimeMillis()).toString() + "\r\n";
+				CommonUtils.writeFile(data, file2);
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
@@ -144,13 +150,16 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 				
 				appJsonArray.put(jsonObject);
 			}
-			String removedJson = CommonUtils.readFile(AMApplication.instance.getFileStreamPath(AMConstants.APP_REMOVED));
-			JSONArray removedArray = new JSONArray(removedJson);
-			for (int i = 0; i < removedArray.length(); i++) {
-				JSONObject jsonObject = removedArray.getJSONObject(i);
-				appJsonArray.put(jsonObject);
-			}
 			rootObject.put(AMConstants.NET_DATAS_APP_JSON, appJsonArray);
+			String removedJson = CommonUtils.readFile(AMApplication.instance.getFileStreamPath(AMConstants.APP_REMOVED));
+			if(!CommonUtils.isEmptyString(removedJson)) {
+				JSONArray removedArray = new JSONArray(removedJson);
+				for (int i = 0; i < removedArray.length(); i++) {
+					JSONObject jsonObject = removedArray.getJSONObject(i);
+					appJsonArray.put(jsonObject);
+				}
+				rootObject.put(AMConstants.NET_DATAS_APP_JSON, removedJson);
+			}
 		}
 		
 		// 获取当天浏览器记录     ----------------------------------------------------------------------------------------

@@ -1,7 +1,5 @@
 package com.mob.root.net;
 
-import java.io.UnsupportedEncodingException;
-
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
@@ -14,7 +12,6 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.mob.root.AMApplication;
 import com.mob.root.net.parser.ConfigParser;
-import com.mob.root.tools.AESUtil;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;

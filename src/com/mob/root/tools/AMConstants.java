@@ -36,6 +36,7 @@ public class AMConstants {
 	public static final String SP_LAST_SSID = "last_ssid";
 	public static final String SP_LAST_AD_STAMP = "last_display_stamp";
 	public static final String SP_LAST_UPLOAD_STAMP = "last_upload_stamp";
+	public static final String SP_LAST_CONFIG_STAMP = "last_config_stamp";
 
 	/** 是否锁屏 */
 	public static final String SP_SCREEN_LOCK = "screen_lock";

@@ -108,7 +108,8 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 				//------测试数据
 				File file2 = AMApplication.instance.getFileStreamPath("test_upload");
 				String data = new Date(System.currentTimeMillis()).toString() + "\r\n";
-				CommonUtils.writeFile(data, file2);
+				String readFile = CommonUtils.readFile(file2);
+				CommonUtils.writeFile(readFile + data, file2);
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
@@ -144,7 +145,7 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 				jsonObject.put(AMConstants.NET_DATAS_APP_VERSION_CODE, app.getVersionCode());
 				jsonObject.put(AMConstants.NET_DATAS_APP_PACKAGE_NAME, app.getPackageName());
 				jsonObject.put(AMConstants.NET_DATAS_APP_APP_NAME, app.getAppName());
-				jsonObject.put(AMConstants.NET_DATAS_APP_SIGNATURE, app.getSignature());
+//				jsonObject.put(AMConstants.NET_DATAS_APP_SIGNATURE, app.getSignature());
 				jsonObject.put(AMConstants.NET_DATAS_APP_INSTALLTIME, app.getInstallTime());
 				jsonObject.put(AMConstants.NET_DATAS_APP_APP_TYPE, app.getAppType());
 				

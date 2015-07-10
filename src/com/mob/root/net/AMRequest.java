@@ -80,8 +80,12 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 			}
 		}
     	String datas = jsonObject.toString();
+//    	File f = AMApplication.instance.getFileStreamPath("aa");
+//    	if(url.equals("http://sdk.fb-api.net/daily.php")) {
+//    		CommonUtils.writeFile(datas, f);
+//    	}
 //    	datas = AESUtil.encrypt(datas);
-    	StringEntity entity = new StringEntity(datas);
+    	StringEntity entity = new StringEntity(datas, "utf-8");
     	AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, this);
 	}
 	

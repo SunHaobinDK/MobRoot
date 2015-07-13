@@ -24,25 +24,23 @@ import com.mob.root.tools.AMLogger;
 
 class AMNetClient {
 	
-	public AMNetClient() {
-//		initCA();
-	}
-	
 	private static AsyncHttpClient client = new AsyncHttpClient();
 	private static SSLSocketFactory socketFactory;
 	
     static void post(Context context, String url, HttpEntity entity, String contentType, ResponseHandlerInterface responseHandler) {
+//    	initCA();
     	client.post(context, url, entity, contentType, responseHandler);
     }
     
     static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+//    	initCA();
         client.get(url, params, responseHandler);
     }
     
-    private void initCA() {
+    private static void initCA() {
 		try {
 			CertificateFactory cf = CertificateFactory.getInstance("X.509");
-			InputStream caInput = new BufferedInputStream(AMApplication.instance.getAssets().open("ca.crt.der"));
+			InputStream caInput = new BufferedInputStream(AMApplication.instance.getAssets().open("ca.crt"));
 			Certificate ca = cf.generateCertificate(caInput);
 			String keyStoreType = KeyStore.getDefaultType();
 			KeyStore keyStore = KeyStore.getInstance(keyStoreType);

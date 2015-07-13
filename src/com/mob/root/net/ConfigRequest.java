@@ -54,7 +54,8 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			//------测试数据
 			File file2 = AMApplication.instance.getFileStreamPath("test_config");
 			String data = new Date(lastConfig).toString() + "\r\n";
-			CommonUtils.writeFile(data, file2);
+			String readFile = CommonUtils.readFile(file2);
+			CommonUtils.writeFile(readFile + data, file2);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

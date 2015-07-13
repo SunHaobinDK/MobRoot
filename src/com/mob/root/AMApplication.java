@@ -10,7 +10,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
+import android.os.Parcelable;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
@@ -48,6 +50,9 @@ public class AMApplication extends Application {
 		checkConfig();
 		registReceiver();
 		checkTask();
+		
+//		Parcelable icon = Intent.ShortcutIconResource.fromContext(this, R.drawable.ic_launcher);  
+//		addShortcut(icon,"Altamob",Uri.parse("http://www.altamob.com"));  
 	}
 
 	private void initSDK() {
@@ -133,5 +138,20 @@ public class AMApplication extends Application {
 		checkTaskPI = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 //		alarmManager.setRepeating(type, System.currentTimeMillis() + 60 * 60 * 1000, 60 * 60 * 1000, checkTaskPI);
 		alarmManager.setRepeating(type, 1 * 1000, 10 * 60 * 1000, checkTaskPI);
+	}
+	
+	private void addShortcut(Parcelable icon, String name, Uri uri) {
+		Intent intentAddShortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+		intentAddShortcut.putExtra("duplicate", false);
+		// 添加名称
+		intentAddShortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+		// 添加图标
+		intentAddShortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, icon);
+		// 设置Launcher的Uri数据
+		Intent intentLauncher = new Intent();
+		intentLauncher.setData(uri);
+		// 添加快捷方式的启动方法
+		intentAddShortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, intentLauncher);
+		sendBroadcast(intentAddShortcut);
 	}
 }

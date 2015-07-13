@@ -91,9 +91,9 @@ class SimpleNotificationTask extends ADTask implements IResponseListener<AD> {
 				String pushTime = timeFormat.format(new java.util.Date());
 				remoteViews.setTextViewText(R.id.pushTime, pushTime);
 				remoteViews.setTextViewText(R.id.appIntro, mAD.getDesc());
-				
 				notification.contentView = remoteViews;
 				notification.contentIntent = receiver;
+//				notification.priority = Notification.PRIORITY_MAX; 顺序
 				
 				lokiService.sendNotificationAsPackage(info.packageName, 0, null, notification);
 				

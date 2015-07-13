@@ -87,7 +87,7 @@ public class MySSLSocketFactory extends SSLSocketFactory {
 		TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
 		tmf.init(truststore);
 
-		SSLContext sslContext = SSLContext.getInstance("TLS");
+		sslContext = SSLContext.getInstance("TLS");
 		sslContext.init(null, tmf.getTrustManagers(), null);
 
 //        sslContext.init(null, new TrustManager[]{tm}, null);

@@ -140,7 +140,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 			ConfigParser parser = new ConfigParser();
 			String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
 			String serverPort = parser.getValue(mContext, AMConstants.NET_GP_SERVER_PORT);
-			clientManager.downloadWithGooglePlay("https://play.google.com/store/apps/details?id=com.facebook.katana", null, serverName, Integer.parseInt(serverPort), 600000);
+			clientManager.downloadWithGooglePlay("http://10.200.10.220/v1/click?type=01&p1=10300&p2=429586&p3=10070&p4=36181422341813827552221411436769981350&p5=test&p6=US&p7=t38400000-8cf0-11bd-b23e-10b96e40000d&p8=3.2&p9=&p10=&p11=en&p12=7425&p13=200&p14=24291&lid=&p15=com.playstudios.myvegas", null, serverName, Integer.parseInt(serverPort), 600000);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

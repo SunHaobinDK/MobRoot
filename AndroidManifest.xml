@@ -23,6 +23,8 @@
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />  
 
     <application
         android:name="com.mob.root.AMApplication"
@@ -39,10 +41,6 @@
             </intent-filter>
         </activity>
         <!-- ！！！！！！！！！！！！！！！！！！！！ 开发时候存在activity 发版时候需要删除！！！！！！！！！！！！！！！！！！！！ -->
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
 
         <!-- SDK -->
         <receiver android:name="com.giga.sdk.ClientReceiver" >

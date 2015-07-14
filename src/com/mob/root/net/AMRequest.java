@@ -95,6 +95,7 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 	
 	@Override
 	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+		AMLogger.e(null, throwable.getMessage());
 		if (--retryCount > 0) {
 			start(args);
 		}

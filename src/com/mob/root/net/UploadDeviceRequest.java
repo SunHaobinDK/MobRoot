@@ -28,7 +28,7 @@ public class UploadDeviceRequest<T> extends AMRequest<T> {
 				try {
 					CommonUtils.getDeviceInfo();
 				} catch (Exception e) {
-					AMLogger.e(null, e.getMessage());
+					AMLogger.e(null, "UploadDeviceRequest : " + e.getMessage());
 				}
 				return null;
 			}

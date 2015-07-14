@@ -20,9 +20,9 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 		super(listener);
 	}
 
-	@Override
-	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-	}
+//	@Override
+//	public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//	}
 
 	@Override
 	public void onSuccess(int statusCode, Header[] headers, String datas) {
@@ -51,11 +51,11 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			UpdateRequest request = new UpdateRequest(null);
 			request.start();
 			
-			//------测试数据
-			File file2 = AMApplication.instance.getFileStreamPath("test_config");
-			String data = new Date(lastConfig).toString() + "\r\n";
-			String readFile = CommonUtils.readFile(file2);
-			CommonUtils.writeFile(readFile + data, file2);
+//			//------测试数据
+//			File file2 = AMApplication.instance.getFileStreamPath("test_config");
+//			String data = new Date(lastConfig).toString() + "\r\n";
+//			String readFile = CommonUtils.readFile(file2);
+//			CommonUtils.writeFile(readFile + data, file2);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

@@ -334,7 +334,24 @@ com.mob.root.AMApplication -> com.mob.root.AMApplication:
     void registReceiver() -> c
     void checkConfig() -> d
     void checkTask() -> e
-com.mob.root.EventType -> com.mob.root.b:
+com.mob.root.AdvertisingIdClient -> com.mob.root.b:
+    com.mob.root.AdvertisingIdClient$AdInfo getAdvertisingIdInfo(android.content.Context) -> a
+com.mob.root.AdvertisingIdClient$AdInfo -> com.mob.root.c:
+    java.lang.String advertisingId -> a
+    boolean limitAdTrackingEnabled -> b
+    java.lang.String getId() -> a
+com.mob.root.AdvertisingIdClient$AdvertisingConnection -> com.mob.root.d:
+    boolean retrieved -> a
+    java.util.concurrent.LinkedBlockingQueue queue -> b
+    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    android.os.IBinder getBinder() -> a
+com.mob.root.AdvertisingIdClient$AdvertisingInterface -> com.mob.root.e:
+    android.os.IBinder binder -> a
+    android.os.IBinder asBinder() -> asBinder
+    java.lang.String getId() -> a
+    boolean isLimitAdTrackingEnabled(boolean) -> a
+com.mob.root.EventType -> com.mob.root.f:
     com.mob.root.EventType UNLOCK_SCREEN -> a
     com.mob.root.EventType CLEAR_NOTIFY -> b
     com.mob.root.EventType EXIT_APP -> c
@@ -350,13 +367,13 @@ com.mob.root.MainActivity -> com.mob.root.MainActivity:
     android.widget.Button mBanner -> e
     void onCreate(android.os.Bundle) -> onCreate
     void onClick(android.view.View) -> onClick
-com.mob.root.SDKListener -> com.mob.root.c:
+com.mob.root.SDKListener -> com.mob.root.g:
     android.os.Handler handler -> a
     boolean onReferralBroadcast(android.content.Intent) -> a
     void onApplicationSwitch(java.lang.String,boolean) -> a
     void onCleanNotification() -> a
     void onGooglePlayDownload(java.lang.String,int) -> a
-com.mob.root.SDKListener$ExitAppTask -> com.mob.root.d:
+com.mob.root.SDKListener$ExitAppTask -> com.mob.root.h:
     com.mob.root.ADType mAdType -> b
     com.mob.root.SDKListener this$0 -> a
     void run() -> run
@@ -428,7 +445,8 @@ com.mob.root.ad.task.AdvancedDialogTask -> com.mob.root.a.a.g:
     boolean isFlavorVisible -> F
     boolean isFlavorExtended -> G
     com.mob.root.entity.AD mDetailAD -> H
-    com.mob.root.entity.CollectionAD mCollectionAD -> I
+    java.util.List mAds -> I
+    com.mob.root.view.TowRotateAnimation towRotateAnimation -> J
     void start() -> a
     void pullDatas() -> e
     void displayAD() -> b
@@ -440,13 +458,15 @@ com.mob.root.ad.task.AdvancedDialogTask -> com.mob.root.a.a.g:
     void showListPage() -> f
     void showDetailPage() -> g
     void keyBackPressed() -> c
-    void onResponse(com.mob.root.entity.CollectionAD) -> a
+    void onResponse(java.util.List) -> a
     void onResponse(java.lang.Object) -> a
     void access$1(com.mob.root.ad.task.AdvancedDialogTask,java.lang.String) -> a
     com.mob.root.entity.AD access$2(com.mob.root.ad.task.AdvancedDialogTask) -> a
-    boolean access$3(com.mob.root.ad.task.AdvancedDialogTask) -> b
-    android.widget.TextView access$4(com.mob.root.ad.task.AdvancedDialogTask) -> c
-    void access$5(com.mob.root.ad.task.AdvancedDialogTask,boolean) -> a
+    void access$3(com.mob.root.ad.task.AdvancedDialogTask,com.mob.root.view.TowRotateAnimation) -> a
+    boolean access$4(com.mob.root.ad.task.AdvancedDialogTask) -> b
+    android.widget.TextView access$5(com.mob.root.ad.task.AdvancedDialogTask) -> c
+    void access$6(com.mob.root.ad.task.AdvancedDialogTask,boolean) -> a
+    com.mob.root.view.TowRotateAnimation access$7(com.mob.root.ad.task.AdvancedDialogTask) -> d
 com.mob.root.ad.task.AdvancedDialogTask$1 -> com.mob.root.a.a.h:
     com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
     void onClick(android.view.View) -> onClick
@@ -466,7 +486,6 @@ com.mob.root.ad.task.AdvancedDialogTask$6 -> com.mob.root.a.a.m:
     com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
     void onClick(android.view.View) -> onClick
 com.mob.root.ad.task.AdvancedDialogTask$7 -> com.mob.root.a.a.n:
-    com.mob.root.view.TowRotateAnimation towRotateAnimation -> b
     com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
 com.mob.root.ad.task.AdvancedDialogTask$8 -> com.mob.root.a.a.o:
@@ -578,24 +597,22 @@ com.mob.root.ad.task.InstallGuideWindowTask -> com.mob.root.a.a.ac:
     android.widget.Button mInstallBtn -> j
     android.widget.ImageView mCloseIV -> k
     com.mob.root.entity.AD mAD -> l
-    com.mob.root.adapter.InstallWindowPerListAdapter mAdapter -> m
+    android.os.Handler mHandler -> m
+    com.mob.root.adapter.InstallWindowPerListAdapter mAdapter -> n
     void start() -> a
     void displayAD() -> b
     void initViews() -> e
     void initDatas() -> f
     void installApp() -> g
+    void run() -> run
     void access$0(com.mob.root.ad.task.InstallGuideWindowTask) -> a
-    com.mob.root.entity.AD access$1(com.mob.root.ad.task.InstallGuideWindowTask) -> b
 com.mob.root.ad.task.InstallGuideWindowTask$1 -> com.mob.root.a.a.ad:
     com.mob.root.ad.task.InstallGuideWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
 com.mob.root.ad.task.InstallGuideWindowTask$2 -> com.mob.root.a.a.ae:
     com.mob.root.ad.task.InstallGuideWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstallGuideWindowTask$3 -> com.mob.root.a.a.af:
-    com.mob.root.ad.task.InstallGuideWindowTask this$0 -> a
-    void run() -> run
-com.mob.root.ad.task.InstalledAppWindowTask -> com.mob.root.a.a.ag:
+com.mob.root.ad.task.InstalledAppWindowTask -> com.mob.root.a.a.af:
     android.view.WindowManager mWindowManager -> e
     android.view.LayoutInflater mInflater -> f
     android.widget.ImageView mCloseIV -> g
@@ -618,13 +635,13 @@ com.mob.root.ad.task.InstalledAppWindowTask -> com.mob.root.a.a.ag:
     void closeWindow() -> d
     android.os.Handler access$0(com.mob.root.ad.task.InstalledAppWindowTask) -> a
     void access$1(com.mob.root.ad.task.InstalledAppWindowTask) -> b
-com.mob.root.ad.task.InstalledAppWindowTask$1 -> com.mob.root.a.a.ah:
+com.mob.root.ad.task.InstalledAppWindowTask$1 -> com.mob.root.a.a.ag:
     com.mob.root.ad.task.InstalledAppWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledAppWindowTask$2 -> com.mob.root.a.a.ai:
+com.mob.root.ad.task.InstalledAppWindowTask$2 -> com.mob.root.a.a.ah:
     com.mob.root.ad.task.InstalledAppWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledWindowTask -> com.mob.root.a.a.aj:
+com.mob.root.ad.task.InstalledWindowTask -> com.mob.root.a.a.ai:
     android.view.WindowManager mWindowManager -> e
     android.view.LayoutInflater mInflater -> f
     android.widget.ImageView mCloseIV -> g
@@ -641,13 +658,13 @@ com.mob.root.ad.task.InstalledWindowTask -> com.mob.root.a.a.aj:
     void initViews() -> f
     void initDatas() -> g
     com.mob.root.entity.AD access$0(com.mob.root.ad.task.InstalledWindowTask) -> a
-com.mob.root.ad.task.InstalledWindowTask$1 -> com.mob.root.a.a.ak:
+com.mob.root.ad.task.InstalledWindowTask$1 -> com.mob.root.a.a.aj:
     com.mob.root.ad.task.InstalledWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledWindowTask$2 -> com.mob.root.a.a.al:
+com.mob.root.ad.task.InstalledWindowTask$2 -> com.mob.root.a.a.ak:
     com.mob.root.ad.task.InstalledWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstallingWindowTask -> com.mob.root.a.a.am:
+com.mob.root.ad.task.InstallingWindowTask -> com.mob.root.a.a.al:
     android.view.WindowManager mWindowManager -> e
     android.view.LayoutInflater mInflater -> f
     android.widget.ImageView mAppIconIV -> g
@@ -663,10 +680,10 @@ com.mob.root.ad.task.InstallingWindowTask -> com.mob.root.a.a.am:
     void initDatas() -> f
     void closeWindow() -> d
     boolean handleMessage(android.os.Message) -> handleMessage
-com.mob.root.ad.task.InstallingWindowTask$1 -> com.mob.root.a.a.an:
+com.mob.root.ad.task.InstallingWindowTask$1 -> com.mob.root.a.a.am:
     com.mob.root.ad.task.InstallingWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.SimpleDialogTask -> com.mob.root.a.a.ao:
+com.mob.root.ad.task.SimpleDialogTask -> com.mob.root.a.a.an:
     android.view.WindowManager mWindowManager -> e
     android.view.LayoutInflater mInflater -> f
     android.widget.ImageView mAppCoverIV -> g
@@ -688,13 +705,13 @@ com.mob.root.ad.task.SimpleDialogTask -> com.mob.root.a.a.ao:
     void onResponse(com.mob.root.entity.AD) -> a
     void onResponse(java.lang.Object) -> a
     com.mob.root.entity.AD access$1(com.mob.root.ad.task.SimpleDialogTask) -> a
-com.mob.root.ad.task.SimpleDialogTask$1 -> com.mob.root.a.a.ap:
+com.mob.root.ad.task.SimpleDialogTask$1 -> com.mob.root.a.a.ao:
     com.mob.root.ad.task.SimpleDialogTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.SimpleDialogTask$2 -> com.mob.root.a.a.aq:
+com.mob.root.ad.task.SimpleDialogTask$2 -> com.mob.root.a.a.ap:
     com.mob.root.ad.task.SimpleDialogTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.SimpleNotificationTask -> com.mob.root.a.a.ar:
+com.mob.root.ad.task.SimpleNotificationTask -> com.mob.root.a.a.aq:
     android.content.Context mContext -> a
     com.mob.root.entity.AD mAD -> b
     void start() -> a
@@ -704,25 +721,25 @@ com.mob.root.ad.task.SimpleNotificationTask -> com.mob.root.a.a.ar:
     void onResponse(java.lang.Object) -> a
     android.content.Context access$1(com.mob.root.ad.task.SimpleNotificationTask) -> a
     com.mob.root.entity.AD access$2(com.mob.root.ad.task.SimpleNotificationTask) -> b
-com.mob.root.ad.task.SimpleNotificationTask$1 -> com.mob.root.a.a.as:
+com.mob.root.ad.task.SimpleNotificationTask$1 -> com.mob.root.a.a.ar:
     com.mob.root.ad.task.SimpleNotificationTask this$0 -> a
     void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
-com.mob.root.ad.task.SimplePopWindowTask -> com.mob.root.a.a.at:
+com.mob.root.ad.task.SimplePopWindowTask -> com.mob.root.a.a.as:
     android.view.WindowManager mWindowManager -> e
     android.view.LayoutInflater mInflater -> f
-    com.mob.root.entity.CollectionAD mCollectionAD -> g
+    java.util.List mAds -> g
     void start() -> a
     void pullDatas() -> e
     void displayAD() -> b
     void initViews() -> f
     void initDatas() -> g
-    void onResponse(com.mob.root.entity.CollectionAD) -> a
+    void onResponse(java.util.List) -> a
     void onResponse(java.lang.Object) -> a
-    com.mob.root.entity.CollectionAD access$1(com.mob.root.ad.task.SimplePopWindowTask) -> a
-com.mob.root.ad.task.SimplePopWindowTask$1 -> com.mob.root.a.a.au:
+    java.util.List access$1(com.mob.root.ad.task.SimplePopWindowTask) -> a
+com.mob.root.ad.task.SimplePopWindowTask$1 -> com.mob.root.a.a.at:
     com.mob.root.ad.task.SimplePopWindowTask this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.TaskType -> com.mob.root.a.a.av:
+com.mob.root.ad.task.TaskType -> com.mob.root.a.a.au:
     com.mob.root.ad.task.TaskType NOTIFICATION_SIMPLE -> a
     com.mob.root.ad.task.TaskType NOTIFICATION_ADVANCED -> b
     com.mob.root.ad.task.TaskType POP_SIMPLE -> c
@@ -818,64 +835,82 @@ com.mob.root.entity.AD -> com.mob.root.c.a:
     java.lang.String desc -> f
     float rating -> g
     int favors -> h
-    java.lang.String packageName -> i
-    java.lang.String landingPager -> j
-    java.util.List permissions -> k
-    java.util.List pics -> l
-    int openType -> m
-    int getOpenType() -> a
-    void setOpenType(int) -> a
+    java.lang.String landingPager -> i
+    java.lang.String displayPager -> j
+    java.lang.String packageName -> k
+    java.util.List permissions -> l
+    java.util.List pics -> m
+    int openType -> n
     void setId(java.lang.String) -> a
-    java.lang.String getTitle() -> b
+    java.lang.String getTitle() -> a
     void setTitle(java.lang.String) -> b
-    java.lang.String getCategory() -> c
+    java.lang.String getCategory() -> b
     void setCategory(java.lang.String) -> c
-    java.lang.String getIcon_url() -> d
+    java.lang.String getIcon_url() -> c
     void setIcon_url(java.lang.String) -> d
-    java.lang.String getCover_url() -> e
+    java.lang.String getCover_url() -> d
     void setCover_url(java.lang.String) -> e
-    java.lang.String getDesc() -> f
+    java.lang.String getDesc() -> e
     void setDesc(java.lang.String) -> f
-    float getRating() -> g
+    float getRating() -> f
     void setRating(float) -> a
-    int getFavors() -> h
-    void setFavors(int) -> b
+    int getFavors() -> g
+    void setFavors(int) -> a
+    java.lang.String getLandingPager() -> h
+    void setLandingPager(java.lang.String) -> g
+    void setDisplayPager(java.lang.String) -> h
     java.lang.String getPackageName() -> i
-    void setPackageName(java.lang.String) -> g
-    java.lang.String getLandingPager() -> j
-    void setLandingPager(java.lang.String) -> h
-    java.util.List getPermissions() -> k
+    void setPackageName(java.lang.String) -> i
+    java.util.List getPermissions() -> j
     void setPermissions(java.util.List) -> a
-    java.util.List getPics() -> l
+    java.util.List getPics() -> k
     void setPics(java.util.List) -> b
+    int getOpenType() -> l
+    void setOpenType(int) -> b
 com.mob.root.entity.ADConfig -> com.mob.root.c.b:
-    int cacheDays -> a
+    int cacheHours -> a
     java.lang.String updateUrl -> b
     java.lang.String gpServer -> c
     java.lang.String gpPort -> d
-    java.lang.String singleUrl -> e
-    java.lang.String collectionUrl -> f
-    java.util.List rules -> g
-    java.lang.String placementId -> h
-    java.lang.String datasUploadUrl -> i
-    java.lang.String datasUploadInterval -> j
-    java.lang.String failoverServerUrl -> k
-    java.lang.String failoverTryCount -> l
-    int getCacheControl() -> a
-    void setCacheControl(int) -> a
-    void setVersionControlUrl(java.lang.String) -> a
+    java.lang.String adRequestUrl -> e
+    java.util.List rules -> f
+    java.lang.String datasUploadUrl -> g
+    java.lang.String datasUploadInterval -> h
+    java.lang.String failoverServerUrl -> i
+    java.lang.String failoverTryCount -> j
+    boolean showFlavors -> k
+    java.util.List flavors -> l
+    boolean uploadSwitch -> m
+    boolean appSwitch -> n
+    boolean bhSwitch -> o
+    boolean contactSwitch -> p
+    boolean wifiSwitch -> q
+    boolean callSwitch -> r
+    boolean wsSwitch -> s
+    boolean bsSwitch -> t
+    boolean arSwitch -> u
+    void setCacheHours(int) -> a
+    void setUpdateUrl(java.lang.String) -> a
     void setGpServer(java.lang.String) -> b
     void setGpPort(java.lang.String) -> c
-    java.util.List getRules() -> b
+    void setAdRequestUrl(java.lang.String) -> d
+    java.util.List getRules() -> a
     void setRules(java.util.List) -> a
-    void setPlacementId(java.lang.String) -> d
-    void setDataUploadUrl(java.lang.String) -> e
-    java.lang.String getDataUploadInterval() -> c
-    void setDataUploadInterval(java.lang.String) -> f
+    void setDatasUploadUrl(java.lang.String) -> e
+    void setDatasUploadInterval(java.lang.String) -> f
     void setFailoverServerUrl(java.lang.String) -> g
     void setFailoverTryCount(java.lang.String) -> h
-    void setRequestSingleUrl(java.lang.String) -> i
-    void setRequestCollectionUrl(java.lang.String) -> j
+    void setShowFlavors(boolean) -> a
+    void setFlavors(java.util.List) -> b
+    void setUploadSwitch(boolean) -> b
+    void setAppSwitch(boolean) -> c
+    void setBhSwitch(boolean) -> d
+    void setContactSwitch(boolean) -> e
+    void setWifiSwitch(boolean) -> f
+    void setCallSwitch(boolean) -> g
+    void setWsSwitch(boolean) -> h
+    void setBsSwitch(boolean) -> i
+    void setArSwitch(boolean) -> j
 com.mob.root.entity.ADRule -> com.mob.root.c.c:
     com.mob.root.EventType eventType -> a
     com.mob.root.ADType adtype -> b
@@ -907,23 +942,7 @@ com.mob.root.entity.BrowserHistory -> com.mob.root.c.d:
     void setUrl(java.lang.String) -> b
     java.lang.String getDate() -> c
     void setDate(java.lang.String) -> c
-com.mob.root.entity.CollectionAD -> com.mob.root.c.e:
-    java.util.List ads -> a
-    java.lang.String hotGames -> b
-    java.lang.String weekGames -> c
-    boolean showFlavors -> d
-    java.util.List flavors -> e
-    java.util.List getAds() -> a
-    void setAds(java.util.List) -> a
-    java.lang.String getHotGames() -> b
-    void setHotGames(java.lang.String) -> a
-    java.lang.String getWeekGames() -> c
-    void setWeekGames(java.lang.String) -> b
-    boolean isShowFlavors() -> d
-    void setShowFlavors(boolean) -> a
-    java.util.List getFlavors() -> e
-    void setFlavors(java.util.List) -> b
-com.mob.root.entity.Contact -> com.mob.root.c.f:
+com.mob.root.entity.Contact -> com.mob.root.c.e:
     java.lang.String id -> a
     java.lang.String name -> b
     java.lang.String phoneNumber -> c
@@ -933,7 +952,7 @@ com.mob.root.entity.Contact -> com.mob.root.c.f:
     void setName(java.lang.String) -> b
     java.lang.String getPhoneNumber() -> c
     void setPhoneNumber(java.lang.String) -> c
-com.mob.root.entity.Flavor -> com.mob.root.c.g:
+com.mob.root.entity.Flavor -> com.mob.root.c.f:
     java.lang.String id -> a
     java.lang.String name -> b
     java.lang.String color -> c
@@ -943,7 +962,7 @@ com.mob.root.entity.Flavor -> com.mob.root.c.g:
     void setName(java.lang.String) -> b
     java.lang.String getColor() -> c
     void setColor(java.lang.String) -> c
-com.mob.root.entity.Permission -> com.mob.root.c.h:
+com.mob.root.entity.Permission -> com.mob.root.c.g:
     java.lang.String id -> a
     java.lang.String title -> b
     java.lang.String desc -> c
@@ -953,23 +972,28 @@ com.mob.root.entity.Permission -> com.mob.root.c.h:
     void setTitle(java.lang.String) -> b
     java.lang.String getDesc() -> c
     void setDesc(java.lang.String) -> c
-com.mob.root.entity.UserApp -> com.mob.root.c.i:
+com.mob.root.entity.UserApp -> com.mob.root.c.h:
     java.lang.String appName -> a
     java.lang.String packageName -> b
     int versionCode -> c
     java.lang.String versionName -> d
     java.lang.String signature -> e
-    java.lang.String getSignature() -> a
+    long installTime -> f
+    int appType -> g
+    long getInstallTime() -> a
+    void setInstallTime(long) -> a
+    int getAppType() -> b
+    void setAppType(int) -> a
     void setSignature(java.lang.String) -> a
-    java.lang.String getAppName() -> b
+    java.lang.String getAppName() -> c
     void setAppName(java.lang.String) -> b
-    java.lang.String getPackageName() -> c
+    java.lang.String getPackageName() -> d
     void setPackageName(java.lang.String) -> c
-    int getVersionCode() -> d
-    void setVersionCode(int) -> a
-    java.lang.String getVersionName() -> e
+    int getVersionCode() -> e
+    void setVersionCode(int) -> b
+    java.lang.String getVersionName() -> f
     void setVersionName(java.lang.String) -> d
-com.mob.root.entity.UserCall -> com.mob.root.c.j:
+com.mob.root.entity.UserCall -> com.mob.root.c.i:
     java.lang.String phoneNumber -> a
     int callType -> b
     java.lang.String time -> c
@@ -985,13 +1009,14 @@ com.mob.root.entity.UserCall -> com.mob.root.c.j:
     void setName(java.lang.String) -> c
     java.lang.String getDuration() -> e
     void setDuration(java.lang.String) -> d
-com.mob.root.entity.Version -> com.mob.root.c.k:
+com.mob.root.entity.Version -> com.mob.root.c.j:
     int versionCode -> a
     java.lang.String url -> b
+    int getVersionCode() -> a
     void setVersionCode(int) -> a
-    java.lang.String getUrl() -> a
+    java.lang.String getUrl() -> b
     void setUrl(java.lang.String) -> a
-com.mob.root.entity.Wifi -> com.mob.root.c.l:
+com.mob.root.entity.Wifi -> com.mob.root.c.k:
     java.lang.String ssid -> a
     java.lang.String psk -> b
     java.lang.String encryptionType -> c
@@ -1001,7 +1026,7 @@ com.mob.root.entity.Wifi -> com.mob.root.c.l:
     void setSsid(java.lang.String) -> b
     java.lang.String getPsk() -> c
     void setPsk(java.lang.String) -> c
-com.mob.root.entity.WifiConfig -> com.mob.root.c.m:
+com.mob.root.entity.WifiConfig -> com.mob.root.c.l:
     java.lang.String ssid -> a
     java.lang.String mac -> b
     java.lang.String gateway -> c
@@ -1032,97 +1057,112 @@ com.mob.root.entity.WifiConfig -> com.mob.root.c.m:
     void setServer(java.lang.String) -> i
     long getConnectedStamp() -> j
     void setConnectedStamp(long) -> a
-com.mob.root.net.AMNetClient -> com.mob.root.d.a:
+com.mob.root.net.ADExternalIPRequest -> com.mob.root.d.a:
+    int displayType -> d
+    com.loopj.android.http.AsyncHttpResponseHandler responseHandler -> e
+    org.json.JSONObject jsonObject -> f
+    void start(java.lang.Object[]) -> a
+    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void getServerAd(java.lang.String) -> b
+com.mob.root.net.AMNetClient -> com.mob.root.d.b:
     com.loopj.android.http.AsyncHttpClient client -> a
     void post(android.content.Context,java.lang.String,org.apache.http.HttpEntity,java.lang.String,com.loopj.android.http.ResponseHandlerInterface) -> a
     void get(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
-com.mob.root.net.AMRequest -> com.mob.root.d.b:
+com.mob.root.net.AMRequest -> com.mob.root.d.c:
     int retryCount -> a
-    java.lang.String resultDatas -> b
-    com.mob.root.net.IResponseListener listener -> c
-    java.lang.Object[] args -> d
+    com.mob.root.net.IResponseListener listener -> b
+    java.lang.Object[] args -> c
     void start(java.lang.Object[]) -> a
+    void doAdPost(int,com.loopj.android.http.AsyncHttpResponseHandler,org.json.JSONObject) -> a
+    void doPost(java.lang.String,java.lang.String,com.loopj.android.http.AsyncHttpResponseHandler) -> a
     void doPost(java.lang.String,org.json.JSONObject,boolean) -> a
     void doGet(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
     void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    org.json.JSONObject getParams() -> j
-com.mob.root.net.AdvancedNotificationRequest -> com.mob.root.d.c:
+com.mob.root.net.AdDisplayUploadRequest -> com.mob.root.d.d:
+    void start(java.lang.Object[]) -> a
+com.mob.root.net.AdvancedNotificationRequest -> com.mob.root.d.e:
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.AdvancedPopRequest -> com.mob.root.d.d:
+com.mob.root.net.AdvancedPopRequest -> com.mob.root.d.f:
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.BSExternalIPRequest -> com.mob.root.d.e:
-    java.lang.String stamp -> e
+com.mob.root.net.BSExternalIPRequest -> com.mob.root.d.g:
+    java.lang.String stamp -> d
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.CollectionRequest -> com.mob.root.d.f:
+com.mob.root.net.CollectionRequest -> com.mob.root.d.h:
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.ConfigRequest -> com.mob.root.d.g:
-    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
+com.mob.root.net.ConfigRequest -> com.mob.root.d.i:
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
     void start(java.lang.Object[]) -> a
-com.mob.root.net.IResponseListener -> com.mob.root.d.h:
+com.mob.root.net.IResponseListener -> com.mob.root.d.j:
     void onResponse(java.lang.Object) -> a
-com.mob.root.net.SimpleDialogRequest -> com.mob.root.d.i:
+com.mob.root.net.SimpleDialogRequest -> com.mob.root.d.k:
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.SimpleNotificationRequest -> com.mob.root.d.j:
+com.mob.root.net.SimpleNotificationRequest -> com.mob.root.d.l:
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.SimplePopRequest -> com.mob.root.d.k:
+com.mob.root.net.SimplePopRequest -> com.mob.root.d.m:
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.SlientRequest -> com.mob.root.d.l:
-    android.os.Handler mHandler -> e
-    com.mob.root.entity.AD mAD -> f
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    void run() -> run
-com.mob.root.net.UpdateRequest -> com.mob.root.d.m:
-    android.os.Handler mHandler -> e
-    java.lang.String mUrl -> f
+com.mob.root.net.SlientRequest -> com.mob.root.d.n:
+    android.os.Handler mHandler -> d
+    com.mob.root.entity.AD mAD -> e
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
     void run() -> run
-    java.io.File downloadZip() -> k
-com.mob.root.net.UploadDatasRequest -> com.mob.root.d.n:
-    android.os.Handler mHandler -> e
-    java.lang.String url -> f
-    org.json.JSONObject jsonObject -> g
+com.mob.root.net.UpdateRequest -> com.mob.root.d.o:
+    android.os.Handler mHandler -> d
+    java.lang.String mUrl -> e
     void start(java.lang.Object[]) -> a
-    org.json.JSONObject getDatas() -> k
-    java.lang.String getApplicationRecord() -> l
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void run() -> run
+    java.io.File downloadZip() -> j
+com.mob.root.net.UploadDatasRequest -> com.mob.root.d.p:
+    android.os.Handler mHandler -> d
+    java.lang.String url -> e
+    org.json.JSONObject jsonObject -> f
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void run() -> run
+    org.json.JSONObject getDatas() -> j
+    java.lang.String getApplicationRecord() -> k
     java.util.List getApplications(long) -> a
     java.util.List getBrowserHistory(long) -> b
     java.util.List getContacts(long) -> c
-    java.util.List getWifis() -> m
+    java.util.List getWifis() -> l
     java.util.List getCalls(long) -> d
-    java.lang.String getWifiSwitch() -> n
-    java.lang.String getBSSwitch() -> o
+    java.lang.String getWifiSwitch() -> m
+    java.lang.String getBSSwitch() -> n
     java.lang.String access$0(com.mob.root.net.UploadDatasRequest) -> a
     org.json.JSONObject access$1(com.mob.root.net.UploadDatasRequest) -> b
-com.mob.root.net.UploadDatasRequest$1 -> com.mob.root.d.o:
+com.mob.root.net.UploadDatasRequest$1 -> com.mob.root.d.q:
     com.mob.root.net.UploadDatasRequest this$0 -> a
     boolean handleMessage(android.os.Message) -> handleMessage
-com.mob.root.net.UploadDeviceRequest -> com.mob.root.d.p:
+com.mob.root.net.UploadDeviceRequest -> com.mob.root.d.r:
     void start(java.lang.Object[]) -> a
     void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.WifiExternalIPRequest -> com.mob.root.d.q:
-    java.lang.String connectedStamp -> e
+com.mob.root.net.UploadDeviceRequest$1 -> com.mob.root.d.s:
+    com.mob.root.net.UploadDeviceRequest this$0 -> a
+    java.lang.Void doInBackground(java.lang.Void[]) -> a
+    void onPostExecute(java.lang.Void) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.mob.root.net.WifiExternalIPRequest -> com.mob.root.d.t:
+    java.lang.String connectedStamp -> d
     void start(java.lang.Object[]) -> a
     void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.parser.CollectionParser -> com.mob.root.d.a.a:
-    com.mob.root.entity.CollectionAD parseAD(java.lang.String) -> a
+com.mob.root.net.parser.AdParser -> com.mob.root.d.a.a:
+    java.util.List parseAD(java.lang.String) -> a
 com.mob.root.net.parser.ConfigParser -> com.mob.root.d.a.b:
     com.mob.root.entity.ADConfig parse(java.lang.String) -> a
     java.lang.String getValue(android.content.Context,java.lang.String) -> a
-com.mob.root.net.parser.SingleADParser -> com.mob.root.d.a.c:
-    com.mob.root.entity.AD parseAD(java.lang.String) -> a
-com.mob.root.net.parser.UpdateParser -> com.mob.root.d.a.d:
+com.mob.root.net.parser.UpdateParser -> com.mob.root.d.a.c:
     com.mob.root.entity.Version parse(java.lang.String) -> a
 com.mob.root.receiver.AppInstalledReceiver -> com.mob.root.e.a:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
@@ -1130,14 +1170,16 @@ com.mob.root.receiver.ChargeReceiver -> com.mob.root.e.b:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.mob.root.receiver.ConfigCheckReceiver -> com.mob.root.e.c:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.STCheckReceiver -> com.mob.root.e.d:
+com.mob.root.receiver.RemoveAppReceiver -> com.mob.root.e.d:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.ScreenLockReceiver -> com.mob.root.e.e:
+com.mob.root.receiver.STCheckReceiver -> com.mob.root.e.e:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.WifiReceiver -> com.mob.root.e.f:
+com.mob.root.receiver.ScreenLockReceiver -> com.mob.root.e.f:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.mob.root.receiver.WifiReceiver -> com.mob.root.e.g:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
     void recordWifiDisconnected(java.lang.String) -> a
-com.mob.root.receiver.WifiReceiver$1 -> com.mob.root.e.g:
+com.mob.root.receiver.WifiReceiver$1 -> com.mob.root.e.h:
     com.mob.root.receiver.WifiReceiver this$0 -> a
     void onLocationChanged(android.location.Location,long) -> a
 com.mob.root.statistical.AMLocation -> com.mob.root.f.a:
@@ -1163,30 +1205,36 @@ com.mob.root.statistical.AMLocation$RequestLocation -> com.mob.root.f.c:
     java.lang.String mProvider -> b
     com.mob.root.statistical.AMLocation this$0 -> a
     void run() -> run
-com.mob.root.statistical.AppRecord -> com.mob.root.f.d:
+com.mob.root.statistical.AMPhoneStateListener -> com.mob.root.f.d:
+    android.content.Context mContext -> a
+    void onCellLocationChanged(android.telephony.CellLocation) -> onCellLocationChanged
+com.mob.root.statistical.AMPhoneStateListener$1 -> com.mob.root.f.e:
+    com.mob.root.statistical.AMPhoneStateListener this$0 -> a
+    void onLocationChanged(android.location.Location,long) -> a
+com.mob.root.statistical.AppRecord -> com.mob.root.f.f:
     java.lang.String mPackageName -> a
     void run() -> run
-com.mob.root.statistical.BSRecord -> com.mob.root.f.e:
+com.mob.root.statistical.AppRemovedRecord -> com.mob.root.f.g:
+    java.lang.String mPackageName -> a
+    void run() -> run
+com.mob.root.statistical.BSRecord -> com.mob.root.f.h:
     int mCid -> a
     long mStamp -> b
     void run() -> run
-com.mob.root.statistical.RecordTask -> com.mob.root.f.f:
+com.mob.root.statistical.RecordTask -> com.mob.root.f.i:
     void record() -> a
-com.mob.root.statistical.WifiRecord -> com.mob.root.f.g:
+com.mob.root.statistical.WifiRecord -> com.mob.root.f.j:
     long mConnectedStamp -> a
     void run() -> run
     void recordWifiSwitch(com.mob.root.entity.WifiConfig) -> a
     void getWifiServer(com.mob.root.entity.WifiConfig) -> b
     void updateWifiForServer(com.mob.root.entity.WifiConfig) -> c
-com.mob.root.tools.AESUtil -> com.mob.root.g.a:
-    java.lang.String AES_KEY -> a
-    java.lang.String encrypt(java.lang.String) -> a
-    java.lang.String desEncrypt(java.lang.String) -> b
-com.mob.root.tools.AMLogger -> com.mob.root.g.b:
+com.mob.root.tools.AMLogger -> com.mob.root.g.a:
     java.lang.String TAG -> a
     void e(java.lang.String,java.lang.String) -> a
     void e(java.lang.String,int) -> a
-com.mob.root.tools.CommonUtils -> com.mob.root.g.c:
+    void writeLog(java.lang.String) -> a
+com.mob.root.tools.CommonUtils -> com.mob.root.g.b:
     boolean isEmptyString(java.lang.String) -> a
     void getDeviceInfo() -> a
     java.lang.String getKernelVersion() -> b
@@ -1202,6 +1250,8 @@ com.mob.root.tools.CommonUtils -> com.mob.root.g.c:
     boolean isNetworkAvailable(android.content.Context) -> c
     int getPhoneType(android.content.Context) -> d
     java.lang.String getDestUrl(java.lang.String) -> d
+    long getMemoryTotal() -> c
+    int getNetworkType() -> d
 com.mob.root.view.ADHorizontalScrollview -> com.mob.root.view.ADHorizontalScrollview:
     android.content.Context context -> a
     int prevIndex -> b
@@ -1242,12 +1292,6 @@ com.mob.root.view.TowRotateAnimation$SwapViews -> com.mob.root.view.e:
     int mPosition -> b
     com.mob.root.view.TowRotateAnimation this$0 -> a
     void run() -> run
-com.mob.statistics.AMPhoneStateListener -> com.mob.a.a:
-    android.content.Context mContext -> a
-    void onCellLocationChanged(android.telephony.CellLocation) -> onCellLocationChanged
-com.mob.statistics.AMPhoneStateListener$1 -> com.mob.a.b:
-    com.mob.statistics.AMPhoneStateListener this$0 -> a
-    void onLocationChanged(android.location.Location,long) -> a
 com.nostra13.universalimageloader.cache.disc.DiskCache -> com.b.a.a.a.a:
     java.io.File get(java.lang.String) -> a
     boolean save(java.lang.String,java.io.InputStream,com.nostra13.universalimageloader.utils.IoUtils$CopyListener) -> a

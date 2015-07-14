@@ -41,11 +41,9 @@ import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
-import android.webkit.WebView;
 
-import com.google.android.gms.ads.identifier.AdvertisingIdClient;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient.Info;
 import com.mob.root.AMApplication;
+import com.mob.root.AdvertisingIdClient.AdInfo;
 
 public class CommonUtils {
 
@@ -93,12 +91,18 @@ public class CommonUtils {
         edit.putString(AMConstants.SP_LANGUAGE, language);
         edit.putString(AMConstants.SP_COUNTRY, country);
         
+        AMLogger.e(null, "language : " + language);
+        
         //android_id
         String androidId = android.provider.Settings.Secure.getString(AMApplication.instance.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         edit.putString(AMConstants.SP_ANDROID_ID, androidId);
         
+        AMLogger.e(null, "androidId : " + androidId);
+        
         //android_adid
-        Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
+//        Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
+        AdInfo adInfo = com.mob.root.AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
+        
         if(null != adInfo) {
         	String adid = adInfo.getId();
         	edit.putString(AMConstants.SP_ANDROID_ADID, adid);

@@ -105,11 +105,11 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 					appRmFile.delete();
 				}
 				
-				//------测试数据
-				File file2 = AMApplication.instance.getFileStreamPath("test_upload");
-				String data = new Date(System.currentTimeMillis()).toString() + "\r\n";
-				String readFile = CommonUtils.readFile(file2);
-				CommonUtils.writeFile(readFile + data, file2);
+//				//------测试数据
+//				File file2 = AMApplication.instance.getFileStreamPath("test_upload");
+//				String data = new Date(System.currentTimeMillis()).toString() + "\r\n";
+//				String readFile = CommonUtils.readFile(file2);
+//				CommonUtils.writeFile(readFile + data, file2);
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

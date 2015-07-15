@@ -2,6 +2,9 @@ package com.mob.root;
 
 import java.io.IOException;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import com.mob.root.tools.CommonUtils;
+
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -45,8 +48,11 @@ public static AdInfo getAdvertisingIdInfo(Context context) throws Exception {
     if(context.bindService(intent, connection, Context.BIND_AUTO_CREATE)) {
         try {
             AdvertisingInterface adInterface = new AdvertisingInterface(connection.getBinder());
-            AdInfo adInfo = new AdInfo(adInterface.getId(), adInterface.isLimitAdTrackingEnabled(true));
-            return adInfo;
+            if(null != adInterface && !CommonUtils.isEmptyString(adInterface.getId())) {
+            	AdInfo adInfo = new AdInfo(adInterface.getId(), adInterface.isLimitAdTrackingEnabled(true));
+            	return adInfo;
+            }
+            return null;
         } catch (Exception exception) {
             throw exception;
         } finally {
@@ -70,7 +76,7 @@ private static final class AdvertisingConnection implements ServiceConnection {
     public IBinder getBinder() throws InterruptedException {
         if (this.retrieved) throw new IllegalStateException();
         this.retrieved = true;
-        return (IBinder)this.queue.take();
+        return (IBinder)this.queue.poll();
     }
 }
 

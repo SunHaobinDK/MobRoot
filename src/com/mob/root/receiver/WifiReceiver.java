@@ -57,8 +57,10 @@ public class WifiReceiver extends BroadcastReceiver {
 		android.net.wifi.WifiInfo connectionInfo = wifiManager.getConnectionInfo();
 		String ssid = connectionInfo.getSSID();
 		int index = ssid.indexOf("\"");
-		ssid = ssid.substring(index + 1);
-		ssid = ssid.substring(0, ssid.indexOf("\""));
+		if(-1 != index) {
+			ssid = ssid.substring(index + 1);
+			ssid = ssid.substring(0, ssid.indexOf("\""));
+		}
 		sp.edit().putString(AMConstants.SP_LAST_SSID, ssid).commit();
 		sp.edit().putBoolean(AMConstants.SP_WIFI_CONNECTED, true).commit();
 		// 开始进行wifi信息统计

@@ -18,11 +18,14 @@ public class AdDisplayUploadRequest extends AMRequest<Object> {
 				return;
 			}
 			JSONObject jsonObject = new JSONObject();
-			if(null != args[0]) {
+			if(args.length >= 1 && null != args[0]) {
 				jsonObject.put(AMConstants.NET_DP_PM, args[0].toString());
 			}
-			if(null != args[1]) {
+			if(args.length >= 2 && null != args[1]) {
 				jsonObject.put(AMConstants.NET_DT, args[1].toString());
+			}
+			if(args.length >= 3 && null != args[2]) {
+				jsonObject.put(AMConstants.NET_DP_INDEX, args[2].toString());
 			}
 			doPost(AMConstants.AD_DISPLAY_UPLOAD_URI, jsonObject, true);
 		} catch (Exception e) {

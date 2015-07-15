@@ -86,7 +86,7 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 //    	}
 //    	datas = AESUtil.encrypt(datas);
     	StringEntity entity = new StringEntity(datas, "utf-8");
-    	AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, this);
+		AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, this);
 	}
 	
 	protected void doGet(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {

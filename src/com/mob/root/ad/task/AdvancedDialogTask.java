@@ -408,7 +408,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mPhotosAdapter = new AdvanceWindowAppPhotosAdapter(mContext,null == mDetailAD ? null : mDetailAD.getPics());
 		mAppPhotoHS.setAdapter(mContext, mPhotosAdapter);
 		//显示详情
-		showDetailPage();
+		showDetailPage(position);
 	}
 	
 	public void showListPage(){
@@ -431,7 +431,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mListFooterView.setVisibility(View.VISIBLE);
 	}
 	
-	public void showDetailPage(){
+	public void showDetailPage(int position){
 		if(isFlavorVisible) { //如果需要显示分类
 			updateWindow(mContext.getResources().getDimension(R.dimen.advanced_window_width), mContext.getResources().getDimension(R.dimen.advanced_window_height_include), false);
 		} else {
@@ -458,7 +458,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mAppDetail.setText(mDetailAD.getDesc());
 		
 		AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
-		request.start(mDetailAD.getPackageName());
+		request.start(mDetailAD.getPackageName(), 4, position);
 	}
 	
 	@Override

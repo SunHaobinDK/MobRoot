@@ -359,14 +359,6 @@ com.mob.root.EventType -> com.mob.root.f:
     com.mob.root.EventType[] ENUM$VALUES -> e
     com.mob.root.EventType[] values() -> values
     com.mob.root.EventType valueOf(java.lang.String) -> valueOf
-com.mob.root.MainActivity -> com.mob.root.MainActivity:
-    android.widget.Button mSimpleNotify -> a
-    android.widget.Button mAdvanceNotify -> b
-    android.widget.Button mSimpleDialog -> c
-    android.widget.Button mSimpleBannerBanner -> d
-    android.widget.Button mBanner -> e
-    void onCreate(android.os.Bundle) -> onCreate
-    void onClick(android.view.View) -> onClick
 com.mob.root.SDKListener -> com.mob.root.g:
     android.os.Handler handler -> a
     boolean onReferralBroadcast(android.content.Intent) -> a
@@ -451,12 +443,12 @@ com.mob.root.ad.task.AdvancedDialogTask -> com.mob.root.a.a.g:
     void pullDatas() -> e
     void displayAD() -> b
     void updateWindow(float,float,boolean) -> a
-    void initViews() -> h
-    void initDatas() -> i
+    void initViews() -> g
+    void initDatas() -> h
     void openLandPager(java.lang.String) -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
     void showListPage() -> f
-    void showDetailPage() -> g
+    void showDetailPage(int) -> a
     void keyBackPressed() -> c
     void onResponse(java.util.List) -> a
     void onResponse(java.lang.Object) -> a

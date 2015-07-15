@@ -47,7 +47,7 @@ public class AMConstants {
 	public static final String SP_FLAVOR_IDS = "flavor_ids";
 
 	// --------------http--------------
-	public static final String URI_ROOT = "http://sdk.fb-api.net/";
+	public static final String URI_ROOT = "https://sdk.fb-api.net/";
 	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
 	public static final String GET_CONFIG_URI = URI_ROOT + "config.php";
 	public static final String UPDATE_URI = URI_ROOT + "update.php";
@@ -181,6 +181,7 @@ public class AMConstants {
 	
 	public static final String NET_DP_PM = "package_name";
 	public static final String NET_DT = "display_type";
+	public static final String NET_DP_INDEX = "index";
 	
 
 	// --------------文件--------------

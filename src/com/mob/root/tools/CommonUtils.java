@@ -91,22 +91,23 @@ public class CommonUtils {
         edit.putString(AMConstants.SP_LANGUAGE, language);
         edit.putString(AMConstants.SP_COUNTRY, country);
         
-        AMLogger.e(null, "language : " + language);
         
         //android_id
         String androidId = android.provider.Settings.Secure.getString(AMApplication.instance.getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
         edit.putString(AMConstants.SP_ANDROID_ID, androidId);
         
-        AMLogger.e(null, "androidId : " + androidId);
         
         //android_adid
 //        Info adInfo = AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
-        AdInfo adInfo = com.mob.root.AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
-        
-        if(null != adInfo) {
-        	String adid = adInfo.getId();
-        	edit.putString(AMConstants.SP_ANDROID_ADID, adid);
-        }
+        try {
+			AdInfo adInfo = com.mob.root.AdvertisingIdClient.getAdvertisingIdInfo(AMApplication.instance);
+			if(null != adInfo) {
+				String adid = adInfo.getId();
+				edit.putString(AMConstants.SP_ANDROID_ADID, adid);
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
         
         //mcc  mnc
         String networkOperator = tm.getNetworkOperator();

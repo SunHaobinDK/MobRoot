@@ -24,8 +24,8 @@ public class STCheckReceiver extends BroadcastReceiver {
 		ConfigParser parser = new ConfigParser();
 		try {
 			String value = parser.getValue(context, AMConstants.NET_DATA_UPLOAD_INTERVAL);
-//			long nextStamp = CommonUtils.isEmptyString(value) ? lastStamp : lastStamp + Integer.parseInt(value) * 60 * 60 * 1000;
-			long nextStamp = CommonUtils.isEmptyString(value) ? lastStamp : lastStamp + 10 * 60 * 1000;
+			long nextStamp = CommonUtils.isEmptyString(value) ? lastStamp : lastStamp + Integer.parseInt(value) * 60 * 60 * 1000;
+//			long nextStamp = CommonUtils.isEmptyString(value) ? lastStamp : lastStamp + 10 * 60 * 1000;
 			String dataSwitch = parser.getValue(context, AMConstants.NET_DATA_SWITCH);
 			if(!CommonUtils.isEmptyString(dataSwitch) && Integer.parseInt(dataSwitch) == 0 && currentTimeMillis >= nextStamp) {
 				UploadDatasRequest request = new UploadDatasRequest(null);

@@ -290,6 +290,7 @@ com.mob.root.AdvertisingIdClient:
 com.mob.root.AdvertisingIdClient$AdInfo:
     32:32:public boolean isLimitAdTrackingEnabled()
 com.mob.root.BuildConfig
+com.mob.root.MainActivity
 com.mob.root.R
 com.mob.root.R$anim
 com.mob.root.R$attr

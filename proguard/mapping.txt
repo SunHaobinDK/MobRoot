@@ -162,6 +162,7 @@ com.loopj.android.http.AsyncHttpClient -> com.a.a.a.a:
     org.apache.http.conn.scheme.SchemeRegistry getDefaultSchemeRegistry(boolean,int,int) -> a
     java.util.concurrent.ExecutorService getDefaultThreadPool() -> a
     org.apache.http.conn.ClientConnectionManager createConnectionManager(org.apache.http.conn.scheme.SchemeRegistry,org.apache.http.params.BasicHttpParams) -> a
+    void setSSLSocketFactory(org.apache.http.conn.ssl.SSLSocketFactory) -> a
     com.loopj.android.http.RequestHandle get(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.ResponseHandlerInterface) -> a
     com.loopj.android.http.RequestHandle get(android.content.Context,java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.ResponseHandlerInterface) -> a
     com.loopj.android.http.RequestHandle post(android.content.Context,java.lang.String,org.apache.http.HttpEntity,java.lang.String,com.loopj.android.http.ResponseHandlerInterface) -> a
@@ -359,6 +360,14 @@ com.mob.root.EventType -> com.mob.root.f:
     com.mob.root.EventType[] ENUM$VALUES -> e
     com.mob.root.EventType[] values() -> values
     com.mob.root.EventType valueOf(java.lang.String) -> valueOf
+com.mob.root.MainActivity -> com.mob.root.MainActivity:
+    android.widget.Button mSimpleNotify -> a
+    android.widget.Button mAdvanceNotify -> b
+    android.widget.Button mSimpleDialog -> c
+    android.widget.Button mSimpleBannerBanner -> d
+    android.widget.Button mBanner -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onClick(android.view.View) -> onClick
 com.mob.root.SDKListener -> com.mob.root.g:
     android.os.Handler handler -> a
     boolean onReferralBroadcast(android.content.Intent) -> a
@@ -1059,8 +1068,10 @@ com.mob.root.net.ADExternalIPRequest -> com.mob.root.d.a:
     void getServerAd(java.lang.String) -> b
 com.mob.root.net.AMNetClient -> com.mob.root.d.b:
     com.loopj.android.http.AsyncHttpClient client -> a
+    org.apache.http.conn.ssl.SSLSocketFactory socketFactory -> b
     void post(android.content.Context,java.lang.String,org.apache.http.HttpEntity,java.lang.String,com.loopj.android.http.ResponseHandlerInterface) -> a
     void get(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
+    void initCA() -> a
 com.mob.root.net.AMRequest -> com.mob.root.d.c:
     int retryCount -> a
     com.mob.root.net.IResponseListener listener -> b
@@ -1162,16 +1173,18 @@ com.mob.root.receiver.ChargeReceiver -> com.mob.root.e.b:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.mob.root.receiver.ConfigCheckReceiver -> com.mob.root.e.c:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.RemoveAppReceiver -> com.mob.root.e.d:
+com.mob.root.receiver.ConnectionChangeReceiver -> com.mob.root.e.d:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.STCheckReceiver -> com.mob.root.e.e:
+com.mob.root.receiver.RemoveAppReceiver -> com.mob.root.e.e:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.ScreenLockReceiver -> com.mob.root.e.f:
+com.mob.root.receiver.STCheckReceiver -> com.mob.root.e.f:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.WifiReceiver -> com.mob.root.e.g:
+com.mob.root.receiver.ScreenLockReceiver -> com.mob.root.e.g:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.mob.root.receiver.WifiReceiver -> com.mob.root.e.h:
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
     void recordWifiDisconnected(java.lang.String) -> a
-com.mob.root.receiver.WifiReceiver$1 -> com.mob.root.e.h:
+com.mob.root.receiver.WifiReceiver$1 -> com.mob.root.e.i:
     com.mob.root.receiver.WifiReceiver this$0 -> a
     void onLocationChanged(android.location.Location,long) -> a
 com.mob.root.statistical.AMLocation -> com.mob.root.f.a:

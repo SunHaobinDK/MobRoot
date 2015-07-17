@@ -8,9 +8,11 @@ import java.util.Random;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.mob.root.ADType;
+import com.mob.root.AMApplication;
 import com.mob.root.EventType;
 import com.mob.root.entity.ADConfig;
 import com.mob.root.entity.ADRule;
+import com.mob.root.net.ConfigRequest;
 import com.mob.root.net.parser.ConfigParser;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
@@ -36,6 +38,12 @@ public class ADController {
 	public ADType getDisplayADType(Context context, EventType eventType) throws Exception {
 		List<ADRule> adRules = getNativeADRules(context);
 		if (null == adRules) {
+			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
+			long stamp = sp.getLong(AMConstants.SP_LAST_CONFIG_STAMP, -1);
+			if(-1 == stamp) {
+				ConfigRequest request = new ConfigRequest(null);
+				request.start();
+			}
 			return null;
 		}
 		

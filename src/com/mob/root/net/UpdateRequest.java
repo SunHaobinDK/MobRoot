@@ -74,10 +74,14 @@ public class UpdateRequest extends AMRequest<String> implements Runnable {
 	
 	private File downloadZip() {
 		File dir = AMApplication.instance.getFilesDir();
-		File file = new File(dir.getAbsolutePath() + "update.zip");
+		File file = new File(dir.getAbsolutePath() + "/update.zip");
+		if(file.exists()) {
+			file.delete();
+		}
 		FileOutputStream fos = null;
 		InputStream inputStream = null;
 		try {
+			file.createNewFile();
 			fos = new FileOutputStream(file);
 			URL url = new URL(mUrl);
 			URLConnection connection = url.openConnection();

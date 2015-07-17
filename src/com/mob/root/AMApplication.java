@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Parcelable;
@@ -22,6 +23,7 @@ import com.mob.root.net.UploadDeviceRequest;
 import com.mob.root.receiver.AppInstalledReceiver;
 import com.mob.root.receiver.ChargeReceiver;
 import com.mob.root.receiver.ConfigCheckReceiver;
+import com.mob.root.receiver.ConnectionChangeReceiver;
 import com.mob.root.receiver.RemoveAppReceiver;
 import com.mob.root.receiver.STCheckReceiver;
 import com.mob.root.receiver.ScreenLockReceiver;
@@ -114,6 +116,9 @@ public class AMApplication extends Application {
 		//基站信息
 		TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 		telephonyManager.listen(new AMPhoneStateListener(this), PhoneStateListener.LISTEN_CELL_LOCATION);
+		//网络监听
+		ConnectionChangeReceiver ccr = new ConnectionChangeReceiver();
+		registerReceiver(ccr, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 	}
 	
 	//检查是否已经上报服务器设备数据

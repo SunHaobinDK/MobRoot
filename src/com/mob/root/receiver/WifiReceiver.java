@@ -13,6 +13,7 @@ import android.net.NetworkInfo.State;
 import android.net.wifi.WifiManager;
 import android.os.Parcelable;
 import com.mob.root.AMApplication;
+import com.mob.root.net.ConfigRequest;
 import com.mob.root.net.WifiExternalIPRequest;
 import com.mob.root.statistical.AMLocation;
 import com.mob.root.statistical.AMLocation.AMLocationListener;
@@ -53,6 +54,7 @@ public class WifiReceiver extends BroadcastReceiver {
 		if (state != State.CONNECTED) { // 如果还没有成功连接，则忽略
 			return;
 		}
+		
 		WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		android.net.wifi.WifiInfo connectionInfo = wifiManager.getConnectionInfo();
 		String ssid = connectionInfo.getSSID();

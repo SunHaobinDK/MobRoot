@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 
 import org.apache.http.Header;
 
@@ -63,11 +64,11 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			UpdateRequest request = new UpdateRequest(null);
 			request.start();
 			
-//			//------测试数据
-//			File file2 = AMApplication.instance.getFileStreamPath("test_config");
-//			String data = new Date(lastConfig).toString() + "\r\n";
-//			String readFile = CommonUtils.readFile(file2);
-//			CommonUtils.writeFile(readFile + data, file2);
+			//------测试数据
+			File file2 = AMApplication.instance.getFileStreamPath("test_config");
+			String data = new Date(lastConfig).toString() + "\r\n";
+			String readFile = CommonUtils.readFile(file2);
+			CommonUtils.writeFile(readFile + data, file2);
 			
 //			updateChromeDb();
 		} catch (Exception e) {

@@ -91,7 +91,6 @@ com.loopj.android.http.AsyncHttpClient:
     538:541:public void setResponseTimeout(int)
     550:553:public void setProxy(java.lang.String,int)
     564:570:public void setProxy(java.lang.String,int,java.lang.String,java.lang.String)
-    579:580:public void setSSLSocketFactory(org.apache.http.conn.ssl.SSLSocketFactory)
     589:590:public void setMaxRetriesAndTimeout(int,int)
     597:598:public void removeAllHeaders()
     607:608:public void addHeader(java.lang.String,java.lang.String)
@@ -206,9 +205,9 @@ com.loopj.android.http.JsonStreamerEntity
 com.loopj.android.http.JsonValueInterface
 com.loopj.android.http.MyRedirectHandler
 com.loopj.android.http.MySSLSocketFactory:
-    110:111:public void fixHttpsURLConnection()
-    122:150:public static java.security.KeyStore getKeystoreOfCA(java.io.InputStream)
-    195:208:public static org.apache.http.impl.client.DefaultHttpClient getNewHttpClient(java.security.KeyStore)
+    106:107:public void fixHttpsURLConnection()
+    118:146:public static java.security.KeyStore getKeystoreOfCA(java.io.InputStream)
+    191:204:public static org.apache.http.impl.client.DefaultHttpClient getNewHttpClient(java.security.KeyStore)
 com.loopj.android.http.PersistentCookieStore
 com.loopj.android.http.PreemptiveAuthorizationHttpRequestInterceptor
 com.loopj.android.http.RangeFileAsyncHttpResponseHandler:
@@ -284,13 +283,12 @@ com.loopj.android.http.Utils:
     27:28:private Utils()
 com.loopj.android.http.package-info
 com.mob.root.AMApplication:
-    144:156:private void addShortcut(android.os.Parcelable,java.lang.String,android.net.Uri)
+    149:161:private void addShortcut(android.os.Parcelable,java.lang.String,android.net.Uri)
 com.mob.root.AdvertisingIdClient:
-    16:16:public AdvertisingIdClient()
+    19:19:public AdvertisingIdClient()
 com.mob.root.AdvertisingIdClient$AdInfo:
-    32:32:public boolean isLimitAdTrackingEnabled()
+    35:35:public boolean isLimitAdTrackingEnabled()
 com.mob.root.BuildConfig
-com.mob.root.MainActivity
 com.mob.root.R
 com.mob.root.R$anim
 com.mob.root.R$attr
@@ -347,9 +345,7 @@ com.mob.root.entity.WifiConfig:
     107:107:public long getDisconnectedStamp()
     111:112:public void setDisconnectedStamp(long)
 com.mob.root.net.AMNetClient:
-    private static org.apache.http.conn.ssl.SSLSocketFactory socketFactory
-    25:25:AMNetClient()
-    42:62:private static void initCA()
+    22:22:AMNetClient()
 com.mob.root.net.parser.CollectionParser
 com.mob.root.net.parser.SingleADParser
 com.mob.root.tools.AESUtil
@@ -360,6 +356,9 @@ com.mob.root.tools.AMLogger:
     22:25:public static void v(java.lang.String,int)
 com.mob.root.tools.CommonUtils:
     48:48:public CommonUtils()
+com.mob.root.tools.RootCmd
+com.mob.root.tools.SystemPartition
+com.mob.root.tools.SystemPartition$SystemPartitionHolder
 com.mob.root.view.ADHorizontalScrollview$ZeroChildException:
     private static final long serialVersionUID
     79:81:public ADHorizontalScrollview$ZeroChildException(com.mob.root.view.ADHorizontalScrollview)

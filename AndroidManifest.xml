@@ -32,7 +32,6 @@
         android:persistent="true" >
 
         <!-- ！！！！！！！！！！！！！！！！！！！！ 开发时候存在activity 发版时候需要删除！！！！！！！！！！！！！！！！！！！！ -->
-        <!--  -->
         <activity android:name="com.mob.root.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

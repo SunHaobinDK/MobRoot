@@ -8,6 +8,8 @@ com.mob.root.AMApplication
 com.mob.root.AMApplication: AMApplication()
 com.mob.root.EventType: com.mob.root.EventType[] values()
 com.mob.root.EventType: com.mob.root.EventType valueOf(java.lang.String)
+com.mob.root.MainActivity
+com.mob.root.MainActivity: MainActivity()
 com.mob.root.MainActivity: void onClick(android.view.View)
 com.mob.root.R$anim: int advanced_banner_window_close_anim
 com.mob.root.R$color: int image_default_bg

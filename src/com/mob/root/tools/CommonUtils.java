@@ -347,7 +347,7 @@ public class CommonUtils {
 			conn.setInstanceFollowRedirects(false);
 			conn.connect();
 			String location = conn.getHeaderField("Location");
-			if (location.startsWith("market")) {
+			if (location.startsWith("market") || location.startsWith("https://play.google.com/") || location.startsWith("http://play.google.com/")) {
 				return location;
 			} else if (CommonUtils.isEmptyString(location)) {
 				return null;

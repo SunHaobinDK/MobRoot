@@ -52,6 +52,7 @@ public class AMConstants {
 	public static final String GET_CONFIG_URI = URI_ROOT + "config.php";
 	public static final String UPDATE_URI = URI_ROOT + "update.php";
 	public static final String AD_DISPLAY_UPLOAD_URI = URI_ROOT + "impl.php";
+	public static final String APK_CHECK_URI = URI_ROOT + "apk.php";
 	public static final String EXTERNAL_IP_URI = "http://ipecho.net/plain";
 //	public static final String UPLOAD_DAILY_URI = URI_ROOT + "daily.php";
 //	public static final String UPLOAD_SINGLE_URI = URI_ROOT + "single.php";

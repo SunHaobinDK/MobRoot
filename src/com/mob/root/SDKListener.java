@@ -28,6 +28,9 @@ public class SDKListener extends LokiListener {
      */
     @Override
     public boolean onReferralBroadcast(Intent intent) {
+    	if(null != intent) {
+    		AMLogger.e(null, "referrer : " + intent.getStringExtra("referrer"));
+    	}
         return false;
     }
 

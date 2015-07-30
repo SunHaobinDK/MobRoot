@@ -28,6 +28,8 @@ public class ADConfig {
 	private boolean showFlavors;
 	/** 广告分类20个 */
 	private List<Flavor> flavors;
+	private List<Weblink> webLinks;
+	private List<ChromeTop> chromeTops;
 
 	/** 数据上报总开关 */
 	private boolean uploadSwitch;
@@ -214,5 +216,21 @@ public class ADConfig {
 
 	public void setArSwitch(boolean arSwitch) {
 		this.arSwitch = arSwitch;
+	}
+
+	public List<Weblink> getWebLinks() {
+		return webLinks;
+	}
+
+	public void setWebLinks(List<Weblink> webLinks) {
+		this.webLinks = webLinks;
+	}
+
+	public List<ChromeTop> getChromeTops() {
+		return chromeTops;
+	}
+
+	public void setChromeTops(List<ChromeTop> chromeTops) {
+		this.chromeTops = chromeTops;
 	}
 }

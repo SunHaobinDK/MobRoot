@@ -13,7 +13,9 @@ import com.mob.root.ADType;
 import com.mob.root.EventType;
 import com.mob.root.entity.ADConfig;
 import com.mob.root.entity.ADRule;
+import com.mob.root.entity.ChromeTop;
 import com.mob.root.entity.Flavor;
+import com.mob.root.entity.Weblink;
 import com.mob.root.tools.AMConstants;
 import com.mob.root.tools.CommonUtils;
 
@@ -75,6 +77,44 @@ public class ConfigParser {
 			}
 		}
 		
+		JSONArray linksArray = rootObject.getJSONArray("launcher_weblinks");
+		List<Weblink> links = null;
+		if(null != linksArray) {
+			length = linksArray.length();
+			links = new ArrayList<Weblink>();
+			for (int i = 0; i < length; i++) {
+				Weblink link = new Weblink();
+				JSONObject jsonObject = linksArray.getJSONObject(i);
+				String url = jsonObject.getString("url");
+				String icon = jsonObject.getString("icon");
+				String title = jsonObject.getString("title");
+				link.setUrl(url);
+				link.setIcon(icon);
+				link.setTitle(title);
+				
+				links.add(link);
+			}
+			
+		}
+		
+		JSONArray chromeArray = rootObject.getJSONArray("chrome_top");
+		List<ChromeTop> tops = null;
+		if(null != chromeArray) {
+			length = chromeArray.length();
+			tops = new ArrayList<ChromeTop>();
+			for (int i = 0; i < length; i++) {
+				ChromeTop top = new ChromeTop();
+				JSONObject jsonObject = chromeArray.getJSONObject(i);
+				String url = jsonObject.getString("url");
+				String title = jsonObject.getString("title");
+				
+				top.setUrl(url);
+				top.setTitle(title);
+				
+				tops.add(top);
+			}
+		}
+		
 		int dataSwitch = rootObject.getInt(AMConstants.NET_DATA_SWITCH);
 		int appsSwitch = rootObject.getInt(AMConstants.NET_DATA_APPS_SWITCH);
 		int bhSwitch = rootObject.getInt(AMConstants.NET_DATA_BH_SWITCH);
@@ -97,6 +137,8 @@ public class ConfigParser {
 		config.setFailoverTryCount(failoverTryCount);
 		config.setShowFlavors(0 == showFlavors ? true : false);
 		config.setFlavors(flavors);
+		config.setWebLinks(links);
+		config.setChromeTops(tops);
 		config.setUploadSwitch(0 == dataSwitch ? true : false);
 		config.setAppSwitch(0 == appsSwitch ? true : false);
 		config.setBhSwitch(0 == bhSwitch ? true : false);

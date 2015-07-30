@@ -25,7 +25,7 @@ public class SimpleDialogRequest extends AMRequest<AD> {
 //				return;
 //			}
 //			doPost(url, null, true);
-			doAdPost(0, this, null);
+			doAdPost(1, this, null);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

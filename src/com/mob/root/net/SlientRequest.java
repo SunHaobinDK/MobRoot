@@ -52,7 +52,7 @@ public class SlientRequest extends AMRequest<AD> implements Runnable, IResponseL
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put(AMConstants.NET_PARAMS_SLIENT, 1);
 //			doPost(url, jsonObject, true);
-			doAdPost(0, this, jsonObject);
+			doAdPost(1, this, jsonObject);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

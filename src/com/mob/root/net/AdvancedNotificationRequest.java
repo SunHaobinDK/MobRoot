@@ -19,7 +19,7 @@ public class AdvancedNotificationRequest extends AMRequest<AD> {
 	public void start(Object... args) {
 		try {
 			this.args = args;
-			doAdPost(0, this, null);
+			doAdPost(1, this, null);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

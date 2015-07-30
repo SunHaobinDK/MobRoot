@@ -115,7 +115,7 @@ public class AMConstants {
 	public static final String NET_EIP = "eip";
 	public static final String NET_MEMORY_SIZE = "memory_size";
 	public static final String NET_NETWORK_TYPE = "network_type";
-	public static final String NET_DISPLAY_TYPE = "display_type";
+	public static final String NET_DISPLAY_COUNT = "display_count";
 	public static final String NET_SHOW_FLAVORS = "show_flavors";
 	public static final String NET_FLAVORS = "flavors";
 	public static final String NET_FLAVOR_ID = "id";

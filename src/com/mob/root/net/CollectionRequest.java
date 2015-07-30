@@ -22,7 +22,7 @@ public class CollectionRequest<T> extends AMRequest<List<AD>> {
 //				return;
 //			}
 //			doPost(url, null, true);
-			doAdPost(1, this, null);
+			doAdPost(8, this, null);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

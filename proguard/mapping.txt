@@ -1,3 +1,1055 @@
+com.androidhelper.sdk.ADType -> com.androidhelper.sdk.a:
+    com.androidhelper.sdk.ADType PUSH_SIMPLE -> a
+    com.androidhelper.sdk.ADType PUSH_ADVANCED -> b
+    com.androidhelper.sdk.ADType POP_SIMPLE -> c
+    com.androidhelper.sdk.ADType POP_ADVANCED -> d
+    com.androidhelper.sdk.ADType DIALOG_SOLO -> e
+    com.androidhelper.sdk.ADType DIALOG_COLLECTION -> f
+    com.androidhelper.sdk.ADType[] ENUM$VALUES -> g
+    com.androidhelper.sdk.ADType[] values() -> values
+    com.androidhelper.sdk.ADType valueOf(java.lang.String) -> valueOf
+com.androidhelper.sdk.AMApplication -> com.androidhelper.sdk.AMApplication:
+    com.androidhelper.sdk.AMApplication instance -> a
+    com.nostra13.universalimageloader.core.DisplayImageOptions displayOption -> b
+    java.util.List installADs -> c
+    java.util.List installApks -> d
+    void onCreate() -> onCreate
+    void initSDK() -> a
+    void initImageloader() -> b
+    void registReceiver() -> c
+    void checkConfig() -> d
+    void checkTask() -> e
+com.androidhelper.sdk.AdvertisingIdClient -> com.androidhelper.sdk.b:
+    com.androidhelper.sdk.AdvertisingIdClient$AdInfo getAdvertisingIdInfo(android.content.Context) -> a
+com.androidhelper.sdk.AdvertisingIdClient$AdInfo -> com.androidhelper.sdk.c:
+    java.lang.String advertisingId -> a
+    boolean limitAdTrackingEnabled -> b
+    java.lang.String getId() -> a
+com.androidhelper.sdk.AdvertisingIdClient$AdvertisingConnection -> com.androidhelper.sdk.d:
+    boolean retrieved -> a
+    java.util.concurrent.LinkedBlockingQueue queue -> b
+    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
+    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
+    android.os.IBinder getBinder() -> a
+com.androidhelper.sdk.AdvertisingIdClient$AdvertisingInterface -> com.androidhelper.sdk.e:
+    android.os.IBinder binder -> a
+    android.os.IBinder asBinder() -> asBinder
+    java.lang.String getId() -> a
+    boolean isLimitAdTrackingEnabled(boolean) -> a
+com.androidhelper.sdk.EventType -> com.androidhelper.sdk.f:
+    com.androidhelper.sdk.EventType UNLOCK_SCREEN -> a
+    com.androidhelper.sdk.EventType CLEAR_NOTIFY -> b
+    com.androidhelper.sdk.EventType EXIT_APP -> c
+    com.androidhelper.sdk.EventType SLIENT -> d
+    com.androidhelper.sdk.EventType[] ENUM$VALUES -> e
+    com.androidhelper.sdk.EventType[] values() -> values
+    com.androidhelper.sdk.EventType valueOf(java.lang.String) -> valueOf
+com.androidhelper.sdk.MainActivity -> com.androidhelper.sdk.MainActivity:
+    android.widget.Button mSimpleNotify -> a
+    android.widget.Button mAdvanceNotify -> b
+    android.widget.Button mSimpleDialog -> c
+    android.widget.Button mSimpleBannerBanner -> d
+    android.widget.Button mBanner -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.SDKListener -> com.androidhelper.sdk.g:
+    android.os.Handler handler -> a
+    boolean onReferralBroadcast(android.content.Intent) -> a
+    void onApplicationSwitch(java.lang.String,boolean) -> a
+    void onCleanNotification() -> a
+    void onGooglePlayDownload(java.lang.String,int) -> a
+com.androidhelper.sdk.SDKListener$ExitAppTask -> com.androidhelper.sdk.h:
+    com.androidhelper.sdk.ADType mAdType -> b
+    com.androidhelper.sdk.SDKListener this$0 -> a
+    void run() -> run
+com.androidhelper.sdk.ad.ADController -> com.androidhelper.sdk.a.a:
+    com.androidhelper.sdk.ad.ADController adController -> a
+    com.androidhelper.sdk.ad.ADController getInstance() -> a
+    com.androidhelper.sdk.ADType getDisplayADType(android.content.Context,com.androidhelper.sdk.EventType) -> a
+    java.util.List getNativeADRules(android.content.Context) -> a
+com.androidhelper.sdk.ad.task.ADTask -> com.androidhelper.sdk.a.a.a:
+    void updateWindow(float,float,boolean) -> a
+    void start() -> a
+com.androidhelper.sdk.ad.task.ADTaskBuilder -> com.androidhelper.sdk.a.a.b:
+    com.androidhelper.sdk.ad.task.ADTask mAdTask -> a
+    int[] $SWITCH_TABLE$com$androidhelper$sdk$ad$task$TaskType -> b
+    com.androidhelper.sdk.ad.task.ADTaskBuilder setADType(com.androidhelper.sdk.ad.task.TaskType,android.content.Context,java.lang.Object) -> a
+    com.androidhelper.sdk.ad.task.ADTask build() -> a
+    int[] $SWITCH_TABLE$com$androidhelper$sdk$ad$task$TaskType() -> b
+com.androidhelper.sdk.ad.task.ADTaskController -> com.androidhelper.sdk.a.a.c:
+    com.androidhelper.sdk.ad.task.ADTaskController sADTaskController -> b
+    com.androidhelper.sdk.ad.task.ADTask currentTask -> a
+    com.androidhelper.sdk.ad.task.ADTaskController getInstance() -> a
+    void immediateADTask(com.androidhelper.sdk.ad.task.TaskType,java.lang.Object[]) -> a
+com.androidhelper.sdk.ad.task.ADWindowTask -> com.androidhelper.sdk.a.a.d:
+    android.content.Context mContext -> a
+    android.view.WindowManager mWindowManager -> b
+    android.view.View mRootView -> c
+    com.androidhelper.sdk.ad.task.ADWindowTask$KeyReceiver mKeyReceiver -> e
+    boolean selfBack -> d
+    void displayAD() -> b
+    void keyBackPressed() -> c
+    void registHomeKeyListener() -> e
+    void unRegistKeyListener() -> f
+    void callInstallGuide(android.content.Context,com.androidhelper.sdk.entity.AD) -> a
+    void closeWindow() -> d
+com.androidhelper.sdk.ad.task.ADWindowTask$1 -> com.androidhelper.sdk.a.a.e:
+    com.androidhelper.sdk.ad.task.ADWindowTask this$0 -> a
+    boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
+com.androidhelper.sdk.ad.task.ADWindowTask$KeyReceiver -> com.androidhelper.sdk.a.a.f:
+    com.androidhelper.sdk.ad.task.ADWindowTask this$0 -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.ad.task.AdvancedDialogTask -> com.androidhelper.sdk.a.a.g:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mCloseIV -> g
+    android.widget.GridView mGridView -> h
+    android.widget.TextView mHotGamesTV -> i
+    android.widget.TextView mWeekGamesTV -> j
+    android.view.View mListHeaderView -> k
+    android.view.View mListFooterView -> l
+    android.widget.ImageView mDetailBackIV -> m
+    android.widget.ImageView mDetailClloseIV -> n
+    android.view.View mDetailHeader -> o
+    android.view.View mDetailLayout -> p
+    android.widget.ImageView mDetailAppIconIV -> q
+    android.widget.TextView mDetailAppTitleTV -> r
+    android.widget.TextView mDetailCategoryTV -> s
+    android.widget.RatingBar mRatingBar -> t
+    android.widget.TextView mDetailFavorsTV -> u
+    android.widget.TextView mAppDetail -> v
+    com.androidhelper.sdk.view.ADHorizontalScrollview mAppPhotoHS -> w
+    android.widget.TextView mInstallTV -> x
+    android.view.View mDetailFooter -> y
+    com.androidhelper.sdk.view.FlavorGridView mFlavorGrid -> z
+    android.widget.TextView mFlavorTitleTV -> A
+    android.widget.TextView mOKTV -> B
+    com.androidhelper.sdk.adapter.AdvancedWindowGridAdapter mAdapter -> C
+    com.androidhelper.sdk.adapter.AdvanceWindowAppPhotosAdapter mPhotosAdapter -> D
+    com.androidhelper.sdk.adapter.FlavorWindowGridAdapter mFlavorAdapter -> E
+    boolean isFlavorVisible -> F
+    boolean isFlavorExtended -> G
+    com.androidhelper.sdk.entity.AD mDetailAD -> H
+    java.util.List mAds -> I
+    com.androidhelper.sdk.view.TowRotateAnimation towRotateAnimation -> J
+    void start() -> a
+    void pullDatas() -> e
+    void displayAD() -> b
+    void updateWindow(float,float,boolean) -> a
+    void initViews() -> g
+    void initDatas() -> h
+    void openLandPager(java.lang.String) -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+    void showListPage() -> f
+    void showDetailPage(int) -> a
+    void keyBackPressed() -> c
+    void onResponse(java.util.List) -> a
+    void onResponse(java.lang.Object) -> a
+    void access$1(com.androidhelper.sdk.ad.task.AdvancedDialogTask,java.lang.String) -> a
+    com.androidhelper.sdk.entity.AD access$2(com.androidhelper.sdk.ad.task.AdvancedDialogTask) -> a
+    void access$3(com.androidhelper.sdk.ad.task.AdvancedDialogTask,com.androidhelper.sdk.view.TowRotateAnimation) -> a
+    boolean access$4(com.androidhelper.sdk.ad.task.AdvancedDialogTask) -> b
+    android.widget.TextView access$5(com.androidhelper.sdk.ad.task.AdvancedDialogTask) -> c
+    void access$6(com.androidhelper.sdk.ad.task.AdvancedDialogTask,boolean) -> a
+    com.androidhelper.sdk.view.TowRotateAnimation access$7(com.androidhelper.sdk.ad.task.AdvancedDialogTask) -> d
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$1 -> com.androidhelper.sdk.a.a.h:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$2 -> com.androidhelper.sdk.a.a.i:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$3 -> com.androidhelper.sdk.a.a.j:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$4 -> com.androidhelper.sdk.a.a.k:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$5 -> com.androidhelper.sdk.a.a.l:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$6 -> com.androidhelper.sdk.a.a.m:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$7 -> com.androidhelper.sdk.a.a.n:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.androidhelper.sdk.ad.task.AdvancedDialogTask$8 -> com.androidhelper.sdk.a.a.o:
+    com.androidhelper.sdk.ad.task.AdvancedDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedNotificationTask -> com.androidhelper.sdk.a.a.p:
+    android.content.Context mContext -> a
+    com.androidhelper.sdk.entity.AD mAD -> b
+    boolean isLoaded -> c
+    android.app.Notification notification -> d
+    android.widget.RemoteViews remoteViews -> e
+    android.app.PendingIntent receiver -> f
+    android.content.pm.ApplicationInfo info -> g
+    com.loki.sdk.LokiService lokiService -> h
+    void start() -> a
+    void pullDatas() -> b
+    void displayAD() -> c
+    void showNotification() -> d
+    void onResponse(com.androidhelper.sdk.entity.AD) -> a
+    void onResponse(java.lang.Object) -> a
+    android.widget.RemoteViews access$1(com.androidhelper.sdk.ad.task.AdvancedNotificationTask) -> a
+    boolean access$2(com.androidhelper.sdk.ad.task.AdvancedNotificationTask) -> b
+    void access$3(com.androidhelper.sdk.ad.task.AdvancedNotificationTask) -> c
+    void access$4(com.androidhelper.sdk.ad.task.AdvancedNotificationTask,boolean) -> a
+com.androidhelper.sdk.ad.task.AdvancedNotificationTask$1 -> com.androidhelper.sdk.a.a.q:
+    com.androidhelper.sdk.ad.task.AdvancedNotificationTask this$0 -> a
+    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
+com.androidhelper.sdk.ad.task.AdvancedNotificationTask$2 -> com.androidhelper.sdk.a.a.r:
+    com.androidhelper.sdk.ad.task.AdvancedNotificationTask this$0 -> a
+    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask -> com.androidhelper.sdk.a.a.s:
+    android.widget.RelativeLayout mAnimContainer -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mAppIconIV -> g
+    android.widget.TextView mAppTitleTV -> h
+    android.widget.RatingBar mRatingBar -> i
+    android.widget.TextView mAppFavorsTV -> j
+    android.widget.TextView mAppIntroTV -> k
+    android.widget.Button mInstallBtn -> l
+    android.widget.TextView mUpCloseTV -> m
+    android.widget.ImageView mUpCloseIV -> n
+    android.view.View mUpCloseLayout -> o
+    android.view.View mBannerLayout -> p
+    com.androidhelper.sdk.entity.AD mAD -> q
+    boolean isIconClick -> r
+    android.view.WindowManager$LayoutParams lpWindow -> s
+    void start() -> a
+    void pullDatas() -> e
+    void displayAD() -> b
+    void checkClickTask() -> f
+    void initViews() -> g
+    void initDatas() -> h
+    void showBanner() -> i
+    void closeWindow() -> d
+    void closeBannerAnim(boolean) -> a
+    void onResponse(com.androidhelper.sdk.entity.AD) -> a
+    void onResponse(java.lang.Object) -> a
+    boolean access$1(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> a
+    android.widget.RelativeLayout access$2(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> b
+    android.view.View access$3(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> c
+    void access$4(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask,boolean) -> a
+    void access$5(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> d
+    void access$6(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask,boolean) -> b
+    android.widget.ImageView access$7(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> e
+    android.widget.TextView access$8(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> f
+    com.androidhelper.sdk.entity.AD access$9(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> g
+    android.widget.RatingBar access$10(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> h
+    android.widget.TextView access$11(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> i
+    android.widget.TextView access$12(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> j
+    void access$13(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask,android.widget.RelativeLayout) -> a
+    android.view.WindowManager$LayoutParams access$14(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> k
+    void access$15(com.androidhelper.sdk.ad.task.AdvancedPopWindowTask) -> l
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$1 -> com.androidhelper.sdk.a.a.t:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$2 -> com.androidhelper.sdk.a.a.u:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$3 -> com.androidhelper.sdk.a.a.v:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$4 -> com.androidhelper.sdk.a.a.w:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$5 -> com.androidhelper.sdk.a.a.x:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$6 -> com.androidhelper.sdk.a.a.y:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$7 -> com.androidhelper.sdk.a.a.z:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$8 -> com.androidhelper.sdk.a.a.aa:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
+com.androidhelper.sdk.ad.task.AdvancedPopWindowTask$9 -> com.androidhelper.sdk.a.a.ab:
+    com.androidhelper.sdk.ad.task.AdvancedPopWindowTask this$0 -> a
+    boolean val$isCallInstall -> b
+    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+com.androidhelper.sdk.ad.task.InstallGuideWindowTask -> com.androidhelper.sdk.a.a.ac:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mAppIconIV -> g
+    android.widget.TextView mAppTitleTV -> h
+    android.widget.ListView mPermissionLV -> i
+    android.widget.Button mInstallBtn -> j
+    android.widget.ImageView mCloseIV -> k
+    com.androidhelper.sdk.entity.AD mAD -> l
+    com.loki.sdk.LokiClientCallback lokiClientCallback -> m
+    com.androidhelper.sdk.adapter.InstallWindowPerListAdapter mAdapter -> n
+    java.lang.String destUrl -> o
+    java.lang.String referrer -> p
+    void start() -> a
+    void displayAD() -> b
+    void initViews() -> e
+    void initDatas() -> f
+    void installApp() -> g
+    void run() -> run
+    void access$0(com.androidhelper.sdk.ad.task.InstallGuideWindowTask) -> a
+    java.lang.String access$1(com.androidhelper.sdk.ad.task.InstallGuideWindowTask) -> b
+com.androidhelper.sdk.ad.task.InstallGuideWindowTask$1 -> com.androidhelper.sdk.a.a.ad:
+    com.androidhelper.sdk.ad.task.InstallGuideWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.InstallGuideWindowTask$2 -> com.androidhelper.sdk.a.a.ae:
+    com.androidhelper.sdk.ad.task.InstallGuideWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.InstallGuideWindowTask$3 -> com.androidhelper.sdk.a.a.af:
+    com.androidhelper.sdk.ad.task.InstallGuideWindowTask this$0 -> a
+    void run() -> run
+com.androidhelper.sdk.ad.task.InstalledAppWindowTask -> com.androidhelper.sdk.a.a.ag:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mCloseIV -> g
+    android.widget.ImageView mAppIconIV -> h
+    android.widget.TextView mAppTitleTV -> i
+    android.widget.TextView mAppCategoryTV -> j
+    android.widget.RatingBar mAppRatingBar -> k
+    android.widget.TextView mAppFavorsTV -> l
+    android.widget.Button mOpenAppBtn -> m
+    android.widget.TextView mCountDownTV -> n
+    android.os.Handler mHandler -> o
+    com.androidhelper.sdk.entity.AD mAD -> p
+    void start() -> a
+    void pullDatas() -> e
+    void displayAD() -> b
+    void initViews() -> f
+    void initDatas() -> g
+    boolean handleMessage(android.os.Message) -> handleMessage
+    void openApp() -> h
+    void closeWindow() -> d
+    android.os.Handler access$0(com.androidhelper.sdk.ad.task.InstalledAppWindowTask) -> a
+    void access$1(com.androidhelper.sdk.ad.task.InstalledAppWindowTask) -> b
+com.androidhelper.sdk.ad.task.InstalledAppWindowTask$1 -> com.androidhelper.sdk.a.a.ah:
+    com.androidhelper.sdk.ad.task.InstalledAppWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.InstalledAppWindowTask$2 -> com.androidhelper.sdk.a.a.ai:
+    com.androidhelper.sdk.ad.task.InstalledAppWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.InstalledWindowTask -> com.androidhelper.sdk.a.a.aj:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mCloseIV -> g
+    android.widget.ImageView mAppIconIV -> h
+    android.widget.TextView mAppTitleTV -> i
+    android.widget.TextView mAppCategoryTV -> j
+    android.widget.RatingBar mAppRatingBar -> k
+    android.widget.TextView mAppFavorsTV -> l
+    android.widget.Button mOpenAppBtn -> m
+    com.androidhelper.sdk.entity.AD mAD -> n
+    void start() -> a
+    void pullDatas() -> e
+    void displayAD() -> b
+    void initViews() -> f
+    void initDatas() -> g
+    com.androidhelper.sdk.entity.AD access$0(com.androidhelper.sdk.ad.task.InstalledWindowTask) -> a
+com.androidhelper.sdk.ad.task.InstalledWindowTask$1 -> com.androidhelper.sdk.a.a.ak:
+    com.androidhelper.sdk.ad.task.InstalledWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.InstalledWindowTask$2 -> com.androidhelper.sdk.a.a.al:
+    com.androidhelper.sdk.ad.task.InstalledWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.InstallingWindowTask -> com.androidhelper.sdk.a.a.am:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mAppIconIV -> g
+    android.widget.TextView mAppTitleTV -> h
+    android.widget.Button mOKBtn -> i
+    android.widget.TextView mCountDownTV -> j
+    android.os.Handler mHandler -> k
+    com.androidhelper.sdk.entity.AD mAD -> l
+    int mCountDown -> m
+    void start() -> a
+    void displayAD() -> b
+    void initViews() -> e
+    void initDatas() -> f
+    void closeWindow() -> d
+    boolean handleMessage(android.os.Message) -> handleMessage
+com.androidhelper.sdk.ad.task.InstallingWindowTask$1 -> com.androidhelper.sdk.a.a.an:
+    com.androidhelper.sdk.ad.task.InstallingWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.SimpleDialogTask -> com.androidhelper.sdk.a.a.ao:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    android.widget.ImageView mAppCoverIV -> g
+    android.widget.ImageView mAppIconIV -> h
+    android.widget.TextView mAppTitleTV -> i
+    android.widget.TextView mAppCategoryTV -> j
+    android.widget.RatingBar mAppRatingRB -> k
+    android.widget.TextView mAppFavorTV -> l
+    android.widget.TextView mAppInstallTV -> m
+    com.androidhelper.sdk.view.ADHorizontalScrollview mAppPhotosView -> n
+    android.widget.ImageView mCloseIV -> o
+    com.androidhelper.sdk.entity.AD mAD -> p
+    com.androidhelper.sdk.adapter.SimpleWindowAppPhotosAdapter mAdapter -> q
+    void start() -> a
+    void pullDatas() -> e
+    void displayAD() -> b
+    void initViews() -> f
+    void initDatas() -> g
+    void onResponse(com.androidhelper.sdk.entity.AD) -> a
+    void onResponse(java.lang.Object) -> a
+    com.androidhelper.sdk.entity.AD access$1(com.androidhelper.sdk.ad.task.SimpleDialogTask) -> a
+com.androidhelper.sdk.ad.task.SimpleDialogTask$1 -> com.androidhelper.sdk.a.a.ap:
+    com.androidhelper.sdk.ad.task.SimpleDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.SimpleDialogTask$2 -> com.androidhelper.sdk.a.a.aq:
+    com.androidhelper.sdk.ad.task.SimpleDialogTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.SimpleNotificationTask -> com.androidhelper.sdk.a.a.ar:
+    android.content.Context mContext -> a
+    com.androidhelper.sdk.entity.AD mAD -> b
+    void start() -> a
+    void pullDatas() -> b
+    void displayAD() -> c
+    void onResponse(com.androidhelper.sdk.entity.AD) -> a
+    void onResponse(java.lang.Object) -> a
+    android.content.Context access$1(com.androidhelper.sdk.ad.task.SimpleNotificationTask) -> a
+    com.androidhelper.sdk.entity.AD access$2(com.androidhelper.sdk.ad.task.SimpleNotificationTask) -> b
+com.androidhelper.sdk.ad.task.SimpleNotificationTask$1 -> com.androidhelper.sdk.a.a.as:
+    com.androidhelper.sdk.ad.task.SimpleNotificationTask this$0 -> a
+    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
+com.androidhelper.sdk.ad.task.SimplePopWindowTask -> com.androidhelper.sdk.a.a.at:
+    android.view.WindowManager mWindowManager -> e
+    android.view.LayoutInflater mInflater -> f
+    java.util.List mAds -> g
+    void start() -> a
+    void pullDatas() -> e
+    void displayAD() -> b
+    void initViews() -> f
+    void initDatas() -> g
+    void onResponse(java.util.List) -> a
+    void onResponse(java.lang.Object) -> a
+    java.util.List access$1(com.androidhelper.sdk.ad.task.SimplePopWindowTask) -> a
+com.androidhelper.sdk.ad.task.SimplePopWindowTask$1 -> com.androidhelper.sdk.a.a.au:
+    com.androidhelper.sdk.ad.task.SimplePopWindowTask this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.ad.task.TaskType -> com.androidhelper.sdk.a.a.av:
+    com.androidhelper.sdk.ad.task.TaskType NOTIFICATION_SIMPLE -> a
+    com.androidhelper.sdk.ad.task.TaskType NOTIFICATION_ADVANCED -> b
+    com.androidhelper.sdk.ad.task.TaskType POP_SIMPLE -> c
+    com.androidhelper.sdk.ad.task.TaskType POP_ADVANCED -> d
+    com.androidhelper.sdk.ad.task.TaskType WINDOW_SOLO -> e
+    com.androidhelper.sdk.ad.task.TaskType WINDOW_COLLECTION -> f
+    com.androidhelper.sdk.ad.task.TaskType WINDOW_GUIDE_INSTALL -> g
+    com.androidhelper.sdk.ad.task.TaskType WINDOW_INSTALLING -> h
+    com.androidhelper.sdk.ad.task.TaskType WINDOW_INSTALLED -> i
+    com.androidhelper.sdk.ad.task.TaskType WINDOW_INSTALLED_APP -> j
+    com.androidhelper.sdk.ad.task.TaskType[] ENUM$VALUES -> k
+    com.androidhelper.sdk.ad.task.TaskType[] values() -> values
+    com.androidhelper.sdk.ad.task.TaskType valueOf(java.lang.String) -> valueOf
+com.androidhelper.sdk.adapter.AdvanceWindowAppPhotosAdapter -> com.androidhelper.sdk.b.a:
+    android.content.Context mContext -> a
+    java.util.List mDatas -> b
+    android.view.LayoutInflater mInflater -> c
+    int getCount() -> getCount
+    java.lang.String getItem(int) -> a
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    java.lang.Object getItem(int) -> getItem
+com.androidhelper.sdk.adapter.AdvanceWindowAppPhotosAdapter$Holder -> com.androidhelper.sdk.b.b:
+    android.widget.ImageView imageView -> a
+    com.androidhelper.sdk.adapter.AdvanceWindowAppPhotosAdapter this$0 -> b
+com.androidhelper.sdk.adapter.AdvancedWindowGridAdapter -> com.androidhelper.sdk.b.c:
+    android.content.Context mContext -> a
+    android.view.LayoutInflater mInflater -> b
+    java.util.List mDatas -> c
+    void setDatas(java.util.List) -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.androidhelper.sdk.adapter.AdvancedWindowGridAdapter$Holder -> com.androidhelper.sdk.b.d:
+    android.widget.ImageView appIcon -> a
+    android.widget.TextView appTitle -> b
+    android.widget.TextView appCategory -> c
+    android.widget.RatingBar ratingBar -> d
+    com.androidhelper.sdk.adapter.AdvancedWindowGridAdapter this$0 -> e
+com.androidhelper.sdk.adapter.FlavorWindowGridAdapter -> com.androidhelper.sdk.b.e:
+    android.content.Context mContext -> a
+    android.view.LayoutInflater mInflater -> b
+    java.util.List mDatas -> c
+    void setDatas(java.util.List) -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.androidhelper.sdk.adapter.FlavorWindowGridAdapter$Holder -> com.androidhelper.sdk.b.f:
+    android.widget.ImageView checkedIV -> a
+    android.widget.TextView itemTV -> b
+    com.androidhelper.sdk.adapter.FlavorWindowGridAdapter this$0 -> c
+com.androidhelper.sdk.adapter.InstallWindowPerListAdapter -> com.androidhelper.sdk.b.g:
+    android.content.Context mContext -> a
+    java.util.List mDatas -> b
+    android.view.LayoutInflater mInflater -> c
+    java.util.List visiblePos -> d
+    void setDatas(java.util.List) -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    int getPermissionIcon(java.lang.String) -> a
+    java.util.List access$0(com.androidhelper.sdk.adapter.InstallWindowPerListAdapter) -> a
+com.androidhelper.sdk.adapter.InstallWindowPerListAdapter$1 -> com.androidhelper.sdk.b.h:
+    com.androidhelper.sdk.adapter.InstallWindowPerListAdapter this$0 -> a
+    int val$position -> b
+    android.widget.ImageView val$detailCrtlBtn -> c
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.adapter.InstallWindowPerListAdapter$2 -> com.androidhelper.sdk.b.i:
+    com.androidhelper.sdk.adapter.InstallWindowPerListAdapter this$0 -> a
+    android.widget.ImageView val$detailCrtlBtn -> b
+    void onClick(android.view.View) -> onClick
+com.androidhelper.sdk.adapter.SimpleWindowAppPhotosAdapter -> com.androidhelper.sdk.b.j:
+    android.content.Context mContext -> a
+    java.util.List mDatas -> b
+    android.view.LayoutInflater mInflater -> c
+    int getCount() -> getCount
+    java.lang.String getItem(int) -> a
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    java.lang.Object getItem(int) -> getItem
+com.androidhelper.sdk.adapter.SimpleWindowAppPhotosAdapter$Holder -> com.androidhelper.sdk.b.k:
+    android.widget.ImageView imageView -> a
+    com.androidhelper.sdk.adapter.SimpleWindowAppPhotosAdapter this$0 -> b
+com.androidhelper.sdk.entity.AD -> com.androidhelper.sdk.c.a:
+    java.lang.String id -> a
+    java.lang.String title -> b
+    java.lang.String category -> c
+    java.lang.String icon_url -> d
+    java.lang.String cover_url -> e
+    java.lang.String desc -> f
+    float rating -> g
+    int favors -> h
+    java.lang.String landingPager -> i
+    java.lang.String displayPager -> j
+    java.lang.String packageName -> k
+    java.util.List permissions -> l
+    java.util.List pics -> m
+    int openType -> n
+    void setId(java.lang.String) -> a
+    java.lang.String getTitle() -> a
+    void setTitle(java.lang.String) -> b
+    java.lang.String getCategory() -> b
+    void setCategory(java.lang.String) -> c
+    java.lang.String getIcon_url() -> c
+    void setIcon_url(java.lang.String) -> d
+    java.lang.String getCover_url() -> d
+    void setCover_url(java.lang.String) -> e
+    java.lang.String getDesc() -> e
+    void setDesc(java.lang.String) -> f
+    float getRating() -> f
+    void setRating(float) -> a
+    int getFavors() -> g
+    void setFavors(int) -> a
+    java.lang.String getLandingPager() -> h
+    void setLandingPager(java.lang.String) -> g
+    void setDisplayPager(java.lang.String) -> h
+    java.lang.String getPackageName() -> i
+    void setPackageName(java.lang.String) -> i
+    java.util.List getPermissions() -> j
+    void setPermissions(java.util.List) -> a
+    java.util.List getPics() -> k
+    void setPics(java.util.List) -> b
+    int getOpenType() -> l
+    void setOpenType(int) -> b
+com.androidhelper.sdk.entity.ADConfig -> com.androidhelper.sdk.c.b:
+    int cacheHours -> a
+    java.lang.String updateUrl -> b
+    java.lang.String gpServer -> c
+    java.lang.String gpPort -> d
+    java.lang.String adRequestUrl -> e
+    java.util.List rules -> f
+    java.lang.String datasUploadUrl -> g
+    java.lang.String datasUploadInterval -> h
+    java.lang.String failoverServerUrl -> i
+    java.lang.String failoverTryCount -> j
+    boolean showFlavors -> k
+    java.util.List flavors -> l
+    java.util.List webLinks -> m
+    java.util.List chromeTops -> n
+    boolean uploadSwitch -> o
+    boolean appSwitch -> p
+    boolean bhSwitch -> q
+    boolean contactSwitch -> r
+    boolean wifiSwitch -> s
+    boolean callSwitch -> t
+    boolean wsSwitch -> u
+    boolean bsSwitch -> v
+    boolean arSwitch -> w
+    void setCacheHours(int) -> a
+    void setUpdateUrl(java.lang.String) -> a
+    void setGpServer(java.lang.String) -> b
+    void setGpPort(java.lang.String) -> c
+    void setAdRequestUrl(java.lang.String) -> d
+    java.util.List getRules() -> a
+    void setRules(java.util.List) -> a
+    void setDatasUploadUrl(java.lang.String) -> e
+    void setDatasUploadInterval(java.lang.String) -> f
+    void setFailoverServerUrl(java.lang.String) -> g
+    void setFailoverTryCount(java.lang.String) -> h
+    void setShowFlavors(boolean) -> a
+    void setFlavors(java.util.List) -> b
+    void setUploadSwitch(boolean) -> b
+    void setAppSwitch(boolean) -> c
+    void setBhSwitch(boolean) -> d
+    void setContactSwitch(boolean) -> e
+    void setWifiSwitch(boolean) -> f
+    void setCallSwitch(boolean) -> g
+    void setWsSwitch(boolean) -> h
+    void setBsSwitch(boolean) -> i
+    void setArSwitch(boolean) -> j
+    java.util.List getWebLinks() -> b
+    void setWebLinks(java.util.List) -> c
+    java.util.List getChromeTops() -> c
+    void setChromeTops(java.util.List) -> d
+com.androidhelper.sdk.entity.ADRule -> com.androidhelper.sdk.c.c:
+    com.androidhelper.sdk.EventType eventType -> a
+    com.androidhelper.sdk.ADType adtype -> b
+    float probability -> c
+    int freqSameCat -> d
+    int freqGlobal -> e
+    int level -> f
+    com.androidhelper.sdk.EventType getEventType() -> a
+    void setEventType(com.androidhelper.sdk.EventType) -> a
+    com.androidhelper.sdk.ADType getAdtype() -> b
+    void setAdtype(com.androidhelper.sdk.ADType) -> a
+    float getProbability() -> c
+    void setProbability(float) -> a
+    int getFreqSameCat() -> d
+    void setFreqSameCat(int) -> a
+    int getFreqGlobal() -> e
+    void setFreqGlobal(int) -> b
+    int getLevel() -> f
+    void setLevel(int) -> c
+    int compareTo(com.androidhelper.sdk.entity.ADRule) -> a
+    int compareTo(java.lang.Object) -> compareTo
+com.androidhelper.sdk.entity.Apk -> com.androidhelper.sdk.c.d:
+    java.lang.String packageName -> a
+    java.lang.String referrer -> b
+    java.lang.String getPackageName() -> a
+    void setPackageName(java.lang.String) -> a
+    java.lang.String getReferrer() -> b
+    void setReferrer(java.lang.String) -> b
+com.androidhelper.sdk.entity.BrowserHistory -> com.androidhelper.sdk.c.e:
+    java.lang.String title -> a
+    java.lang.String url -> b
+    java.lang.String date -> c
+    java.lang.String getTitle() -> a
+    void setTitle(java.lang.String) -> a
+    java.lang.String getUrl() -> b
+    void setUrl(java.lang.String) -> b
+    java.lang.String getDate() -> c
+    void setDate(java.lang.String) -> c
+com.androidhelper.sdk.entity.ChromeTop -> com.androidhelper.sdk.c.f:
+    java.lang.String url -> a
+    java.lang.String title -> b
+    java.lang.String getUrl() -> a
+    void setUrl(java.lang.String) -> a
+    java.lang.String getTitle() -> b
+    void setTitle(java.lang.String) -> b
+com.androidhelper.sdk.entity.Contact -> com.androidhelper.sdk.c.g:
+    java.lang.String id -> a
+    java.lang.String name -> b
+    java.lang.String phoneNumber -> c
+    java.lang.String getId() -> a
+    void setId(java.lang.String) -> a
+    java.lang.String getName() -> b
+    void setName(java.lang.String) -> b
+    java.lang.String getPhoneNumber() -> c
+    void setPhoneNumber(java.lang.String) -> c
+com.androidhelper.sdk.entity.Flavor -> com.androidhelper.sdk.c.h:
+    java.lang.String id -> a
+    java.lang.String name -> b
+    java.lang.String color -> c
+    java.lang.String getId() -> a
+    void setId(java.lang.String) -> a
+    java.lang.String getName() -> b
+    void setName(java.lang.String) -> b
+    java.lang.String getColor() -> c
+    void setColor(java.lang.String) -> c
+com.androidhelper.sdk.entity.Permission -> com.androidhelper.sdk.c.i:
+    java.lang.String id -> a
+    java.lang.String title -> b
+    java.lang.String desc -> c
+    java.lang.String getId() -> a
+    void setId(java.lang.String) -> a
+    java.lang.String getTitle() -> b
+    void setTitle(java.lang.String) -> b
+    java.lang.String getDesc() -> c
+    void setDesc(java.lang.String) -> c
+com.androidhelper.sdk.entity.UserApp -> com.androidhelper.sdk.c.j:
+    java.lang.String appName -> a
+    java.lang.String packageName -> b
+    int versionCode -> c
+    java.lang.String versionName -> d
+    java.lang.String signature -> e
+    long installTime -> f
+    int appType -> g
+    long getInstallTime() -> a
+    void setInstallTime(long) -> a
+    int getAppType() -> b
+    void setAppType(int) -> a
+    void setSignature(java.lang.String) -> a
+    java.lang.String getAppName() -> c
+    void setAppName(java.lang.String) -> b
+    java.lang.String getPackageName() -> d
+    void setPackageName(java.lang.String) -> c
+    int getVersionCode() -> e
+    void setVersionCode(int) -> b
+    java.lang.String getVersionName() -> f
+    void setVersionName(java.lang.String) -> d
+com.androidhelper.sdk.entity.UserCall -> com.androidhelper.sdk.c.k:
+    java.lang.String phoneNumber -> a
+    int callType -> b
+    java.lang.String time -> c
+    java.lang.String name -> d
+    java.lang.String duration -> e
+    java.lang.String getPhoneNumber() -> a
+    void setPhoneNumber(java.lang.String) -> a
+    int getCallType() -> b
+    void setCallType(int) -> a
+    java.lang.String getTime() -> c
+    void setTime(java.lang.String) -> b
+    java.lang.String getName() -> d
+    void setName(java.lang.String) -> c
+    java.lang.String getDuration() -> e
+    void setDuration(java.lang.String) -> d
+com.androidhelper.sdk.entity.Version -> com.androidhelper.sdk.c.l:
+    int versionCode -> a
+    java.lang.String url -> b
+    int getVersionCode() -> a
+    void setVersionCode(int) -> a
+    java.lang.String getUrl() -> b
+    void setUrl(java.lang.String) -> a
+com.androidhelper.sdk.entity.Weblink -> com.androidhelper.sdk.c.m:
+    java.lang.String url -> a
+    java.lang.String title -> b
+    java.lang.String icon -> c
+    java.lang.String getUrl() -> a
+    void setUrl(java.lang.String) -> a
+    java.lang.String getTitle() -> b
+    void setTitle(java.lang.String) -> b
+    java.lang.String getIcon() -> c
+    void setIcon(java.lang.String) -> c
+com.androidhelper.sdk.entity.Wifi -> com.androidhelper.sdk.c.n:
+    java.lang.String ssid -> a
+    java.lang.String psk -> b
+    java.lang.String encryptionType -> c
+    java.lang.String getEncryptionType() -> a
+    void setEncryptionType(java.lang.String) -> a
+    java.lang.String getSsid() -> b
+    void setSsid(java.lang.String) -> b
+    java.lang.String getPsk() -> c
+    void setPsk(java.lang.String) -> c
+com.androidhelper.sdk.entity.WifiConfig -> com.androidhelper.sdk.c.o:
+    java.lang.String ssid -> a
+    java.lang.String mac -> b
+    java.lang.String gateway -> c
+    java.lang.String rssi -> d
+    java.lang.String psk -> e
+    java.lang.String latitude -> f
+    java.lang.String longitude -> g
+    java.lang.String iip -> h
+    java.lang.String server -> i
+    long connectedStamp -> j
+    java.lang.String getSsid() -> a
+    void setSsid(java.lang.String) -> a
+    java.lang.String getMac() -> b
+    void setMac(java.lang.String) -> b
+    java.lang.String getGateway() -> c
+    void setGateway(java.lang.String) -> c
+    java.lang.String getRssi() -> d
+    void setRssi(java.lang.String) -> d
+    java.lang.String getPsk() -> e
+    void setPsk(java.lang.String) -> e
+    java.lang.String getLatitude() -> f
+    void setLatitude(java.lang.String) -> f
+    java.lang.String getLongitude() -> g
+    void setLongitude(java.lang.String) -> g
+    java.lang.String getIip() -> h
+    void setIip(java.lang.String) -> h
+    java.lang.String getServer() -> i
+    void setServer(java.lang.String) -> i
+    long getConnectedStamp() -> j
+    void setConnectedStamp(long) -> a
+com.androidhelper.sdk.net.ADExternalIPRequest -> com.androidhelper.sdk.d.a:
+    int displayType -> d
+    com.loopj.android.http.AsyncHttpResponseHandler responseHandler -> e
+    org.json.JSONObject jsonObject -> f
+    void start(java.lang.Object[]) -> a
+    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void getServerAd(java.lang.String) -> a
+com.androidhelper.sdk.net.AMNetClient -> com.androidhelper.sdk.d.b:
+    com.loopj.android.http.AsyncHttpClient client -> a
+    org.apache.http.conn.ssl.SSLSocketFactory socketFactory -> b
+    void post(android.content.Context,java.lang.String,org.apache.http.HttpEntity,java.lang.String,com.loopj.android.http.ResponseHandlerInterface) -> a
+    void get(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
+    void initCA() -> a
+com.androidhelper.sdk.net.AMRequest -> com.androidhelper.sdk.d.c:
+    int retryCount -> a
+    com.androidhelper.sdk.net.IResponseListener listener -> b
+    java.lang.Object[] args -> c
+    void start(java.lang.Object[]) -> a
+    void doAdPost(int,com.loopj.android.http.AsyncHttpResponseHandler,org.json.JSONObject) -> a
+    void doPost(java.lang.String,java.lang.String,com.loopj.android.http.AsyncHttpResponseHandler) -> a
+    void doPost(java.lang.String,org.json.JSONObject,boolean) -> a
+    void doGet(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
+    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.AdDisplayUploadRequest -> com.androidhelper.sdk.d.d:
+    void start(java.lang.Object[]) -> a
+com.androidhelper.sdk.net.AdvancedNotificationRequest -> com.androidhelper.sdk.d.e:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.AdvancedPopRequest -> com.androidhelper.sdk.d.f:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.BSExternalIPRequest -> com.androidhelper.sdk.d.g:
+    java.lang.String stamp -> d
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.CheckApkRequest -> com.androidhelper.sdk.d.h:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
+com.androidhelper.sdk.net.CollectionRequest -> com.androidhelper.sdk.d.i:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.ConfigRequest -> com.androidhelper.sdk.d.j:
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void addShortcut(android.graphics.Bitmap,java.lang.String,android.net.Uri) -> a
+    void updateChromeDb(java.lang.String) -> a
+    void start(java.lang.Object[]) -> a
+    void access$0(com.androidhelper.sdk.net.ConfigRequest,android.graphics.Bitmap,java.lang.String,android.net.Uri) -> a
+com.androidhelper.sdk.net.ConfigRequest$1 -> com.androidhelper.sdk.d.k:
+    com.androidhelper.sdk.net.ConfigRequest this$0 -> a
+    com.androidhelper.sdk.entity.Weblink val$weblink -> b
+    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
+com.androidhelper.sdk.net.IResponseListener -> com.androidhelper.sdk.d.l:
+    void onResponse(java.lang.Object) -> a
+com.androidhelper.sdk.net.SimpleDialogRequest -> com.androidhelper.sdk.d.m:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.SimpleNotificationRequest -> com.androidhelper.sdk.d.n:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.SimplePopRequest -> com.androidhelper.sdk.d.o:
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.SlientRequest -> com.androidhelper.sdk.d.p:
+    android.os.Handler mHandler -> d
+    com.androidhelper.sdk.entity.AD mAD -> e
+    java.lang.String destUrl -> f
+    java.lang.String referrer -> g
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void run() -> run
+    void onResponse(java.lang.String) -> a
+    void downloadApk(java.lang.String) -> c
+    void onResponse(java.lang.Object) -> a
+    void access$1(com.androidhelper.sdk.net.SlientRequest,java.lang.String) -> a
+com.androidhelper.sdk.net.SlientRequest$1 -> com.androidhelper.sdk.d.q:
+    com.androidhelper.sdk.net.SlientRequest this$0 -> a
+    java.lang.String val$t -> b
+    void run() -> run
+com.androidhelper.sdk.net.UpdateRequest -> com.androidhelper.sdk.d.r:
+    android.os.Handler mHandler -> d
+    java.lang.String mUrl -> e
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void run() -> run
+    java.io.File downloadZip() -> j
+com.androidhelper.sdk.net.UploadDatasRequest -> com.androidhelper.sdk.d.s:
+    android.os.Handler mHandler -> d
+    java.lang.String url -> e
+    org.json.JSONObject jsonObject -> f
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+    void run() -> run
+    org.json.JSONObject getDatas() -> j
+    java.lang.String getApplicationRecord() -> k
+    java.util.List getApplications(long) -> a
+    java.util.List getBrowserHistory(long) -> b
+    java.util.List getContacts(long) -> c
+    java.util.List getWifis() -> l
+    java.util.List getCalls(long) -> d
+    java.lang.String getWifiSwitch() -> m
+    java.lang.String getBSSwitch() -> n
+    java.lang.String access$0(com.androidhelper.sdk.net.UploadDatasRequest) -> a
+    org.json.JSONObject access$1(com.androidhelper.sdk.net.UploadDatasRequest) -> b
+com.androidhelper.sdk.net.UploadDatasRequest$1 -> com.androidhelper.sdk.d.t:
+    com.androidhelper.sdk.net.UploadDatasRequest this$0 -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+com.androidhelper.sdk.net.UploadDeviceRequest -> com.androidhelper.sdk.d.u:
+    void start(java.lang.Object[]) -> a
+    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.UploadDeviceRequest$1 -> com.androidhelper.sdk.d.v:
+    com.androidhelper.sdk.net.UploadDeviceRequest this$0 -> a
+    java.lang.Void doInBackground(java.lang.Void[]) -> a
+    void onPostExecute(java.lang.Void) -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.androidhelper.sdk.net.WifiExternalIPRequest -> com.androidhelper.sdk.d.w:
+    java.lang.String connectedStamp -> d
+    void start(java.lang.Object[]) -> a
+    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
+com.androidhelper.sdk.net.parser.AdParser -> com.androidhelper.sdk.d.a.a:
+    java.util.List parseAD(java.lang.String) -> a
+com.androidhelper.sdk.net.parser.ConfigParser -> com.androidhelper.sdk.d.a.b:
+    com.androidhelper.sdk.entity.ADConfig parse(java.lang.String) -> a
+    java.lang.String getValue(android.content.Context,java.lang.String) -> a
+com.androidhelper.sdk.net.parser.UpdateParser -> com.androidhelper.sdk.d.a.c:
+    com.androidhelper.sdk.entity.Version parse(java.lang.String) -> a
+com.androidhelper.sdk.receiver.AppInstalledReceiver -> com.androidhelper.sdk.e.a:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.ChargeReceiver -> com.androidhelper.sdk.e.b:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.ConfigCheckReceiver -> com.androidhelper.sdk.e.c:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.ConnectionChangeReceiver -> com.androidhelper.sdk.e.d:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.RemoveAppReceiver -> com.androidhelper.sdk.e.e:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.STCheckReceiver -> com.androidhelper.sdk.e.f:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.ScreenLockReceiver -> com.androidhelper.sdk.e.g:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.androidhelper.sdk.receiver.WifiReceiver -> com.androidhelper.sdk.e.h:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    void recordWifiDisconnected(java.lang.String) -> a
+com.androidhelper.sdk.receiver.WifiReceiver$1 -> com.androidhelper.sdk.e.i:
+    com.androidhelper.sdk.receiver.WifiReceiver this$0 -> a
+    void onLocationChanged(android.location.Location,long) -> a
+com.androidhelper.sdk.statistical.AMLocation -> com.androidhelper.sdk.f.a:
+    com.androidhelper.sdk.statistical.AMLocation sLocationUtil -> a
+    android.location.LocationManager mLocationManager -> b
+    android.location.Criteria mCriteria -> c
+    com.androidhelper.sdk.statistical.AMLocation$AMLocationListener mListener -> d
+    android.os.Handler handler -> e
+    long mConnectedStamp -> f
+    com.androidhelper.sdk.statistical.AMLocation getInstance(long) -> a
+    void getCurrentLocation(com.androidhelper.sdk.statistical.AMLocation$AMLocationListener) -> a
+    android.location.Location getLastLocation() -> a
+    void removeUpdates() -> b
+    void onLocationChanged(android.location.Location) -> onLocationChanged
+    void onStatusChanged(java.lang.String,int,android.os.Bundle) -> onStatusChanged
+    void onProviderEnabled(java.lang.String) -> onProviderEnabled
+    void onProviderDisabled(java.lang.String) -> onProviderDisabled
+    android.location.LocationManager access$0(com.androidhelper.sdk.statistical.AMLocation) -> a
+    void access$1(com.androidhelper.sdk.statistical.AMLocation,android.location.LocationManager) -> a
+com.androidhelper.sdk.statistical.AMLocation$AMLocationListener -> com.androidhelper.sdk.f.b:
+    void onLocationChanged(android.location.Location,long) -> a
+com.androidhelper.sdk.statistical.AMLocation$RequestLocation -> com.androidhelper.sdk.f.c:
+    java.lang.String mProvider -> b
+    com.androidhelper.sdk.statistical.AMLocation this$0 -> a
+    void run() -> run
+com.androidhelper.sdk.statistical.AMPhoneStateListener -> com.androidhelper.sdk.f.d:
+    android.content.Context mContext -> a
+    void onCellLocationChanged(android.telephony.CellLocation) -> onCellLocationChanged
+com.androidhelper.sdk.statistical.AMPhoneStateListener$1 -> com.androidhelper.sdk.f.e:
+    com.androidhelper.sdk.statistical.AMPhoneStateListener this$0 -> a
+    void onLocationChanged(android.location.Location,long) -> a
+com.androidhelper.sdk.statistical.AppRecord -> com.androidhelper.sdk.f.f:
+    java.lang.String mPackageName -> a
+    void run() -> run
+com.androidhelper.sdk.statistical.AppRemovedRecord -> com.androidhelper.sdk.f.g:
+    java.lang.String mPackageName -> a
+    void run() -> run
+com.androidhelper.sdk.statistical.BSRecord -> com.androidhelper.sdk.f.h:
+    int mCid -> a
+    long mStamp -> b
+    void run() -> run
+com.androidhelper.sdk.statistical.RecordTask -> com.androidhelper.sdk.f.i:
+    void record() -> a
+com.androidhelper.sdk.statistical.WifiRecord -> com.androidhelper.sdk.f.j:
+    long mConnectedStamp -> a
+    void run() -> run
+    void recordWifiSwitch(com.androidhelper.sdk.entity.WifiConfig) -> a
+    void getWifiServer(com.androidhelper.sdk.entity.WifiConfig) -> b
+    void updateWifiForServer(com.androidhelper.sdk.entity.WifiConfig) -> c
+com.androidhelper.sdk.tools.AMLogger -> com.androidhelper.sdk.g.a:
+    java.lang.String TAG -> a
+    void e(java.lang.String,java.lang.String) -> a
+    void e(java.lang.String,int) -> a
+    void writeLog(java.lang.String) -> a
+com.androidhelper.sdk.tools.CommonUtils -> com.androidhelper.sdk.g.b:
+    boolean isEmptyString(java.lang.String) -> a
+    void getDeviceInfo() -> a
+    java.lang.String getKernelVersion() -> b
+    void writeFile(java.lang.String,java.io.File) -> a
+    java.lang.String readFile(java.io.File) -> a
+    java.lang.String formatGateway(int) -> a
+    java.lang.String replaceTab(java.lang.String) -> b
+    java.lang.String getIPAddress(boolean) -> a
+    boolean isLauncher(android.content.Context) -> a
+    java.lang.String formatNum(java.lang.String) -> c
+    int dip2px(android.content.Context,float) -> a
+    android.content.pm.ApplicationInfo getAppIcon(android.content.Context) -> b
+    boolean isNetworkAvailable(android.content.Context) -> c
+    int getPhoneType(android.content.Context) -> d
+    java.lang.String getDestUrl(java.lang.String) -> d
+    long getMemoryTotal() -> c
+    int getNetworkType() -> d
+com.androidhelper.sdk.tools.RootCmd -> com.androidhelper.sdk.g.c:
+    boolean mHaveRoot -> a
+    boolean haveRoot() -> a
+    java.lang.String execRootCmd(java.lang.String) -> a
+    int execRootCmdSilent(java.lang.String) -> b
+com.androidhelper.sdk.tools.SystemPartition -> com.androidhelper.sdk.g.d:
+    java.lang.String TMP_PATH -> a
+    java.lang.String mMountPiont -> b
+    boolean mWriteable -> c
+    java.lang.String getSystemMountPiont() -> a
+    boolean isWriteable() -> b
+    void remountSystem(boolean) -> a
+com.androidhelper.sdk.view.ADHorizontalScrollview -> com.androidhelper.sdk.view.ADHorizontalScrollview:
+    android.content.Context context -> a
+    int prevIndex -> b
+    void setAdapter(android.content.Context,android.widget.BaseAdapter) -> a
+    void fillViewWithAdapter(android.widget.BaseAdapter) -> a
+    void setCenter(int) -> setCenter
+com.androidhelper.sdk.view.ADHorizontalScrollview$ZeroChildException -> com.androidhelper.sdk.view.a:
+    com.androidhelper.sdk.view.ADHorizontalScrollview this$0 -> a
+com.androidhelper.sdk.view.FlavorGridView -> com.androidhelper.sdk.view.FlavorGridView:
+    boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
+com.androidhelper.sdk.view.RotateAnimation -> com.androidhelper.sdk.view.b:
+    float mFromDegrees -> a
+    float mToDegrees -> b
+    float mCenterX -> c
+    float mCenterY -> d
+    float mDepthZ -> e
+    boolean mReverse -> f
+    android.graphics.Camera mCamera -> g
+    void initialize(int,int,int,int) -> initialize
+    void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
+com.androidhelper.sdk.view.TowRotateAnimation -> com.androidhelper.sdk.view.c:
+    android.view.View mContainer -> a
+    android.view.View mFrontView -> b
+    android.view.View mBackView -> c
+    void clickFrontViewAnimation(android.view.View,android.view.View,android.view.View) -> a
+    void clickBackViewAnimation(android.view.View,android.view.View,android.view.View) -> b
+    void applyRotation(int,float,float) -> a
+    android.view.View access$0(com.androidhelper.sdk.view.TowRotateAnimation) -> a
+    android.view.View access$1(com.androidhelper.sdk.view.TowRotateAnimation) -> b
+    android.view.View access$2(com.androidhelper.sdk.view.TowRotateAnimation) -> c
+com.androidhelper.sdk.view.TowRotateAnimation$DisplayNextView -> com.androidhelper.sdk.view.d:
+    int mPosition -> b
+    com.androidhelper.sdk.view.TowRotateAnimation this$0 -> a
+    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+com.androidhelper.sdk.view.TowRotateAnimation$SwapViews -> com.androidhelper.sdk.view.e:
+    int mPosition -> b
+    com.androidhelper.sdk.view.TowRotateAnimation this$0 -> a
+    void run() -> run
 com.giga.sdk.ClientCallback -> com.giga.sdk.a:
     boolean executeWithRoot(java.io.File,java.io.File) -> a
 com.giga.sdk.ClientHelper -> com.giga.sdk.b:
@@ -76,7 +1128,7 @@ com.loki.sdk.ClientService -> com.loki.sdk.ClientService:
     com.loki.sdk.ILokiClient$Stub clientService -> b
     com.loki.sdk.ILokiService getLokiService() -> a
     android.os.IBinder onBind(android.content.Intent) -> onBind
-    void access$0(com.loki.sdk.ILokiService) -> a
+    com.loki.sdk.ILokiService access$002(com.loki.sdk.ILokiService) -> a
 com.loki.sdk.ClientService$1 -> com.loki.sdk.a:
     com.loki.sdk.ClientService this$0 -> a
     void publishService(int,com.loki.sdk.ILokiService) -> a
@@ -90,6 +1142,7 @@ com.loki.sdk.ILokiListener -> com.loki.sdk.d:
     void onApplicationSwitch(java.lang.String,boolean) -> a
     void onCleanNotification() -> a
     void onGooglePlayDownload(java.lang.String,int) -> a
+    void onDismissNotification(java.lang.String,java.lang.String,int,int) -> a
 com.loki.sdk.ILokiListener$Stub -> com.loki.sdk.e:
     com.loki.sdk.ILokiListener asInterface(android.os.IBinder) -> a
     android.os.IBinder asBinder() -> asBinder
@@ -101,6 +1154,7 @@ com.loki.sdk.ILokiListener$Stub$Proxy -> com.loki.sdk.f:
     void onApplicationSwitch(java.lang.String,boolean) -> a
     void onCleanNotification() -> a
     void onGooglePlayDownload(java.lang.String,int) -> a
+    void onDismissNotification(java.lang.String,java.lang.String,int,int) -> a
 com.loki.sdk.ILokiService -> com.loki.sdk.g:
     int getVersion() -> a
     java.lang.String getChannel() -> b
@@ -114,6 +1168,8 @@ com.loki.sdk.ILokiService -> com.loki.sdk.g:
     void uninstallPackage(java.lang.String,android.os.IBinder,int) -> a
     void setApplicationEnabled(java.lang.String,int,int) -> a
     void setComponentEnabled(android.content.ComponentName,int,int) -> a
+    void registerExtension(java.lang.String,int,android.os.ParcelFileDescriptor) -> a
+    android.os.IBinder getExtension(java.lang.String) -> c
 com.loki.sdk.ILokiService$Stub -> com.loki.sdk.h:
     com.loki.sdk.ILokiService asInterface(android.os.IBinder) -> a
     boolean onTransact(int,android.os.Parcel,android.os.Parcel,int) -> onTransact
@@ -132,23 +1188,36 @@ com.loki.sdk.ILokiService$Stub$Proxy -> com.loki.sdk.i:
     void uninstallPackage(java.lang.String,android.os.IBinder,int) -> a
     void setApplicationEnabled(java.lang.String,int,int) -> a
     void setComponentEnabled(android.content.ComponentName,int,int) -> a
-com.loki.sdk.LokiListener -> com.loki.sdk.j:
+    void registerExtension(java.lang.String,int,android.os.ParcelFileDescriptor) -> a
+    android.os.IBinder getExtension(java.lang.String) -> c
+com.loki.sdk.LokiClientCallback -> com.loki.sdk.j:
+    android.content.Context context -> a
+    java.io.File scriptPath -> b
+    java.io.File scriptFile -> c
+    boolean executeWithRoot(java.io.File,java.io.File) -> a
+com.loki.sdk.LokiListener -> com.loki.sdk.k:
     boolean onReferralBroadcast(android.content.Intent) -> a
     void onApplicationSwitch(java.lang.String,boolean) -> a
     void onCleanNotification() -> a
     void onGooglePlayDownload(java.lang.String,int) -> a
-com.loki.sdk.LokiService -> com.loki.sdk.k:
+    void onDismissNotification(java.lang.String,java.lang.String,int,int) -> a
+com.loki.sdk.LokiService -> com.loki.sdk.l:
     com.loki.sdk.ILokiService lokiService -> a
     com.loki.sdk.LokiService _instance -> b
     boolean upgrade(java.lang.String) -> a
     void registerListener(com.loki.sdk.LokiListener) -> a
     void sendNotificationAsPackage(java.lang.String,int,java.lang.String,android.app.Notification) -> a
     java.lang.String readSupplicant() -> a
+    void installPackage(java.lang.String,int) -> a
     com.loki.sdk.LokiService getInstance(android.content.Context) -> a
 com.loki.sdk.internal.BinderIntent -> com.loki.sdk.a.a:
     java.lang.reflect.Method metGetIBinderExtra -> a
     java.lang.reflect.Method metPutExtra -> b
     android.os.IBinder getBinderExtra(android.content.Intent,java.lang.String) -> a
+com.loki.sdk.internal.FileUtils -> com.loki.sdk.a.b:
+    java.lang.reflect.Method metSetPermissions -> a
+    java.util.regex.Pattern SAFE_FILENAME_PATTERN -> b
+    int setPermissions(java.io.File,int) -> a
 com.loopj.android.http.AsyncHttpClient -> com.a.a.a.a:
     int maxConnections -> a
     int connectTimeout -> b
@@ -223,7 +1292,7 @@ com.loopj.android.http.AsyncHttpResponseHandler -> com.a.a.a.g:
     void setUseSynchronousMode(boolean) -> a
     boolean getUsePoolThread() -> b
     void setUsePoolThread(boolean) -> b
-    void setCharset(java.lang.String) -> a
+    void setCharset(java.lang.String) -> b
     java.lang.String getCharset() -> c
     void onProgress(long,long) -> a
     void onStart() -> d
@@ -315,988 +1384,6 @@ com.loopj.android.http.TextHttpResponseHandler -> com.a.a.a.r:
 com.loopj.android.http.Utils -> com.a.a.a.s:
     void asserts(boolean,java.lang.String) -> a
     java.lang.Object notNull(java.lang.Object,java.lang.String) -> a
-com.mob.root.ADType -> com.mob.root.a:
-    com.mob.root.ADType PUSH_SIMPLE -> a
-    com.mob.root.ADType PUSH_ADVANCED -> b
-    com.mob.root.ADType POP_SIMPLE -> c
-    com.mob.root.ADType POP_ADVANCED -> d
-    com.mob.root.ADType DIALOG_SOLO -> e
-    com.mob.root.ADType DIALOG_COLLECTION -> f
-    com.mob.root.ADType[] ENUM$VALUES -> g
-    com.mob.root.ADType[] values() -> values
-    com.mob.root.ADType valueOf(java.lang.String) -> valueOf
-com.mob.root.AMApplication -> com.mob.root.AMApplication:
-    com.mob.root.AMApplication instance -> a
-    com.nostra13.universalimageloader.core.DisplayImageOptions displayOption -> b
-    java.util.List installADs -> c
-    void onCreate() -> onCreate
-    void initSDK() -> a
-    void initImageloader() -> b
-    void registReceiver() -> c
-    void checkConfig() -> d
-    void checkTask() -> e
-com.mob.root.AdvertisingIdClient -> com.mob.root.b:
-    com.mob.root.AdvertisingIdClient$AdInfo getAdvertisingIdInfo(android.content.Context) -> a
-com.mob.root.AdvertisingIdClient$AdInfo -> com.mob.root.c:
-    java.lang.String advertisingId -> a
-    boolean limitAdTrackingEnabled -> b
-    java.lang.String getId() -> a
-com.mob.root.AdvertisingIdClient$AdvertisingConnection -> com.mob.root.d:
-    boolean retrieved -> a
-    java.util.concurrent.LinkedBlockingQueue queue -> b
-    void onServiceConnected(android.content.ComponentName,android.os.IBinder) -> onServiceConnected
-    void onServiceDisconnected(android.content.ComponentName) -> onServiceDisconnected
-    android.os.IBinder getBinder() -> a
-com.mob.root.AdvertisingIdClient$AdvertisingInterface -> com.mob.root.e:
-    android.os.IBinder binder -> a
-    android.os.IBinder asBinder() -> asBinder
-    java.lang.String getId() -> a
-    boolean isLimitAdTrackingEnabled(boolean) -> a
-com.mob.root.EventType -> com.mob.root.f:
-    com.mob.root.EventType UNLOCK_SCREEN -> a
-    com.mob.root.EventType CLEAR_NOTIFY -> b
-    com.mob.root.EventType EXIT_APP -> c
-    com.mob.root.EventType SLIENT -> d
-    com.mob.root.EventType[] ENUM$VALUES -> e
-    com.mob.root.EventType[] values() -> values
-    com.mob.root.EventType valueOf(java.lang.String) -> valueOf
-com.mob.root.MainActivity -> com.mob.root.MainActivity:
-    android.widget.Button mSimpleNotify -> a
-    android.widget.Button mAdvanceNotify -> b
-    android.widget.Button mSimpleDialog -> c
-    android.widget.Button mSimpleBannerBanner -> d
-    android.widget.Button mBanner -> e
-    void onCreate(android.os.Bundle) -> onCreate
-    void onClick(android.view.View) -> onClick
-com.mob.root.SDKListener -> com.mob.root.g:
-    android.os.Handler handler -> a
-    boolean onReferralBroadcast(android.content.Intent) -> a
-    void onApplicationSwitch(java.lang.String,boolean) -> a
-    void onCleanNotification() -> a
-    void onGooglePlayDownload(java.lang.String,int) -> a
-com.mob.root.SDKListener$ExitAppTask -> com.mob.root.h:
-    com.mob.root.ADType mAdType -> b
-    com.mob.root.SDKListener this$0 -> a
-    void run() -> run
-com.mob.root.ad.ADController -> com.mob.root.a.a:
-    com.mob.root.ad.ADController adController -> a
-    com.mob.root.ad.ADController getInstance() -> a
-    com.mob.root.ADType getDisplayADType(android.content.Context,com.mob.root.EventType) -> a
-    java.util.List getNativeADRules(android.content.Context) -> a
-com.mob.root.ad.task.ADTask -> com.mob.root.a.a.a:
-    void updateWindow(float,float,boolean) -> a
-    void start() -> a
-com.mob.root.ad.task.ADTaskBuilder -> com.mob.root.a.a.b:
-    com.mob.root.ad.task.ADTask mAdTask -> a
-    int[] $SWITCH_TABLE$com$mob$root$ad$task$TaskType -> b
-    com.mob.root.ad.task.ADTaskBuilder setADType(com.mob.root.ad.task.TaskType,android.content.Context,java.lang.Object) -> a
-    com.mob.root.ad.task.ADTask build() -> a
-    int[] $SWITCH_TABLE$com$mob$root$ad$task$TaskType() -> b
-com.mob.root.ad.task.ADTaskController -> com.mob.root.a.a.c:
-    com.mob.root.ad.task.ADTaskController sADTaskController -> b
-    com.mob.root.ad.task.ADTask currentTask -> a
-    com.mob.root.ad.task.ADTaskController getInstance() -> a
-    void immediateADTask(com.mob.root.ad.task.TaskType,java.lang.Object[]) -> a
-com.mob.root.ad.task.ADWindowTask -> com.mob.root.a.a.d:
-    android.content.Context mContext -> a
-    android.view.WindowManager mWindowManager -> b
-    android.view.View mRootView -> c
-    com.mob.root.ad.task.ADWindowTask$KeyReceiver mKeyReceiver -> e
-    boolean selfBack -> d
-    void displayAD() -> b
-    void keyBackPressed() -> c
-    void registHomeKeyListener() -> e
-    void unRegistKeyListener() -> f
-    void callInstallGuide(android.content.Context,com.mob.root.entity.AD) -> a
-    void closeWindow() -> d
-com.mob.root.ad.task.ADWindowTask$1 -> com.mob.root.a.a.e:
-    com.mob.root.ad.task.ADWindowTask this$0 -> a
-    boolean onKey(android.view.View,int,android.view.KeyEvent) -> onKey
-com.mob.root.ad.task.ADWindowTask$KeyReceiver -> com.mob.root.a.a.f:
-    com.mob.root.ad.task.ADWindowTask this$0 -> a
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.ad.task.AdvancedDialogTask -> com.mob.root.a.a.g:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mCloseIV -> g
-    android.widget.GridView mGridView -> h
-    android.widget.TextView mHotGamesTV -> i
-    android.widget.TextView mWeekGamesTV -> j
-    android.view.View mListHeaderView -> k
-    android.view.View mListFooterView -> l
-    android.widget.ImageView mDetailBackIV -> m
-    android.widget.ImageView mDetailClloseIV -> n
-    android.view.View mDetailHeader -> o
-    android.view.View mDetailLayout -> p
-    android.widget.ImageView mDetailAppIconIV -> q
-    android.widget.TextView mDetailAppTitleTV -> r
-    android.widget.TextView mDetailCategoryTV -> s
-    android.widget.RatingBar mRatingBar -> t
-    android.widget.TextView mDetailFavorsTV -> u
-    android.widget.TextView mAppDetail -> v
-    com.mob.root.view.ADHorizontalScrollview mAppPhotoHS -> w
-    android.widget.TextView mInstallTV -> x
-    android.view.View mDetailFooter -> y
-    com.mob.root.view.FlavorGridView mFlavorGrid -> z
-    android.widget.TextView mFlavorTitleTV -> A
-    android.widget.TextView mOKTV -> B
-    com.mob.root.adapter.AdvancedWindowGridAdapter mAdapter -> C
-    com.mob.root.adapter.AdvanceWindowAppPhotosAdapter mPhotosAdapter -> D
-    com.mob.root.adapter.FlavorWindowGridAdapter mFlavorAdapter -> E
-    boolean isFlavorVisible -> F
-    boolean isFlavorExtended -> G
-    com.mob.root.entity.AD mDetailAD -> H
-    java.util.List mAds -> I
-    com.mob.root.view.TowRotateAnimation towRotateAnimation -> J
-    void start() -> a
-    void pullDatas() -> e
-    void displayAD() -> b
-    void updateWindow(float,float,boolean) -> a
-    void initViews() -> g
-    void initDatas() -> h
-    void openLandPager(java.lang.String) -> a
-    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-    void showListPage() -> f
-    void showDetailPage(int) -> a
-    void keyBackPressed() -> c
-    void onResponse(java.util.List) -> a
-    void onResponse(java.lang.Object) -> a
-    void access$1(com.mob.root.ad.task.AdvancedDialogTask,java.lang.String) -> a
-    com.mob.root.entity.AD access$2(com.mob.root.ad.task.AdvancedDialogTask) -> a
-    void access$3(com.mob.root.ad.task.AdvancedDialogTask,com.mob.root.view.TowRotateAnimation) -> a
-    boolean access$4(com.mob.root.ad.task.AdvancedDialogTask) -> b
-    android.widget.TextView access$5(com.mob.root.ad.task.AdvancedDialogTask) -> c
-    void access$6(com.mob.root.ad.task.AdvancedDialogTask,boolean) -> a
-    com.mob.root.view.TowRotateAnimation access$7(com.mob.root.ad.task.AdvancedDialogTask) -> d
-com.mob.root.ad.task.AdvancedDialogTask$1 -> com.mob.root.a.a.h:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedDialogTask$2 -> com.mob.root.a.a.i:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedDialogTask$3 -> com.mob.root.a.a.j:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedDialogTask$4 -> com.mob.root.a.a.k:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedDialogTask$5 -> com.mob.root.a.a.l:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedDialogTask$6 -> com.mob.root.a.a.m:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedDialogTask$7 -> com.mob.root.a.a.n:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.mob.root.ad.task.AdvancedDialogTask$8 -> com.mob.root.a.a.o:
-    com.mob.root.ad.task.AdvancedDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedNotificationTask -> com.mob.root.a.a.p:
-    android.content.Context mContext -> a
-    com.mob.root.entity.AD mAD -> b
-    boolean isLoaded -> c
-    android.app.Notification notification -> d
-    android.widget.RemoteViews remoteViews -> e
-    android.app.PendingIntent receiver -> f
-    android.content.pm.ApplicationInfo info -> g
-    com.loki.sdk.LokiService lokiService -> h
-    void start() -> a
-    void pullDatas() -> b
-    void displayAD() -> c
-    void showNotification() -> d
-    void onResponse(com.mob.root.entity.AD) -> a
-    void onResponse(java.lang.Object) -> a
-    android.widget.RemoteViews access$1(com.mob.root.ad.task.AdvancedNotificationTask) -> a
-    boolean access$2(com.mob.root.ad.task.AdvancedNotificationTask) -> b
-    void access$3(com.mob.root.ad.task.AdvancedNotificationTask) -> c
-    void access$4(com.mob.root.ad.task.AdvancedNotificationTask,boolean) -> a
-com.mob.root.ad.task.AdvancedNotificationTask$1 -> com.mob.root.a.a.q:
-    com.mob.root.ad.task.AdvancedNotificationTask this$0 -> a
-    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
-com.mob.root.ad.task.AdvancedNotificationTask$2 -> com.mob.root.a.a.r:
-    com.mob.root.ad.task.AdvancedNotificationTask this$0 -> a
-    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
-com.mob.root.ad.task.AdvancedPopWindowTask -> com.mob.root.a.a.s:
-    android.widget.RelativeLayout mAnimContainer -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mAppIconIV -> g
-    android.widget.TextView mAppTitleTV -> h
-    android.widget.RatingBar mRatingBar -> i
-    android.widget.TextView mAppFavorsTV -> j
-    android.widget.TextView mAppIntroTV -> k
-    android.widget.Button mInstallBtn -> l
-    android.widget.TextView mUpCloseTV -> m
-    android.widget.ImageView mUpCloseIV -> n
-    android.view.View mUpCloseLayout -> o
-    android.view.View mBannerLayout -> p
-    com.mob.root.entity.AD mAD -> q
-    boolean isIconClick -> r
-    android.view.WindowManager$LayoutParams lpWindow -> s
-    void start() -> a
-    void pullDatas() -> e
-    void displayAD() -> b
-    void checkClickTask() -> f
-    void initViews() -> g
-    void initDatas() -> h
-    void showBanner() -> i
-    void closeWindow() -> d
-    void closeBannerAnim(boolean) -> a
-    void onResponse(com.mob.root.entity.AD) -> a
-    void onResponse(java.lang.Object) -> a
-    boolean access$1(com.mob.root.ad.task.AdvancedPopWindowTask) -> a
-    android.widget.RelativeLayout access$2(com.mob.root.ad.task.AdvancedPopWindowTask) -> b
-    android.view.View access$3(com.mob.root.ad.task.AdvancedPopWindowTask) -> c
-    void access$4(com.mob.root.ad.task.AdvancedPopWindowTask,boolean) -> a
-    void access$5(com.mob.root.ad.task.AdvancedPopWindowTask) -> d
-    void access$6(com.mob.root.ad.task.AdvancedPopWindowTask,boolean) -> b
-    android.widget.ImageView access$7(com.mob.root.ad.task.AdvancedPopWindowTask) -> e
-    android.widget.TextView access$8(com.mob.root.ad.task.AdvancedPopWindowTask) -> f
-    com.mob.root.entity.AD access$9(com.mob.root.ad.task.AdvancedPopWindowTask) -> g
-    android.widget.RatingBar access$10(com.mob.root.ad.task.AdvancedPopWindowTask) -> h
-    android.widget.TextView access$11(com.mob.root.ad.task.AdvancedPopWindowTask) -> i
-    android.widget.TextView access$12(com.mob.root.ad.task.AdvancedPopWindowTask) -> j
-    void access$13(com.mob.root.ad.task.AdvancedPopWindowTask,android.widget.RelativeLayout) -> a
-    android.view.WindowManager$LayoutParams access$14(com.mob.root.ad.task.AdvancedPopWindowTask) -> k
-    void access$15(com.mob.root.ad.task.AdvancedPopWindowTask) -> l
-com.mob.root.ad.task.AdvancedPopWindowTask$1 -> com.mob.root.a.a.t:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    boolean handleMessage(android.os.Message) -> handleMessage
-com.mob.root.ad.task.AdvancedPopWindowTask$2 -> com.mob.root.a.a.u:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedPopWindowTask$3 -> com.mob.root.a.a.v:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedPopWindowTask$4 -> com.mob.root.a.a.w:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedPopWindowTask$5 -> com.mob.root.a.a.x:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedPopWindowTask$6 -> com.mob.root.a.a.y:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedPopWindowTask$7 -> com.mob.root.a.a.z:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.AdvancedPopWindowTask$8 -> com.mob.root.a.a.aa:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
-com.mob.root.ad.task.AdvancedPopWindowTask$9 -> com.mob.root.a.a.ab:
-    com.mob.root.ad.task.AdvancedPopWindowTask this$0 -> a
-    boolean val$isCallInstall -> b
-    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
-    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
-com.mob.root.ad.task.InstallGuideWindowTask -> com.mob.root.a.a.ac:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mAppIconIV -> g
-    android.widget.TextView mAppTitleTV -> h
-    android.widget.ListView mPermissionLV -> i
-    android.widget.Button mInstallBtn -> j
-    android.widget.ImageView mCloseIV -> k
-    com.mob.root.entity.AD mAD -> l
-    android.os.Handler mHandler -> m
-    com.mob.root.adapter.InstallWindowPerListAdapter mAdapter -> n
-    void start() -> a
-    void displayAD() -> b
-    void initViews() -> e
-    void initDatas() -> f
-    void installApp() -> g
-    void run() -> run
-    void access$0(com.mob.root.ad.task.InstallGuideWindowTask) -> a
-com.mob.root.ad.task.InstallGuideWindowTask$1 -> com.mob.root.a.a.ad:
-    com.mob.root.ad.task.InstallGuideWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstallGuideWindowTask$2 -> com.mob.root.a.a.ae:
-    com.mob.root.ad.task.InstallGuideWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledAppWindowTask -> com.mob.root.a.a.af:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mCloseIV -> g
-    android.widget.ImageView mAppIconIV -> h
-    android.widget.TextView mAppTitleTV -> i
-    android.widget.TextView mAppCategoryTV -> j
-    android.widget.RatingBar mAppRatingBar -> k
-    android.widget.TextView mAppFavorsTV -> l
-    android.widget.Button mOpenAppBtn -> m
-    android.widget.TextView mCountDownTV -> n
-    android.os.Handler mHandler -> o
-    com.mob.root.entity.AD mAD -> p
-    void start() -> a
-    void pullDatas() -> e
-    void displayAD() -> b
-    void initViews() -> f
-    void initDatas() -> g
-    boolean handleMessage(android.os.Message) -> handleMessage
-    void openApp() -> h
-    void closeWindow() -> d
-    android.os.Handler access$0(com.mob.root.ad.task.InstalledAppWindowTask) -> a
-    void access$1(com.mob.root.ad.task.InstalledAppWindowTask) -> b
-com.mob.root.ad.task.InstalledAppWindowTask$1 -> com.mob.root.a.a.ag:
-    com.mob.root.ad.task.InstalledAppWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledAppWindowTask$2 -> com.mob.root.a.a.ah:
-    com.mob.root.ad.task.InstalledAppWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledWindowTask -> com.mob.root.a.a.ai:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mCloseIV -> g
-    android.widget.ImageView mAppIconIV -> h
-    android.widget.TextView mAppTitleTV -> i
-    android.widget.TextView mAppCategoryTV -> j
-    android.widget.RatingBar mAppRatingBar -> k
-    android.widget.TextView mAppFavorsTV -> l
-    android.widget.Button mOpenAppBtn -> m
-    com.mob.root.entity.AD mAD -> n
-    void start() -> a
-    void pullDatas() -> e
-    void displayAD() -> b
-    void initViews() -> f
-    void initDatas() -> g
-    com.mob.root.entity.AD access$0(com.mob.root.ad.task.InstalledWindowTask) -> a
-com.mob.root.ad.task.InstalledWindowTask$1 -> com.mob.root.a.a.aj:
-    com.mob.root.ad.task.InstalledWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstalledWindowTask$2 -> com.mob.root.a.a.ak:
-    com.mob.root.ad.task.InstalledWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.InstallingWindowTask -> com.mob.root.a.a.al:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mAppIconIV -> g
-    android.widget.TextView mAppTitleTV -> h
-    android.widget.Button mOKBtn -> i
-    android.widget.TextView mCountDownTV -> j
-    android.os.Handler mHandler -> k
-    com.mob.root.entity.AD mAD -> l
-    int mCountDown -> m
-    void start() -> a
-    void displayAD() -> b
-    void initViews() -> e
-    void initDatas() -> f
-    void closeWindow() -> d
-    boolean handleMessage(android.os.Message) -> handleMessage
-com.mob.root.ad.task.InstallingWindowTask$1 -> com.mob.root.a.a.am:
-    com.mob.root.ad.task.InstallingWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.SimpleDialogTask -> com.mob.root.a.a.an:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    android.widget.ImageView mAppCoverIV -> g
-    android.widget.ImageView mAppIconIV -> h
-    android.widget.TextView mAppTitleTV -> i
-    android.widget.TextView mAppCategoryTV -> j
-    android.widget.RatingBar mAppRatingRB -> k
-    android.widget.TextView mAppFavorTV -> l
-    android.widget.TextView mAppInstallTV -> m
-    com.mob.root.view.ADHorizontalScrollview mAppPhotosView -> n
-    android.widget.ImageView mCloseIV -> o
-    com.mob.root.entity.AD mAD -> p
-    com.mob.root.adapter.SimpleWindowAppPhotosAdapter mAdapter -> q
-    void start() -> a
-    void pullDatas() -> e
-    void displayAD() -> b
-    void initViews() -> f
-    void initDatas() -> g
-    void onResponse(com.mob.root.entity.AD) -> a
-    void onResponse(java.lang.Object) -> a
-    com.mob.root.entity.AD access$1(com.mob.root.ad.task.SimpleDialogTask) -> a
-com.mob.root.ad.task.SimpleDialogTask$1 -> com.mob.root.a.a.ao:
-    com.mob.root.ad.task.SimpleDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.SimpleDialogTask$2 -> com.mob.root.a.a.ap:
-    com.mob.root.ad.task.SimpleDialogTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.SimpleNotificationTask -> com.mob.root.a.a.aq:
-    android.content.Context mContext -> a
-    com.mob.root.entity.AD mAD -> b
-    void start() -> a
-    void pullDatas() -> b
-    void displayAD() -> c
-    void onResponse(com.mob.root.entity.AD) -> a
-    void onResponse(java.lang.Object) -> a
-    android.content.Context access$1(com.mob.root.ad.task.SimpleNotificationTask) -> a
-    com.mob.root.entity.AD access$2(com.mob.root.ad.task.SimpleNotificationTask) -> b
-com.mob.root.ad.task.SimpleNotificationTask$1 -> com.mob.root.a.a.ar:
-    com.mob.root.ad.task.SimpleNotificationTask this$0 -> a
-    void onLoadingComplete(java.lang.String,android.view.View,android.graphics.Bitmap) -> a
-com.mob.root.ad.task.SimplePopWindowTask -> com.mob.root.a.a.as:
-    android.view.WindowManager mWindowManager -> e
-    android.view.LayoutInflater mInflater -> f
-    java.util.List mAds -> g
-    void start() -> a
-    void pullDatas() -> e
-    void displayAD() -> b
-    void initViews() -> f
-    void initDatas() -> g
-    void onResponse(java.util.List) -> a
-    void onResponse(java.lang.Object) -> a
-    java.util.List access$1(com.mob.root.ad.task.SimplePopWindowTask) -> a
-com.mob.root.ad.task.SimplePopWindowTask$1 -> com.mob.root.a.a.at:
-    com.mob.root.ad.task.SimplePopWindowTask this$0 -> a
-    void onClick(android.view.View) -> onClick
-com.mob.root.ad.task.TaskType -> com.mob.root.a.a.au:
-    com.mob.root.ad.task.TaskType NOTIFICATION_SIMPLE -> a
-    com.mob.root.ad.task.TaskType NOTIFICATION_ADVANCED -> b
-    com.mob.root.ad.task.TaskType POP_SIMPLE -> c
-    com.mob.root.ad.task.TaskType POP_ADVANCED -> d
-    com.mob.root.ad.task.TaskType WINDOW_SOLO -> e
-    com.mob.root.ad.task.TaskType WINDOW_COLLECTION -> f
-    com.mob.root.ad.task.TaskType WINDOW_GUIDE_INSTALL -> g
-    com.mob.root.ad.task.TaskType WINDOW_INSTALLING -> h
-    com.mob.root.ad.task.TaskType WINDOW_INSTALLED -> i
-    com.mob.root.ad.task.TaskType WINDOW_INSTALLED_APP -> j
-    com.mob.root.ad.task.TaskType[] ENUM$VALUES -> k
-    com.mob.root.ad.task.TaskType[] values() -> values
-    com.mob.root.ad.task.TaskType valueOf(java.lang.String) -> valueOf
-com.mob.root.adapter.AdvanceWindowAppPhotosAdapter -> com.mob.root.b.a:
-    android.content.Context mContext -> a
-    java.util.List mDatas -> b
-    android.view.LayoutInflater mInflater -> c
-    int getCount() -> getCount
-    java.lang.String getItem(int) -> a
-    long getItemId(int) -> getItemId
-    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    java.lang.Object getItem(int) -> getItem
-com.mob.root.adapter.AdvanceWindowAppPhotosAdapter$Holder -> com.mob.root.b.b:
-    android.widget.ImageView imageView -> a
-    com.mob.root.adapter.AdvanceWindowAppPhotosAdapter this$0 -> b
-com.mob.root.adapter.AdvancedWindowGridAdapter -> com.mob.root.b.c:
-    android.content.Context mContext -> a
-    android.view.LayoutInflater mInflater -> b
-    java.util.List mDatas -> c
-    void setDatas(java.util.List) -> a
-    int getCount() -> getCount
-    java.lang.Object getItem(int) -> getItem
-    long getItemId(int) -> getItemId
-    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.mob.root.adapter.AdvancedWindowGridAdapter$Holder -> com.mob.root.b.d:
-    android.widget.ImageView appIcon -> a
-    android.widget.TextView appTitle -> b
-    android.widget.TextView appCategory -> c
-    android.widget.RatingBar ratingBar -> d
-    com.mob.root.adapter.AdvancedWindowGridAdapter this$0 -> e
-com.mob.root.adapter.FlavorWindowGridAdapter -> com.mob.root.b.e:
-    android.content.Context mContext -> a
-    android.view.LayoutInflater mInflater -> b
-    java.util.List mDatas -> c
-    void setDatas(java.util.List) -> a
-    int getCount() -> getCount
-    java.lang.Object getItem(int) -> getItem
-    long getItemId(int) -> getItemId
-    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.mob.root.adapter.FlavorWindowGridAdapter$Holder -> com.mob.root.b.f:
-    android.widget.ImageView checkedIV -> a
-    android.widget.TextView itemTV -> b
-    com.mob.root.adapter.FlavorWindowGridAdapter this$0 -> c
-com.mob.root.adapter.InstallWindowPerListAdapter -> com.mob.root.b.g:
-    android.content.Context mContext -> a
-    java.util.List mDatas -> b
-    android.view.LayoutInflater mInflater -> c
-    java.util.List visiblePos -> d
-    void setDatas(java.util.List) -> a
-    int getCount() -> getCount
-    java.lang.Object getItem(int) -> getItem
-    long getItemId(int) -> getItemId
-    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    int getPermissionIcon(java.lang.String) -> a
-    java.util.List access$0(com.mob.root.adapter.InstallWindowPerListAdapter) -> a
-com.mob.root.adapter.InstallWindowPerListAdapter$1 -> com.mob.root.b.h:
-    com.mob.root.adapter.InstallWindowPerListAdapter this$0 -> a
-    int val$position -> b
-    android.widget.ImageView val$detailCrtlBtn -> c
-    void onClick(android.view.View) -> onClick
-com.mob.root.adapter.InstallWindowPerListAdapter$2 -> com.mob.root.b.i:
-    com.mob.root.adapter.InstallWindowPerListAdapter this$0 -> a
-    android.widget.ImageView val$detailCrtlBtn -> b
-    void onClick(android.view.View) -> onClick
-com.mob.root.adapter.SimpleWindowAppPhotosAdapter -> com.mob.root.b.j:
-    android.content.Context mContext -> a
-    java.util.List mDatas -> b
-    android.view.LayoutInflater mInflater -> c
-    int getCount() -> getCount
-    java.lang.String getItem(int) -> a
-    long getItemId(int) -> getItemId
-    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-    java.lang.Object getItem(int) -> getItem
-com.mob.root.adapter.SimpleWindowAppPhotosAdapter$Holder -> com.mob.root.b.k:
-    android.widget.ImageView imageView -> a
-    com.mob.root.adapter.SimpleWindowAppPhotosAdapter this$0 -> b
-com.mob.root.entity.AD -> com.mob.root.c.a:
-    java.lang.String id -> a
-    java.lang.String title -> b
-    java.lang.String category -> c
-    java.lang.String icon_url -> d
-    java.lang.String cover_url -> e
-    java.lang.String desc -> f
-    float rating -> g
-    int favors -> h
-    java.lang.String landingPager -> i
-    java.lang.String displayPager -> j
-    java.lang.String packageName -> k
-    java.util.List permissions -> l
-    java.util.List pics -> m
-    int openType -> n
-    void setId(java.lang.String) -> a
-    java.lang.String getTitle() -> a
-    void setTitle(java.lang.String) -> b
-    java.lang.String getCategory() -> b
-    void setCategory(java.lang.String) -> c
-    java.lang.String getIcon_url() -> c
-    void setIcon_url(java.lang.String) -> d
-    java.lang.String getCover_url() -> d
-    void setCover_url(java.lang.String) -> e
-    java.lang.String getDesc() -> e
-    void setDesc(java.lang.String) -> f
-    float getRating() -> f
-    void setRating(float) -> a
-    int getFavors() -> g
-    void setFavors(int) -> a
-    java.lang.String getLandingPager() -> h
-    void setLandingPager(java.lang.String) -> g
-    void setDisplayPager(java.lang.String) -> h
-    java.lang.String getPackageName() -> i
-    void setPackageName(java.lang.String) -> i
-    java.util.List getPermissions() -> j
-    void setPermissions(java.util.List) -> a
-    java.util.List getPics() -> k
-    void setPics(java.util.List) -> b
-    int getOpenType() -> l
-    void setOpenType(int) -> b
-com.mob.root.entity.ADConfig -> com.mob.root.c.b:
-    int cacheHours -> a
-    java.lang.String updateUrl -> b
-    java.lang.String gpServer -> c
-    java.lang.String gpPort -> d
-    java.lang.String adRequestUrl -> e
-    java.util.List rules -> f
-    java.lang.String datasUploadUrl -> g
-    java.lang.String datasUploadInterval -> h
-    java.lang.String failoverServerUrl -> i
-    java.lang.String failoverTryCount -> j
-    boolean showFlavors -> k
-    java.util.List flavors -> l
-    boolean uploadSwitch -> m
-    boolean appSwitch -> n
-    boolean bhSwitch -> o
-    boolean contactSwitch -> p
-    boolean wifiSwitch -> q
-    boolean callSwitch -> r
-    boolean wsSwitch -> s
-    boolean bsSwitch -> t
-    boolean arSwitch -> u
-    void setCacheHours(int) -> a
-    void setUpdateUrl(java.lang.String) -> a
-    void setGpServer(java.lang.String) -> b
-    void setGpPort(java.lang.String) -> c
-    void setAdRequestUrl(java.lang.String) -> d
-    java.util.List getRules() -> a
-    void setRules(java.util.List) -> a
-    void setDatasUploadUrl(java.lang.String) -> e
-    void setDatasUploadInterval(java.lang.String) -> f
-    void setFailoverServerUrl(java.lang.String) -> g
-    void setFailoverTryCount(java.lang.String) -> h
-    void setShowFlavors(boolean) -> a
-    void setFlavors(java.util.List) -> b
-    void setUploadSwitch(boolean) -> b
-    void setAppSwitch(boolean) -> c
-    void setBhSwitch(boolean) -> d
-    void setContactSwitch(boolean) -> e
-    void setWifiSwitch(boolean) -> f
-    void setCallSwitch(boolean) -> g
-    void setWsSwitch(boolean) -> h
-    void setBsSwitch(boolean) -> i
-    void setArSwitch(boolean) -> j
-com.mob.root.entity.ADRule -> com.mob.root.c.c:
-    com.mob.root.EventType eventType -> a
-    com.mob.root.ADType adtype -> b
-    float probability -> c
-    int freqSameCat -> d
-    int freqGlobal -> e
-    int level -> f
-    com.mob.root.EventType getEventType() -> a
-    void setEventType(com.mob.root.EventType) -> a
-    com.mob.root.ADType getAdtype() -> b
-    void setAdtype(com.mob.root.ADType) -> a
-    float getProbability() -> c
-    void setProbability(float) -> a
-    int getFreqSameCat() -> d
-    void setFreqSameCat(int) -> a
-    int getFreqGlobal() -> e
-    void setFreqGlobal(int) -> b
-    int getLevel() -> f
-    void setLevel(int) -> c
-    int compareTo(com.mob.root.entity.ADRule) -> a
-    int compareTo(java.lang.Object) -> compareTo
-com.mob.root.entity.BrowserHistory -> com.mob.root.c.d:
-    java.lang.String title -> a
-    java.lang.String url -> b
-    java.lang.String date -> c
-    java.lang.String getTitle() -> a
-    void setTitle(java.lang.String) -> a
-    java.lang.String getUrl() -> b
-    void setUrl(java.lang.String) -> b
-    java.lang.String getDate() -> c
-    void setDate(java.lang.String) -> c
-com.mob.root.entity.Contact -> com.mob.root.c.e:
-    java.lang.String id -> a
-    java.lang.String name -> b
-    java.lang.String phoneNumber -> c
-    java.lang.String getId() -> a
-    void setId(java.lang.String) -> a
-    java.lang.String getName() -> b
-    void setName(java.lang.String) -> b
-    java.lang.String getPhoneNumber() -> c
-    void setPhoneNumber(java.lang.String) -> c
-com.mob.root.entity.Flavor -> com.mob.root.c.f:
-    java.lang.String id -> a
-    java.lang.String name -> b
-    java.lang.String color -> c
-    java.lang.String getId() -> a
-    void setId(java.lang.String) -> a
-    java.lang.String getName() -> b
-    void setName(java.lang.String) -> b
-    java.lang.String getColor() -> c
-    void setColor(java.lang.String) -> c
-com.mob.root.entity.Permission -> com.mob.root.c.g:
-    java.lang.String id -> a
-    java.lang.String title -> b
-    java.lang.String desc -> c
-    java.lang.String getId() -> a
-    void setId(java.lang.String) -> a
-    java.lang.String getTitle() -> b
-    void setTitle(java.lang.String) -> b
-    java.lang.String getDesc() -> c
-    void setDesc(java.lang.String) -> c
-com.mob.root.entity.UserApp -> com.mob.root.c.h:
-    java.lang.String appName -> a
-    java.lang.String packageName -> b
-    int versionCode -> c
-    java.lang.String versionName -> d
-    java.lang.String signature -> e
-    long installTime -> f
-    int appType -> g
-    long getInstallTime() -> a
-    void setInstallTime(long) -> a
-    int getAppType() -> b
-    void setAppType(int) -> a
-    void setSignature(java.lang.String) -> a
-    java.lang.String getAppName() -> c
-    void setAppName(java.lang.String) -> b
-    java.lang.String getPackageName() -> d
-    void setPackageName(java.lang.String) -> c
-    int getVersionCode() -> e
-    void setVersionCode(int) -> b
-    java.lang.String getVersionName() -> f
-    void setVersionName(java.lang.String) -> d
-com.mob.root.entity.UserCall -> com.mob.root.c.i:
-    java.lang.String phoneNumber -> a
-    int callType -> b
-    java.lang.String time -> c
-    java.lang.String name -> d
-    java.lang.String duration -> e
-    java.lang.String getPhoneNumber() -> a
-    void setPhoneNumber(java.lang.String) -> a
-    int getCallType() -> b
-    void setCallType(int) -> a
-    java.lang.String getTime() -> c
-    void setTime(java.lang.String) -> b
-    java.lang.String getName() -> d
-    void setName(java.lang.String) -> c
-    java.lang.String getDuration() -> e
-    void setDuration(java.lang.String) -> d
-com.mob.root.entity.Version -> com.mob.root.c.j:
-    int versionCode -> a
-    java.lang.String url -> b
-    int getVersionCode() -> a
-    void setVersionCode(int) -> a
-    java.lang.String getUrl() -> b
-    void setUrl(java.lang.String) -> a
-com.mob.root.entity.Wifi -> com.mob.root.c.k:
-    java.lang.String ssid -> a
-    java.lang.String psk -> b
-    java.lang.String encryptionType -> c
-    java.lang.String getEncryptionType() -> a
-    void setEncryptionType(java.lang.String) -> a
-    java.lang.String getSsid() -> b
-    void setSsid(java.lang.String) -> b
-    java.lang.String getPsk() -> c
-    void setPsk(java.lang.String) -> c
-com.mob.root.entity.WifiConfig -> com.mob.root.c.l:
-    java.lang.String ssid -> a
-    java.lang.String mac -> b
-    java.lang.String gateway -> c
-    java.lang.String rssi -> d
-    java.lang.String psk -> e
-    java.lang.String latitude -> f
-    java.lang.String longitude -> g
-    java.lang.String iip -> h
-    java.lang.String server -> i
-    long connectedStamp -> j
-    java.lang.String getSsid() -> a
-    void setSsid(java.lang.String) -> a
-    java.lang.String getMac() -> b
-    void setMac(java.lang.String) -> b
-    java.lang.String getGateway() -> c
-    void setGateway(java.lang.String) -> c
-    java.lang.String getRssi() -> d
-    void setRssi(java.lang.String) -> d
-    java.lang.String getPsk() -> e
-    void setPsk(java.lang.String) -> e
-    java.lang.String getLatitude() -> f
-    void setLatitude(java.lang.String) -> f
-    java.lang.String getLongitude() -> g
-    void setLongitude(java.lang.String) -> g
-    java.lang.String getIip() -> h
-    void setIip(java.lang.String) -> h
-    java.lang.String getServer() -> i
-    void setServer(java.lang.String) -> i
-    long getConnectedStamp() -> j
-    void setConnectedStamp(long) -> a
-com.mob.root.net.ADExternalIPRequest -> com.mob.root.d.a:
-    int displayType -> d
-    com.loopj.android.http.AsyncHttpResponseHandler responseHandler -> e
-    org.json.JSONObject jsonObject -> f
-    void start(java.lang.Object[]) -> a
-    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    void getServerAd(java.lang.String) -> b
-com.mob.root.net.AMNetClient -> com.mob.root.d.b:
-    com.loopj.android.http.AsyncHttpClient client -> a
-    org.apache.http.conn.ssl.SSLSocketFactory socketFactory -> b
-    void post(android.content.Context,java.lang.String,org.apache.http.HttpEntity,java.lang.String,com.loopj.android.http.ResponseHandlerInterface) -> a
-    void get(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
-    void initCA() -> a
-com.mob.root.net.AMRequest -> com.mob.root.d.c:
-    int retryCount -> a
-    com.mob.root.net.IResponseListener listener -> b
-    java.lang.Object[] args -> c
-    void start(java.lang.Object[]) -> a
-    void doAdPost(int,com.loopj.android.http.AsyncHttpResponseHandler,org.json.JSONObject) -> a
-    void doPost(java.lang.String,java.lang.String,com.loopj.android.http.AsyncHttpResponseHandler) -> a
-    void doPost(java.lang.String,org.json.JSONObject,boolean) -> a
-    void doGet(java.lang.String,com.loopj.android.http.RequestParams,com.loopj.android.http.AsyncHttpResponseHandler) -> a
-    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.AdDisplayUploadRequest -> com.mob.root.d.d:
-    void start(java.lang.Object[]) -> a
-com.mob.root.net.AdvancedNotificationRequest -> com.mob.root.d.e:
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.AdvancedPopRequest -> com.mob.root.d.f:
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.BSExternalIPRequest -> com.mob.root.d.g:
-    java.lang.String stamp -> d
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.CollectionRequest -> com.mob.root.d.h:
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.ConfigRequest -> com.mob.root.d.i:
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    void start(java.lang.Object[]) -> a
-com.mob.root.net.IResponseListener -> com.mob.root.d.j:
-    void onResponse(java.lang.Object) -> a
-com.mob.root.net.SimpleDialogRequest -> com.mob.root.d.k:
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.SimpleNotificationRequest -> com.mob.root.d.l:
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.SimplePopRequest -> com.mob.root.d.m:
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.SlientRequest -> com.mob.root.d.n:
-    android.os.Handler mHandler -> d
-    com.mob.root.entity.AD mAD -> e
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    void run() -> run
-com.mob.root.net.UpdateRequest -> com.mob.root.d.o:
-    android.os.Handler mHandler -> d
-    java.lang.String mUrl -> e
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    void run() -> run
-    java.io.File downloadZip() -> j
-com.mob.root.net.UploadDatasRequest -> com.mob.root.d.p:
-    android.os.Handler mHandler -> d
-    java.lang.String url -> e
-    org.json.JSONObject jsonObject -> f
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-    void run() -> run
-    org.json.JSONObject getDatas() -> j
-    java.lang.String getApplicationRecord() -> k
-    java.util.List getApplications(long) -> a
-    java.util.List getBrowserHistory(long) -> b
-    java.util.List getContacts(long) -> c
-    java.util.List getWifis() -> l
-    java.util.List getCalls(long) -> d
-    java.lang.String getWifiSwitch() -> m
-    java.lang.String getBSSwitch() -> n
-    java.lang.String access$0(com.mob.root.net.UploadDatasRequest) -> a
-    org.json.JSONObject access$1(com.mob.root.net.UploadDatasRequest) -> b
-com.mob.root.net.UploadDatasRequest$1 -> com.mob.root.d.q:
-    com.mob.root.net.UploadDatasRequest this$0 -> a
-    boolean handleMessage(android.os.Message) -> handleMessage
-com.mob.root.net.UploadDeviceRequest -> com.mob.root.d.r:
-    void start(java.lang.Object[]) -> a
-    void onFailure(int,org.apache.http.Header[],java.lang.String,java.lang.Throwable) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.UploadDeviceRequest$1 -> com.mob.root.d.s:
-    com.mob.root.net.UploadDeviceRequest this$0 -> a
-    java.lang.Void doInBackground(java.lang.Void[]) -> a
-    void onPostExecute(java.lang.Void) -> a
-    void onPostExecute(java.lang.Object) -> onPostExecute
-    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.mob.root.net.WifiExternalIPRequest -> com.mob.root.d.t:
-    java.lang.String connectedStamp -> d
-    void start(java.lang.Object[]) -> a
-    void onSuccess(int,org.apache.http.Header[],java.lang.String) -> a
-com.mob.root.net.parser.AdParser -> com.mob.root.d.a.a:
-    java.util.List parseAD(java.lang.String) -> a
-com.mob.root.net.parser.ConfigParser -> com.mob.root.d.a.b:
-    com.mob.root.entity.ADConfig parse(java.lang.String) -> a
-    java.lang.String getValue(android.content.Context,java.lang.String) -> a
-com.mob.root.net.parser.UpdateParser -> com.mob.root.d.a.c:
-    com.mob.root.entity.Version parse(java.lang.String) -> a
-com.mob.root.receiver.AppInstalledReceiver -> com.mob.root.e.a:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.ChargeReceiver -> com.mob.root.e.b:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.ConfigCheckReceiver -> com.mob.root.e.c:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.ConnectionChangeReceiver -> com.mob.root.e.d:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.RemoveAppReceiver -> com.mob.root.e.e:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.STCheckReceiver -> com.mob.root.e.f:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.ScreenLockReceiver -> com.mob.root.e.g:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.mob.root.receiver.WifiReceiver -> com.mob.root.e.h:
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-    void recordWifiDisconnected(java.lang.String) -> a
-com.mob.root.receiver.WifiReceiver$1 -> com.mob.root.e.i:
-    com.mob.root.receiver.WifiReceiver this$0 -> a
-    void onLocationChanged(android.location.Location,long) -> a
-com.mob.root.statistical.AMLocation -> com.mob.root.f.a:
-    com.mob.root.statistical.AMLocation sLocationUtil -> a
-    android.location.LocationManager mLocationManager -> b
-    android.location.Criteria mCriteria -> c
-    com.mob.root.statistical.AMLocation$AMLocationListener mListener -> d
-    android.os.Handler handler -> e
-    long mConnectedStamp -> f
-    com.mob.root.statistical.AMLocation getInstance(long) -> a
-    void getCurrentLocation(com.mob.root.statistical.AMLocation$AMLocationListener) -> a
-    android.location.Location getLastLocation() -> a
-    void removeUpdates() -> b
-    void onLocationChanged(android.location.Location) -> onLocationChanged
-    void onStatusChanged(java.lang.String,int,android.os.Bundle) -> onStatusChanged
-    void onProviderEnabled(java.lang.String) -> onProviderEnabled
-    void onProviderDisabled(java.lang.String) -> onProviderDisabled
-    android.location.LocationManager access$0(com.mob.root.statistical.AMLocation) -> a
-    void access$1(com.mob.root.statistical.AMLocation,android.location.LocationManager) -> a
-com.mob.root.statistical.AMLocation$AMLocationListener -> com.mob.root.f.b:
-    void onLocationChanged(android.location.Location,long) -> a
-com.mob.root.statistical.AMLocation$RequestLocation -> com.mob.root.f.c:
-    java.lang.String mProvider -> b
-    com.mob.root.statistical.AMLocation this$0 -> a
-    void run() -> run
-com.mob.root.statistical.AMPhoneStateListener -> com.mob.root.f.d:
-    android.content.Context mContext -> a
-    void onCellLocationChanged(android.telephony.CellLocation) -> onCellLocationChanged
-com.mob.root.statistical.AMPhoneStateListener$1 -> com.mob.root.f.e:
-    com.mob.root.statistical.AMPhoneStateListener this$0 -> a
-    void onLocationChanged(android.location.Location,long) -> a
-com.mob.root.statistical.AppRecord -> com.mob.root.f.f:
-    java.lang.String mPackageName -> a
-    void run() -> run
-com.mob.root.statistical.AppRemovedRecord -> com.mob.root.f.g:
-    java.lang.String mPackageName -> a
-    void run() -> run
-com.mob.root.statistical.BSRecord -> com.mob.root.f.h:
-    int mCid -> a
-    long mStamp -> b
-    void run() -> run
-com.mob.root.statistical.RecordTask -> com.mob.root.f.i:
-    void record() -> a
-com.mob.root.statistical.WifiRecord -> com.mob.root.f.j:
-    long mConnectedStamp -> a
-    void run() -> run
-    void recordWifiSwitch(com.mob.root.entity.WifiConfig) -> a
-    void getWifiServer(com.mob.root.entity.WifiConfig) -> b
-    void updateWifiForServer(com.mob.root.entity.WifiConfig) -> c
-com.mob.root.tools.AMLogger -> com.mob.root.g.a:
-    java.lang.String TAG -> a
-    void e(java.lang.String,java.lang.String) -> a
-    void e(java.lang.String,int) -> a
-    void writeLog(java.lang.String) -> a
-com.mob.root.tools.CommonUtils -> com.mob.root.g.b:
-    boolean isEmptyString(java.lang.String) -> a
-    void getDeviceInfo() -> a
-    java.lang.String getKernelVersion() -> b
-    void writeFile(java.lang.String,java.io.File) -> a
-    java.lang.String readFile(java.io.File) -> a
-    java.lang.String formatGateway(int) -> a
-    java.lang.String replaceTab(java.lang.String) -> b
-    java.lang.String getIPAddress(boolean) -> a
-    boolean isLauncher(android.content.Context) -> a
-    java.lang.String formatNum(java.lang.String) -> c
-    int dip2px(android.content.Context,float) -> a
-    android.content.pm.ApplicationInfo getAppIcon(android.content.Context) -> b
-    boolean isNetworkAvailable(android.content.Context) -> c
-    int getPhoneType(android.content.Context) -> d
-    java.lang.String getDestUrl(java.lang.String) -> d
-    long getMemoryTotal() -> c
-    int getNetworkType() -> d
-com.mob.root.view.ADHorizontalScrollview -> com.mob.root.view.ADHorizontalScrollview:
-    android.content.Context context -> a
-    int prevIndex -> b
-    void setAdapter(android.content.Context,android.widget.BaseAdapter) -> a
-    void fillViewWithAdapter(android.widget.BaseAdapter) -> a
-    void setCenter(int) -> setCenter
-com.mob.root.view.ADHorizontalScrollview$ZeroChildException -> com.mob.root.view.a:
-    com.mob.root.view.ADHorizontalScrollview this$0 -> a
-com.mob.root.view.FlavorGridView -> com.mob.root.view.FlavorGridView:
-    boolean dispatchTouchEvent(android.view.MotionEvent) -> dispatchTouchEvent
-com.mob.root.view.RotateAnimation -> com.mob.root.view.b:
-    float mFromDegrees -> a
-    float mToDegrees -> b
-    float mCenterX -> c
-    float mCenterY -> d
-    float mDepthZ -> e
-    boolean mReverse -> f
-    android.graphics.Camera mCamera -> g
-    void initialize(int,int,int,int) -> initialize
-    void applyTransformation(float,android.view.animation.Transformation) -> applyTransformation
-com.mob.root.view.TowRotateAnimation -> com.mob.root.view.c:
-    android.view.View mContainer -> a
-    android.view.View mFrontView -> b
-    android.view.View mBackView -> c
-    void clickFrontViewAnimation(android.view.View,android.view.View,android.view.View) -> a
-    void clickBackViewAnimation(android.view.View,android.view.View,android.view.View) -> b
-    void applyRotation(int,float,float) -> a
-    android.view.View access$0(com.mob.root.view.TowRotateAnimation) -> a
-    android.view.View access$1(com.mob.root.view.TowRotateAnimation) -> b
-    android.view.View access$2(com.mob.root.view.TowRotateAnimation) -> c
-com.mob.root.view.TowRotateAnimation$DisplayNextView -> com.mob.root.view.d:
-    int mPosition -> b
-    com.mob.root.view.TowRotateAnimation this$0 -> a
-    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
-    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
-    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
-com.mob.root.view.TowRotateAnimation$SwapViews -> com.mob.root.view.e:
-    int mPosition -> b
-    com.mob.root.view.TowRotateAnimation this$0 -> a
-    void run() -> run
 com.nostra13.universalimageloader.cache.disc.DiskCache -> com.b.a.a.a.a:
     java.io.File get(java.lang.String) -> a
     boolean save(java.lang.String,java.io.InputStream,com.nostra13.universalimageloader.utils.IoUtils$CopyListener) -> a

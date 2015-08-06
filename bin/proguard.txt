@@ -1,0 +1,19 @@
+# view AndroidManifest.xml #generated:7
+-keep class com.androidhelper.sdk.AMApplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:10
+-keep class com.androidhelper.sdk.MainActivity { <init>(...); }
+
+# view res/layout/advanced_window.xml #generated:200
+# view res/layout/simple_window.xml #generated:98
+-keep class com.androidhelper.sdk.view.ADHorizontalScrollview { <init>(...); }
+
+# view res/layout/advanced_window.xml #generated:274
+-keep class com.androidhelper.sdk.view.FlavorGridView { <init>(...); }
+
+# view AndroidManifest.xml #generated:21
+-keep class com.giga.sdk.ClientReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:29
+-keep class com.loki.sdk.ClientService { <init>(...); }
+

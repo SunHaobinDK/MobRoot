@@ -95,7 +95,7 @@
             android:textSize="@dimen/simple_window_install_text_size" />
     </RelativeLayout>
 
-    <com.mob.root.view.ADHorizontalScrollview
+    <com.androidhelper.sdk.view.ADHorizontalScrollview
         android:id="@+id/appPhotosView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/simple_window_app_photos_view_height"
@@ -107,6 +107,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
-    </com.mob.root.view.ADHorizontalScrollview>
+    </com.androidhelper.sdk.view.ADHorizontalScrollview>
 
 </RelativeLayout>

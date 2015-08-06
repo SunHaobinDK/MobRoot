@@ -197,7 +197,7 @@
             android:textSize="@dimen/advanced_window_app_detail_text_size" />
     </RelativeLayout>
 
-    <com.mob.root.view.ADHorizontalScrollview
+    <com.androidhelper.sdk.view.ADHorizontalScrollview
         android:id="@+id/appPhotosView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/advanced_window_app_photos_view_height"
@@ -209,7 +209,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" />
-    </com.mob.root.view.ADHorizontalScrollview>
+    </com.androidhelper.sdk.view.ADHorizontalScrollview>
 
     <RelativeLayout
         android:id="@+id/detailFooter"
@@ -271,7 +271,7 @@
         android:textColor="#ffffff"
         android:textSize="@dimen/advanced_window_flavor_title_text_size" />
 
-    <com.mob.root.view.FlavorGridView
+    <com.androidhelper.sdk.view.FlavorGridView
         android:id="@+id/flavorGridView"
         android:layout_width="@dimen/advanced_window_flavor_grid_view_width"
         android:layout_height="@dimen/advanced_window_flavor_grid_view_height"

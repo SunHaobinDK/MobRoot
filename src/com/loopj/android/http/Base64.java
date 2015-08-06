@@ -18,7 +18,8 @@ package com.loopj.android.http;
 
 import java.io.UnsupportedEncodingException;
 
-import com.mob.root.BuildConfig;
+import com.androidhelper.sdk.BuildConfig;
+
 
 
 /**

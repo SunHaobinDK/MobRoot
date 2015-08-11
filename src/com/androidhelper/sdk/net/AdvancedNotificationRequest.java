@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import com.androidhelper.sdk.entity.AD;
 import com.androidhelper.sdk.net.parser.AdParser;
 import com.androidhelper.sdk.net.parser.SingleADParser;
+import com.androidhelper.sdk.tools.AMConstants;
 import com.androidhelper.sdk.tools.AMLogger;
 
 public class AdvancedNotificationRequest extends AMRequest<AD> {
@@ -19,7 +20,7 @@ public class AdvancedNotificationRequest extends AMRequest<AD> {
 	public void start(Object... args) {
 		try {
 			this.args = args;
-			doAdPost(1, this, null);
+			doAdPost(1, AMConstants.placement_id_n2, this, null);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

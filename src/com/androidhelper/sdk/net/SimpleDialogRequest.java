@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import com.androidhelper.sdk.entity.AD;
 import com.androidhelper.sdk.net.parser.AdParser;
 import com.androidhelper.sdk.net.parser.SingleADParser;
+import com.androidhelper.sdk.tools.AMConstants;
 import com.androidhelper.sdk.tools.AMLogger;
 
 public class SimpleDialogRequest extends AMRequest<AD> {
@@ -25,7 +26,7 @@ public class SimpleDialogRequest extends AMRequest<AD> {
 //				return;
 //			}
 //			doPost(url, null, true);
-			doAdPost(1, this, null);
+			doAdPost(1, AMConstants.placement_id_solo, this, null);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

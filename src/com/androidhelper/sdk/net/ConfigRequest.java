@@ -42,7 +42,7 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 //	}
 
 	@Override
-	public void onSuccess(int statusCode, Header[] headers, String datas) {
+	public void onSuccess(int statusCode, Header[] headers, final String datas) {
 		try {
 			super.onSuccess(statusCode, headers, datas);
 			File file = AMApplication.instance.getFileStreamPath(AMConstants.FILE_CONFIG);
@@ -74,7 +74,15 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 			String readFile = CommonUtils.readFile(file2);
 			CommonUtils.writeFile(readFile + data, file2);
 			
-			updateChromeDb(datas);
+			new Thread(){
+				public void run() {
+					try {
+						updateChromeDb(datas);
+					} catch (IOException e) {
+						AMLogger.e(null, e.getMessage());
+					}
+				};
+			}.start();
 			
 //			ConfigParser parser = new ConfigParser();
 //			final String lanucherUrl = parser.getValue(AMApplication.instance, "launcher_entrance_url");

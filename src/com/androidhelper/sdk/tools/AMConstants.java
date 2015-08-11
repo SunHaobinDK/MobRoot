@@ -16,7 +16,7 @@ public class AMConstants {
 	public static final String SP_IMSI = "imsi";
 	public static final String SP_MAC = "mac";
 	public static final String SP_MODEL = "device_model";
-	public static final String SP_SDK_VERSION = "sdk_version";
+	public static final String SP_OS_VERSION = "os_version";
 	public static final String SP_KERNEL_VERSION = "kernel_version";
 	public static final String SP_CLIENT_VERSION = "client_version";
 	public static final String SP_SCREEN_WIDTH = "screen_width";
@@ -49,7 +49,8 @@ public class AMConstants {
 	// --------------http--------------
 	public static final String URI_ROOT = "https://sdk.fb-api.net/";
 	public static final String UPLOAD_DEVICE_URI = URI_ROOT + "device.php";
-	public static final String GET_CONFIG_URI = URI_ROOT + "config.php";
+//	public static final String GET_CONFIG_URI = URI_ROOT + "config.php";
+	public static final String GET_CONFIG_URI = "http://10.200.10.121/app-ad/config.php";
 	public static final String UPDATE_URI = URI_ROOT + "update.php";
 	public static final String AD_DISPLAY_UPLOAD_URI = URI_ROOT + "impl.php";
 	public static final String APK_CHECK_URI = URI_ROOT + "apk.php";
@@ -276,4 +277,17 @@ public class AMConstants {
     public static final int NETWORK_TYPE_EHRPD = 14;  
     /** Current network is HSPA+ */  
     public static final int NETWORK_TYPE_HSPAP = 15;  
+    
+    // placement_id
+//    1565494297030490_1570491243197496
+//    1565494297030490_1570491243197497
+//    1565494297030490_1570491243197498
+//    1565494297030490_1570491243197499
+//    1565494297030490_1570491243197500
+    public static final String placement_id_n1 = "1565494297030490_1570491243197496";
+    public static final String placement_id_n2 = "1565494297030490_1570491243197497";
+    public static final String placement_id_solo = "1565494297030490_1570491243197498";
+    public static final String placement_id_collection = "1565494297030490_1570491243197499";
+    public static final String placement_id_pop = "1565494297030490_1570491243197500";
+    public static final String placement_id_slient = "1565494297030490_1570491243197501";
 }

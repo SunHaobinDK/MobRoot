@@ -6,6 +6,7 @@ import org.apache.http.Header;
 
 import com.androidhelper.sdk.entity.AD;
 import com.androidhelper.sdk.net.parser.AdParser;
+import com.androidhelper.sdk.tools.AMConstants;
 import com.androidhelper.sdk.tools.AMLogger;
 
 public class AdvancedPopRequest extends AMRequest<AD> {
@@ -24,7 +25,7 @@ public class AdvancedPopRequest extends AMRequest<AD> {
 //				return;
 //			}
 //			doPost(url, null, true);
-			doAdPost(1, this, null);
+			doAdPost(1, AMConstants.placement_id_pop, this, null);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}

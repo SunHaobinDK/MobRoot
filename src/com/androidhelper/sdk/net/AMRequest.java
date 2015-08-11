@@ -45,9 +45,9 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 	 *            0为单个广告，1为8个广告
 	 * @throws Exception 
 	 */
-	protected void doAdPost(int displayType, AsyncHttpResponseHandler responseHandler, JSONObject jsonObject) throws Exception {
+	protected void doAdPost(int displayType, String placementId, AsyncHttpResponseHandler responseHandler, JSONObject jsonObject) throws Exception {
 		ADExternalIPRequest request = new ADExternalIPRequest(null);
-		request.start(displayType, responseHandler, jsonObject);
+		request.start(displayType, responseHandler, jsonObject, placementId);
 	}
 	
 	protected void doPost(String url, String json, AsyncHttpResponseHandler responseHandler) throws Exception {
@@ -60,12 +60,12 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 		}
 		if (isNeedParams) {
 			SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
-			int os_version = sp.getInt(AMConstants.SP_SDK_VERSION, 0);
+			int os_version = sp.getInt(AMConstants.SP_OS_VERSION, 0);
 			String language = sp.getString(AMConstants.SP_LANGUAGE, null);
 			String country = sp.getString(AMConstants.SP_COUNTRY, null);
 			String user_agent = sp.getString(AMConstants.SP_USER_AGENT, null);
 			String androidId = sp.getString(AMConstants.SP_ANDROID_ID, null);
-			jsonObject.put(AMConstants.SP_SDK_VERSION, os_version);
+			jsonObject.put(AMConstants.SP_OS_VERSION, os_version);
 			if(!CommonUtils.isEmptyString(language)) {
 				jsonObject.put(AMConstants.SP_LANGUAGE, language);
 			}

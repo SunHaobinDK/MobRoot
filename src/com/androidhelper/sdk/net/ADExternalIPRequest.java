@@ -20,6 +20,7 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 	private int displayType;
 	private AsyncHttpResponseHandler responseHandler;
 	private JSONObject jsonObject;
+	private String placementId;
 	
 	public ADExternalIPRequest(IResponseListener<Object> listener) {
 		super(listener);
@@ -35,6 +36,9 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 		}
 		if(null != args && null != args[2]) {
 			jsonObject = (JSONObject) args[2];
+		}
+		if(null != args && null != args[3]) {
+			placementId = args[3].toString();
 		}
 		doGet(AMConstants.EXTERNAL_IP_URI, null, this);
 	}
@@ -70,7 +74,7 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 		}
 		SharedPreferences sp = AMApplication.instance.getSharedPreferences(AMConstants.SP_NAME, Context.MODE_PRIVATE);
 		String androidId = sp.getString(AMConstants.SP_ANDROID_ID, null);
-		int osVersion = sp.getInt(AMConstants.SP_SDK_VERSION, 0);
+		int osVersion = sp.getInt(AMConstants.SP_OS_VERSION, 0);
 		int sdkVersion = sp.getInt(AMConstants.SP_CLIENT_VERSION, 0);
 		String language = sp.getString(AMConstants.SP_LANGUAGE, null);
 		String country = sp.getString(AMConstants.SP_COUNTRY, null);
@@ -84,10 +88,14 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 			ids = flavors.split(";");
 		}
 		
+		if(!CommonUtils.isEmptyString(placementId)) {
+			jsonObject.put("placement_id", placementId);
+		}
+		
 		if(!CommonUtils.isEmptyString(androidId)) {
 			jsonObject.put(AMConstants.SP_ANDROID_ID, androidId);
 		}
-		jsonObject.put(AMConstants.SP_SDK_VERSION, osVersion);
+		jsonObject.put(AMConstants.SP_OS_VERSION, osVersion);
 		if(!CommonUtils.isEmptyString(eip)) {
 			jsonObject.put(AMConstants.NET_EIP, eip);
 		}

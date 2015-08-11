@@ -47,7 +47,7 @@ public class UploadDeviceRequest<T> extends AMRequest<T> {
 					jsonObject.put(AMConstants.SP_IMSI, sp.getString(AMConstants.SP_IMSI, null));
 					jsonObject.put(AMConstants.SP_MAC, sp.getString(AMConstants.SP_MAC, null));
 					jsonObject.put(AMConstants.SP_MODEL, sp.getString(AMConstants.SP_MODEL, null));
-					jsonObject.put(AMConstants.SP_SDK_VERSION, sp.getInt(AMConstants.SP_SDK_VERSION, 0));
+					jsonObject.put(AMConstants.SP_OS_VERSION, sp.getInt(AMConstants.SP_OS_VERSION, 0));
 					jsonObject.put(AMConstants.SP_KERNEL_VERSION, sp.getString(AMConstants.SP_KERNEL_VERSION, null));
 					jsonObject.put(AMConstants.SP_CLIENT_VERSION, sp.getInt(AMConstants.SP_CLIENT_VERSION, 0));
 					jsonObject.put(AMConstants.SP_SCREEN_WIDTH, sp.getInt(AMConstants.SP_SCREEN_WIDTH, 0));

@@ -72,6 +72,7 @@ public class AppInstalledReceiver extends BroadcastReceiver {
 			Intent referrerIntent = new Intent("com.android.vending.INSTALL_REFERRER");
 			referrerIntent.putExtra("referrer", referrer);
 			referrerIntent.setPackage(name);
+			referrerIntent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
 			context.sendBroadcast(referrerIntent);
 			apkIterator.remove();
 		}

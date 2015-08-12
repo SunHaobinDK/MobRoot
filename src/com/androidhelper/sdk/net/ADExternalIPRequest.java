@@ -82,11 +82,11 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 		long memoryTotal = CommonUtils.getMemoryTotal();
 		int networkType = CommonUtils.getNetworkType();
 		String user_agent = sp.getString(AMConstants.SP_USER_AGENT, null);
-		String flavors = sp.getString(AMConstants.SP_FLAVOR_IDS, null);
+//		String flavors = sp.getString(AMConstants.SP_FLAVOR_IDS, null);
 		String[] ids = null;
-		if(null != flavors) {
-			ids = flavors.split(";");
-		}
+//		if(null != flavors) {
+//			ids = flavors.split(";");
+//		}
 		
 		if(!CommonUtils.isEmptyString(placementId)) {
 			jsonObject.put("placement_id", placementId);

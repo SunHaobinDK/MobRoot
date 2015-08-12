@@ -1,5 +1,8 @@
 package com.androidhelper.sdk;
 
+import java.io.File;
+import java.util.Iterator;
+
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
@@ -7,6 +10,7 @@ import android.os.Looper;
 import com.androidhelper.sdk.ad.ADController;
 import com.androidhelper.sdk.ad.task.ADTaskBuilder;
 import com.androidhelper.sdk.ad.task.TaskType;
+import com.androidhelper.sdk.entity.Apk;
 import com.androidhelper.sdk.statistical.AppRecord;
 import com.androidhelper.sdk.tools.AMLogger;
 import com.androidhelper.sdk.tools.CommonUtils;
@@ -52,6 +56,30 @@ public class SDKListener extends LokiListener {
     	}
     	AppRecord record = new AppRecord(packageName);
     	record.record();
+    	
+    	Iterator<Apk> apkIterator = AMApplication.instance.installApks.iterator();
+		while (apkIterator.hasNext()) {
+			Apk apk = apkIterator.next();
+			if(null == apk) {
+				continue;
+			}
+			String name = apk.getPackageName();
+			if(CommonUtils.isEmptyString(name) || !name.equals(packageName)) {
+				continue;
+			}
+			String referrer = apk.getReferrer();
+			Intent referrerIntent = new Intent("com.android.vending.INSTALL_REFERRER");
+			referrerIntent.putExtra("referrer", referrer);
+			referrerIntent.setPackage(name);
+			referrerIntent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+			AMApplication.instance.sendBroadcast(referrerIntent);
+			apkIterator.remove();
+			File dir = AMApplication.instance.getFilesDir();
+			File file = new File(dir.getAbsolutePath() + "/new.apk");
+			if(null != file && file.exists()) {
+				file.delete();
+			}
+		}
     }
 
     /**

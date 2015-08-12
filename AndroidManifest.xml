@@ -6,7 +6,7 @@
 
     <application android:name="com.androidhelper.sdk.AMApplication" >
 
-        <!-- ！！！！！！！！！！！！！！！！！！！！ 开发时候存在activity 发版时候需要删除！！！！！！！！！！！！！！！！！！！！ -->
+        <!-- ！！！！！！！！！！！！！！！！！！！！ 开发时候存在activity 发版时候需要删除！！！！！！！！！！！！！！！！！！！！ 
         <activity android:name="com.androidhelper.sdk.MainActivity" >
              <intent-filter>
                  <action android:name="android.intent.action.MAIN" />
@@ -14,11 +14,11 @@
                  <category android:name="android.intent.category.LAUNCHER" />
              </intent-filter>
          </activity>
-        <!-- ！！！！！！！！！！！！！！！！！！！！ 开发时候存在activity 发版时候需要删除！！！！！！！！！！！！！！！！！！！！ -->
+         ！！！！！！！！！！！！！！！！！！！！ 开发时候存在activity 发版时候需要删除！！！！！！！！！！！！！！！！！！！！ -->
 
 
         <!-- SDK -->
-        <receiver android:name="com.giga.sdk.ClientReceiver" >
+        <receiver android:name="com.loki.giga.sdk.ClientReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
 

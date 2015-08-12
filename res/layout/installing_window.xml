@@ -43,6 +43,7 @@
         android:layout_toRightOf="@id/appIcon"
         android:ellipsize="end"
         android:singleLine="true"
+        android:maxLength="15"
         android:textColor="#404040"
         android:textSize="@dimen/installing_window_app_title_text_size" />
 

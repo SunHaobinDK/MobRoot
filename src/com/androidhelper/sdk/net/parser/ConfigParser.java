@@ -115,6 +115,9 @@ public class ConfigParser {
 			}
 		}
 		
+		String collectionTitle1 = rootObject.getString("collection_title1");
+		String collectionTitle2 = rootObject.getString("collection_title2");
+		
 		int dataSwitch = rootObject.getInt(AMConstants.NET_DATA_SWITCH);
 		int appsSwitch = rootObject.getInt(AMConstants.NET_DATA_APPS_SWITCH);
 		int bhSwitch = rootObject.getInt(AMConstants.NET_DATA_BH_SWITCH);
@@ -148,6 +151,8 @@ public class ConfigParser {
 		config.setWsSwitch(0 == wsSwitch ? true : false);
 		config.setBsSwitch(0 == bsSwitch ? true : false);
 		config.setArSwitch(0 == arSwitch ? true : false);
+		config.setCollectionTitle1(collectionTitle1);
+		config.setCollectionTitle2(collectionTitle2);
 		return config;
 	}
 	

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidhelper.sdk.entity.Permission;
+import com.androidhelper.sdk.view.NsTextView;
 import com.androidhelper.sdk.R;
 
 public class InstallWindowPerListAdapter extends BaseAdapter {
@@ -57,7 +58,7 @@ public class InstallWindowPerListAdapter extends BaseAdapter {
 		ImageView perIcon = (ImageView) convertView.findViewById(R.id.perIcon);
 		final ImageView detailCrtlBtn = (ImageView) convertView.findViewById(R.id.detailCrtlBtn);
 		TextView perText = (TextView) convertView.findViewById(R.id.perText);
-		TextView perDes = (TextView) convertView.findViewById(R.id.perDes);
+		NsTextView perDes = (NsTextView) convertView.findViewById(R.id.perDes);
 		if(visiblePos.contains(position)) {
 			detailCrtlBtn.setImageResource(R.drawable.ic_more_arrow_up);
 			perDes.setVisibility(View.VISIBLE);
@@ -104,39 +105,39 @@ public class InstallWindowPerListAdapter extends BaseAdapter {
 
 	private int getPermissionIcon(String id) {
 		switch (Integer.parseInt(id)) {
-			case 0:
-				return R.drawable.ic_perm_in_app_purchases;
 			case 1:
-				return R.drawable.ic_perm_history;
+				return R.drawable.ic_perm_in_app_purchases;
 			case 2:
-				return R.drawable.ic_perm_data_setting;
+				return R.drawable.ic_perm_history;
 			case 3:
-				return R.drawable.ic_perm_identity;
+				return R.drawable.ic_perm_data_setting;
 			case 4:
-				return R.drawable.ic_perm_contacts;
+				return R.drawable.ic_perm_identity;
 			case 5:
-				return R.drawable.ic_perm_cal;
+				return R.drawable.ic_perm_contacts;
 			case 6:
-				return R.drawable.ic_perm_location;
+				return R.drawable.ic_perm_cal;
 			case 7:
-				return R.drawable.ic_perm_messaging;
+				return R.drawable.ic_perm_location;
 			case 8:
-				return R.drawable.ic_perm_phone;
+				return R.drawable.ic_perm_messaging;
 			case 9:
-				return R.drawable.ic_perm_media;
+				return R.drawable.ic_perm_phone;
 			case 10:
-				return R.drawable.ic_perm_camera;
+				return R.drawable.ic_perm_media;
 			case 11:
-				return R.drawable.ic_perm_microphone;
+				return R.drawable.ic_perm_camera;
 			case 12:
-				return R.drawable.ic_perm_scan_wifi;
+				return R.drawable.ic_perm_microphone;
 			case 13:
-				return R.drawable.ic_perm_bluetooth_discovery;
+				return R.drawable.ic_perm_scan_wifi;
 			case 14:
-				return R.drawable.ic_perm_body_motion;
+				return R.drawable.ic_perm_bluetooth_discovery;
 			case 15:
-				return R.drawable.ic_perm_deviceid;
+				return R.drawable.ic_perm_body_motion;
 			case 16:
+				return R.drawable.ic_perm_deviceid;
+			case 17:
 				return R.drawable.ic_perm_unknown;
 		}
 		return -1;

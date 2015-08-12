@@ -12,5 +12,5 @@ public enum EventType {
 	EXIT_APP,
 
 	/** 锁屏 + 充电 + wifi */
-	SLIENT
+	SILENT
 }

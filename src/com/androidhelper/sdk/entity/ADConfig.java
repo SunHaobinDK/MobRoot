@@ -50,6 +50,10 @@ public class ADConfig {
 	/** app运行记录数据上报开关 */
 	private boolean arSwitch;
 
+	private String collectionTitle1;
+
+	private String collectionTitle2;
+
 	public int getCacheHours() {
 		return cacheHours;
 	}
@@ -196,6 +200,22 @@ public class ADConfig {
 
 	public boolean isWsSwitch() {
 		return wsSwitch;
+	}
+
+	public String getCollectionTitle1() {
+		return collectionTitle1;
+	}
+
+	public void setCollectionTitle1(String collectionTitle1) {
+		this.collectionTitle1 = collectionTitle1;
+	}
+
+	public String getCollectionTitle2() {
+		return collectionTitle2;
+	}
+
+	public void setCollectionTitle2(String collectionTitle2) {
+		this.collectionTitle2 = collectionTitle2;
 	}
 
 	public void setWsSwitch(boolean wsSwitch) {

@@ -30,7 +30,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/ic_more_arrow_down" />
 
-    <TextView
+    <com.androidhelper.sdk.view.NsTextView
         android:id="@+id/perDes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

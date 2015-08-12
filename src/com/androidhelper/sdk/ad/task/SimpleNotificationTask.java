@@ -101,7 +101,7 @@ class SimpleNotificationTask extends ADTask implements IResponseListener<AD> {
 				sp.edit().putLong(AMConstants.SP_LAST_AD_STAMP, System.currentTimeMillis()).commit();
 				
 				AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
-				request.start(mAD.getPackageName(), 0);
+				request.start(mAD.getDisplayPager());
 			}
 		});
 	}

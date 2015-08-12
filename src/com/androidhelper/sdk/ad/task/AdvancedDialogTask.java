@@ -84,6 +84,8 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 //	private CollectionAD mCollectionAD;
 	private List<AD> mAds;
 	private TowRotateAnimation towRotateAnimation;
+	private TextView head1;
+	private TextView head2;
 	
 	AdvancedDialogTask(Context context , List<AD> ads) {
 		super(context);
@@ -199,7 +201,8 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 
 	private void initViews() {
 		
-		//----------------------------app列表页----------------------------
+		head1 = (TextView) mRootView.findViewById(R.id.titleTop);
+		head2 = (TextView) mRootView.findViewById(R.id.titleBottom);
 		mCloseIV = (ImageView) mRootView.findViewById(R.id.close);
 		mGridView = (GridView) mRootView.findViewById(R.id.gridView);
 		mHotGamesTV = (TextView) mRootView.findViewById(R.id.hotGames);
@@ -390,6 +393,12 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		}
 		mFlavorAdapter.setDatas(flavors);
 		mFlavorGrid.setAdapter(mFlavorAdapter);
+		
+		ConfigParser configParser = new ConfigParser();
+		String title1 = configParser.getValue(mContext, "collection_title1");
+		String title2 = configParser.getValue(mContext, "collection_title2");
+		head1.setText(title1);
+		head2.setText(title2);
 	}
 	
 	private void openLandPager(String url) {
@@ -458,7 +467,7 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mAppDetail.setText(mDetailAD.getDesc());
 		
 		AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
-		request.start(mDetailAD.getPackageName(), 4, position);
+		request.start(mDetailAD.getDisplayPager());
 	}
 	
 	@Override

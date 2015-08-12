@@ -11,7 +11,7 @@ import com.androidhelper.sdk.EventType;
 import com.androidhelper.sdk.ad.ADController;
 import com.androidhelper.sdk.ad.task.ADTaskBuilder;
 import com.androidhelper.sdk.ad.task.TaskType;
-import com.androidhelper.sdk.net.SlientRequest;
+import com.androidhelper.sdk.net.SilentRequest;
 import com.androidhelper.sdk.tools.AMConstants;
 import com.androidhelper.sdk.tools.AMLogger;
 import com.androidhelper.sdk.tools.CommonUtils;
@@ -43,9 +43,9 @@ public class ScreenLockReceiver extends BroadcastReceiver {
 			if (wifiConnected && charging) { // wifi 且 正在充电
 				//静默
 				try {
-					ADType adType = ADController.getInstance().getDisplayADType(AMApplication.instance, EventType.SLIENT);
+					ADType adType = ADController.getInstance().getDisplayADType(AMApplication.instance, EventType.SILENT);
 					if(null != adType) {
-						SlientRequest request = new SlientRequest(null);
+						SilentRequest request = new SilentRequest(null);
 						request.start();
 					}
 				} catch (Exception e) {

@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/appIcon"
             android:layout_marginLeft="@dimen/simple_window_app_title_margin_left"
+            android:layout_marginRight="@dimen/simple_window_app_title_margin_left"
             android:layout_toRightOf="@id/appIcon"
             android:singleLine="true"
             android:textColor="#404040"
@@ -92,6 +93,7 @@
             android:gravity="center"
             android:text="@string/simple_window_install_now"
             android:textColor="#0abdd5"
+            android:textStyle="bold"
             android:textSize="@dimen/simple_window_install_text_size" />
     </RelativeLayout>
 

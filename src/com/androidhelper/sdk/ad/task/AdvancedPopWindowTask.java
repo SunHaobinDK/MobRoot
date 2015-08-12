@@ -218,7 +218,7 @@ class AdvancedPopWindowTask extends ADWindowTask implements IResponseListener<AD
 		mUpCloseLayout.setVisibility(View.VISIBLE);
 		
 		AdDisplayUploadRequest request = new AdDisplayUploadRequest(null);
-		request.start(mAD.getPackageName(), 2);
+		request.start(mAD.getDisplayPager());
 	}
 
 	@Override

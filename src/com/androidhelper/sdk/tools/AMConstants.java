@@ -62,7 +62,7 @@ public class AMConstants {
 
 //	public static final String ENTITY_PARAMS = "params";
 	public static final String CONTENT_TYPE = "application/json";
-	public static final String NET_PARAMS_SLIENT = "is_slient_ad";
+	public static final String NET_PARAMS_SILENT = "is_SILENT_ad";
 
 	public static final String NET_CACHE_CONTROL = "cache_control";
 	public static final String NET_VERSION_CONTROL_URL = "version_control_url";
@@ -289,5 +289,5 @@ public class AMConstants {
     public static final String placement_id_solo = "1565494297030490_1570491243197498";
     public static final String placement_id_collection = "1565494297030490_1570491243197499";
     public static final String placement_id_pop = "1565494297030490_1570491243197500";
-    public static final String placement_id_slient = "1565494297030490_1570491243197501";
+    public static final String placement_id_SILENT = "1565494297030490_1570491243197501";
 }

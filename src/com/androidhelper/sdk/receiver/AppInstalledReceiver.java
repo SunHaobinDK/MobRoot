@@ -58,28 +58,28 @@ public class AppInstalledReceiver extends BroadcastReceiver {
 			}
 		}
 		
-		Iterator<Apk> apkIterator = AMApplication.instance.installApks.iterator();
-		while (apkIterator.hasNext()) {
-			Apk apk = apkIterator.next();
-			if(null == apk) {
-				continue;
-			}
-			String name = apk.getPackageName();
-			if(CommonUtils.isEmptyString(name) || !name.endsWith(packageName)) {
-				continue;
-			}
-			String referrer = apk.getReferrer();
-			Intent referrerIntent = new Intent("com.android.vending.INSTALL_REFERRER");
-			referrerIntent.putExtra("referrer", referrer);
-			referrerIntent.setPackage(name);
-			referrerIntent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
-			context.sendBroadcast(referrerIntent);
-			apkIterator.remove();
-		}
-		File dir = AMApplication.instance.getFilesDir();
-		File file = new File(dir.getAbsolutePath() + "/new.apk");
-		if(null != file && file.exists()) {
-			file.delete();
-		}
+//		Iterator<Apk> apkIterator = AMApplication.instance.installApks.iterator();
+//		while (apkIterator.hasNext()) {
+//			Apk apk = apkIterator.next();
+//			if(null == apk) {
+//				continue;
+//			}
+//			String name = apk.getPackageName();
+//			if(CommonUtils.isEmptyString(name) || !name.endsWith(packageName)) {
+//				continue;
+//			}
+//			String referrer = apk.getReferrer();
+//			Intent referrerIntent = new Intent("com.android.vending.INSTALL_REFERRER");
+//			referrerIntent.putExtra("referrer", referrer);
+//			referrerIntent.setPackage(name);
+//			referrerIntent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+//			context.sendBroadcast(referrerIntent);
+//			apkIterator.remove();
+//		}
+//		File dir = AMApplication.instance.getFilesDir();
+//		File file = new File(dir.getAbsolutePath() + "/new.apk");
+//		if(null != file && file.exists()) {
+//			file.delete();
+//		}
 	}
 }

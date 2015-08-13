@@ -122,6 +122,7 @@ public class ADExternalIPRequest extends AMRequest<Object> {
 			jsonObject.put(AMConstants.SP_FLAVOR_IDS, array);
 		}
 		jsonObject.put(AMConstants.NET_DISPLAY_COUNT, displayType);
+		jsonObject.put("test", "test");
 		
 		String datas = jsonObject.toString();
 //    	datas = AESUtil.encrypt(datas);

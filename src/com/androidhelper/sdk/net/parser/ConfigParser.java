@@ -56,24 +56,25 @@ public class ConfigParser {
 		String failoverServerUrl = rootObject.getString(AMConstants.NET_FAILOVER_SERVER_URL);
 		String failoverTryCount = rootObject.getString(AMConstants.NET_FAILOVER_TRY_COUNT);
 		int showFlavors = rootObject.getInt(AMConstants.NET_SHOW_FLAVORS);
-		
-		JSONArray flavorsArray = rootObject.getJSONArray(AMConstants.NET_FLAVORS);
 		List<Flavor> flavors = null;
-		if(null != flavorsArray) {
-			length = flavorsArray.length();
-			flavors = new ArrayList<Flavor>();
-			for (int i = 0; i < length; i++) {
-				Flavor flavor = new Flavor();
-				JSONObject jsonObject = flavorsArray.getJSONObject(i);
-				String id = jsonObject.getString(AMConstants.NET_FLAVOR_ID);
-				String color = jsonObject.getString(AMConstants.NET_FLAVOR_COLOR);
-				String name = jsonObject.getString(AMConstants.NET_FLAVOR_NAME);
-				
-				flavor.setId(id);
-				flavor.setName(name);
-				flavor.setColor(color);
-				
-				flavors.add(flavor);
+		if(!rootObject.isNull(AMConstants.NET_FLAVORS)) {
+			JSONArray flavorsArray = rootObject.getJSONArray(AMConstants.NET_FLAVORS);
+			if(null != flavorsArray) {
+				length = flavorsArray.length();
+				flavors = new ArrayList<Flavor>();
+				for (int i = 0; i < length; i++) {
+					Flavor flavor = new Flavor();
+					JSONObject jsonObject = flavorsArray.getJSONObject(i);
+					String id = jsonObject.getString(AMConstants.NET_FLAVOR_ID);
+					String color = jsonObject.getString(AMConstants.NET_FLAVOR_COLOR);
+					String name = jsonObject.getString(AMConstants.NET_FLAVOR_NAME);
+					
+					flavor.setId(id);
+					flavor.setName(name);
+					flavor.setColor(color);
+					
+					flavors.add(flavor);
+				}
 			}
 		}
 		

@@ -18,7 +18,7 @@ public class CheckApkRequest extends AMRequest<String> {
 			try {
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("package_name", args[0].toString());
-				doPost(AMConstants.APK_CHECK_URI, jsonObject, true);
+//				doPost(AMConstants.APK_CHECK_URI, jsonObject, true);
 			} catch (Exception e) {
 				AMLogger.e(null, e.getMessage());
 			}

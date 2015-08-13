@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/advanced_window_app_item_app_title_margin_top"
             android:textColor="#404040"
+            android:singleLine="true"
             android:textSize="@dimen/advanced_window_app_item_app_title_text_size" />
 
         <TextView

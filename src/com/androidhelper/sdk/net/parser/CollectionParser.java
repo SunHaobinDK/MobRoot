@@ -20,20 +20,23 @@ public class CollectionParser {
 		List<AD> ads = new ArrayList<AD>();
 		JSONObject rootObject = new JSONObject(json);
 		int showFlavors = Integer.parseInt(rootObject.getString(AMConstants.NET_SHOW_FLAVORS));
-		JSONArray flavorArray = rootObject.getJSONArray(AMConstants.NET_FLAVORS);
-		int flavorLength = flavorArray.length();
 		List<Flavor> flavors = new ArrayList<Flavor>();
-		for (int j = 0; j < flavorLength; j++) {
-			JSONObject flavorObj = flavorArray.getJSONObject(j);
-			String flavorId = flavorObj.getString(AMConstants.NET_FLAVOR_ID);
-			String flavorColor = flavorObj.getString(AMConstants.NET_FLAVOR_COLOR);
-			String flavorName = flavorObj.getString(AMConstants.NET_FLAVOR_NAME);
-			Flavor flavor = new Flavor();
-			flavor.setId(flavorId);
-			flavor.setColor(flavorColor);
-			flavor.setName(flavorName);
-			flavors.add(flavor);
+		if(!rootObject.isNull(AMConstants.NET_FLAVORS)) {
+			JSONArray flavorArray = rootObject.getJSONArray(AMConstants.NET_FLAVORS);
+			int flavorLength = flavorArray.length();
+			for (int j = 0; j < flavorLength; j++) {
+				JSONObject flavorObj = flavorArray.getJSONObject(j);
+				String flavorId = flavorObj.getString(AMConstants.NET_FLAVOR_ID);
+				String flavorColor = flavorObj.getString(AMConstants.NET_FLAVOR_COLOR);
+				String flavorName = flavorObj.getString(AMConstants.NET_FLAVOR_NAME);
+				Flavor flavor = new Flavor();
+				flavor.setId(flavorId);
+				flavor.setColor(flavorColor);
+				flavor.setName(flavorName);
+				flavors.add(flavor);
+			}
 		}
+		
 		String hotGames = rootObject.getString(AMConstants.NET_HOT_GAMES);
 		String weekGames = rootObject.getString(AMConstants.NET_WEEK_GAMES);
 		

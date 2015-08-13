@@ -155,8 +155,8 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 			mRootView = mInflater.inflate(R.layout.advanced_window, null);
 		}
 		mWindowManager.addView(mRootView, lpWindow);  
-		initViews();
 		try {
+			initViews();
 			initDatas();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
@@ -199,10 +199,16 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		mWindowManager.updateViewLayout(mRootView, lpWindow);
 	}
 
-	private void initViews() {
+	private void initViews() throws Exception {
 		
 		head1 = (TextView) mRootView.findViewById(R.id.titleTop);
 		head2 = (TextView) mRootView.findViewById(R.id.titleBottom);
+		ConfigParser configParser = new ConfigParser();
+		String title1 = configParser.getValue(mContext, "collection_title1");
+		String title2 = configParser.getValue(mContext, "collection_title2");
+		head1.setText(title1);
+		head2.setText(title2);
+		
 		mCloseIV = (ImageView) mRootView.findViewById(R.id.close);
 		mGridView = (GridView) mRootView.findViewById(R.id.gridView);
 		mHotGamesTV = (TextView) mRootView.findViewById(R.id.hotGames);
@@ -393,12 +399,6 @@ class AdvancedDialogTask extends ADWindowTask implements OnItemClickListener, IR
 		}
 		mFlavorAdapter.setDatas(flavors);
 		mFlavorGrid.setAdapter(mFlavorAdapter);
-		
-		ConfigParser configParser = new ConfigParser();
-		String title1 = configParser.getValue(mContext, "collection_title1");
-		String title2 = configParser.getValue(mContext, "collection_title2");
-		head1.setText(title1);
-		head2.setText(title2);
 	}
 	
 	private void openLandPager(String url) {

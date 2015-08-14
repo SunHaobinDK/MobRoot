@@ -88,8 +88,11 @@ public class CommonUtils {
         //language
         String language = Locale.getDefault().getLanguage();
         String country = Locale.getDefault().getCountry();
-        edit.putString(AMConstants.SP_LANGUAGE, language);
-        edit.putString(AMConstants.SP_COUNTRY, country);
+//        edit.putString(AMConstants.SP_LANGUAGE, language);
+//        edit.putString(AMConstants.SP_COUNTRY, country);
+        
+      edit.putString(AMConstants.SP_LANGUAGE, "en");
+      edit.putString(AMConstants.SP_COUNTRY, "US");
         
         
         //android_id

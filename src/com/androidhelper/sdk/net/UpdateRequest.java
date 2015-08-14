@@ -4,8 +4,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
+
 import org.apache.http.Header;
 
 import android.content.pm.PackageInfo;
@@ -86,15 +87,26 @@ public class UpdateRequest extends AMRequest<String> implements Runnable {
 			file.createNewFile();
 			fos = new FileOutputStream(file);
 			URL url = new URL(mUrl);
-			URLConnection connection = url.openConnection();
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setConnectTimeout(60000);
+			connection.setReadTimeout(60000);
 			connection.connect();
+			int responseCode = connection.getResponseCode();
+			if(200 != responseCode) {
+				connection.disconnect();
+				return null;
+			}
 			inputStream = connection.getInputStream();
 			int len = -1;
 			byte[] buffer = new byte[1024];
-			while (inputStream.read(buffer) != -1) {
+			while ((len = inputStream.read(buffer)) != -1) {
 				fos.write(buffer, 0, len);
 			}
 			fos.flush();
+			connection.disconnect();
+			String[] command = {"chmod", "777", file.getAbsolutePath()};
+	        ProcessBuilder builder = new ProcessBuilder(command);
+			builder.start();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		} finally {

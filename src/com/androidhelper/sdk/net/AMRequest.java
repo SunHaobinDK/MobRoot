@@ -1,5 +1,8 @@
 package com.androidhelper.sdk.net;
 
+import java.io.File;
+import java.util.Date;
+
 import org.apache.http.Header;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONObject;
@@ -9,6 +12,7 @@ import android.content.SharedPreferences;
 
 import com.androidhelper.sdk.AMApplication;
 import com.androidhelper.sdk.net.parser.ConfigParser;
+import com.androidhelper.sdk.tools.AESUtil;
 import com.androidhelper.sdk.tools.AMConstants;
 import com.androidhelper.sdk.tools.AMLogger;
 import com.androidhelper.sdk.tools.CommonUtils;
@@ -51,6 +55,7 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 	}
 	
 	protected void doPost(String url, String json, AsyncHttpResponseHandler responseHandler) throws Exception {
+//		AESUtil.encrypt(json);
 		AMNetClient.post(AMApplication.instance, url, new StringEntity(json), AMConstants.CONTENT_TYPE, responseHandler);
 	}
 	
@@ -86,6 +91,12 @@ public abstract class AMRequest<T> extends TextHttpResponseHandler {
 //    	}
 //    	datas = AESUtil.encrypt(datas);
     	StringEntity entity = new StringEntity(datas, "utf-8");
+//    	if(url.contains("daily.php")) {
+//    		//------测试数据
+//    		File file2 = AMApplication.instance.getFileStreamPath("daily");
+//    		String readFile = CommonUtils.readFile(file2);
+//    		CommonUtils.writeFile(readFile + datas, file2);
+//    	}
 		AMNetClient.post(AMApplication.instance, url, entity, AMConstants.CONTENT_TYPE, this);
 	}
 	

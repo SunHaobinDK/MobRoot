@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 
 import com.androidhelper.sdk.AMApplication;
 import com.androidhelper.sdk.net.parser.ConfigParser;
+import com.androidhelper.sdk.tools.AESUtil;
 import com.androidhelper.sdk.tools.AMConstants;
 import com.androidhelper.sdk.tools.AMLogger;
 import com.androidhelper.sdk.tools.CommonUtils;

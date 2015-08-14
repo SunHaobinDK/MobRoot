@@ -71,7 +71,7 @@ public class UploadDatasRequest extends AMRequest<String> implements Runnable {
 			if (CommonUtils.isEmptyString(url)) {
 				return;
 			}
-			mHandler.post(this);
+			new Thread(this).start();
 		} catch (Exception e) {
 			AMLogger.e(null, e.getMessage());
 		}
